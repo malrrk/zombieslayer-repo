@@ -7,7 +7,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
     <orderEntry type="library" name="src" level="project" />
     <orderEntry type="library" name="cardgame_tutorial" level="project" />
+=======
+>>>>>>> origin/main
   </component>
 </module>
