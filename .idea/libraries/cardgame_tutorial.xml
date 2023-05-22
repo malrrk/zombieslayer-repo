@@ -1,0 +1,61 @@
+<component name="libraryTable">
+  <library name="cardgame_tutorial">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/lib" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/doc" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/ggkinect/javadoc" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/raspisim/javadoc" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/robotsim/javadoc" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/cardgame_tutorial" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/tcp_tutorial" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/tutorial" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/BtPeerEx1/src" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/BtServerSE/src" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/battleship" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/brownian" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/catgame" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/clock" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/dartgame" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/fifteenpuzzle" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/flyingbird" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/frogger" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/gameoflife" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/ggframetutorial/src" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/ggframetutorialstat/src" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/ggkinect/src" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/langton" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/lightsout" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/lunarlander" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/maumau" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/maze" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/memory" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/pacman" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/piano" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/pong" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/skiresort" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/snake" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/sokoban" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/spaceinvader" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/tcpbattleship" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/tcpmaumau" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/tcpmemory" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/tcpmemoryserver" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/tcpnim" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/tcpnimserver" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/tcpsixtysix" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/tcpsixtysixext" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/tetris" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/threebody" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/applications/turtle" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/raspisim/examples" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/raspisim/src" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/robotsim/examples" />
+      <root url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/robotsim/src" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../IdeaProjects/zombieslayer-repo/lib" recursive="false" />
+  </library>
+</component>
