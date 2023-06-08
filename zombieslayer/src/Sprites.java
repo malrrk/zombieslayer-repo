@@ -16,13 +16,13 @@ public class Sprites{
         textureAtlas = new Texture(Gdx.files.internal("testatlas.png")); // file in assets folder
 
         list = new int[4][2];
-        list[0][0] = 0;
+        list[0][0] = 0; // 0 = S
         list[0][1] = 0;
-        list[1][0] = 32;
+        list[1][0] = 32; // 1 = W
         list[1][1] = 0;
-        list[2][0] = 0;
+        list[2][0] = 0; // 2 = D
         list[2][1] = 32;
-        list[3][0] = 32;
+        list[3][0] = 32; // 3 = A
         list[3][1] = 32;
 
 
