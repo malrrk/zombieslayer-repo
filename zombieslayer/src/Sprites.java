@@ -8,9 +8,14 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Sprites{
-    private Texture textureAtlas; //atlas for all sprites
+    private Texture textureAtlas; //collection for all sprites
     private TextureRegion region; //portion of the atlas
     private int[][] list; //list of coordinates for regions
+    private int spriteNumber; //from 0 to 7, referring W - AW  clockwise
+    private int status; //basic, sword, shield, plate, swordshield, shieldplate, swordplate, plateshieldsword, zombie, cursedzombie
+
+
+
     public Sprites{
 
         textureAtlas = new Texture(Gdx.files.internal("testatlas.png")); // file in assets folder
@@ -29,10 +34,10 @@ public class Sprites{
     }
 
 
-    public void drawRegion(int spriteNumber, float printAtx, float printAty){ //prints a region at the passed position
+    public void drawRegion(int spriteNr, float printAtx, float printAty){ //prints a region at the passed position
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        selectRegion(spriteNumber);
+        setRegion();Region(spriteNr);
 
         batch.begin();
         batch.enableBlending();
@@ -40,8 +45,32 @@ public class Sprites{
         batch.end();
     }
 
-    public void selectRegion(int spriteNumber){ //selects the region belonging to a certain sprite
-        region = new TextureRegion(textureAtlas, list[spriteNumber][0], list[spriteNumber][1], 32, 32);
 
+
+    public void setRegion(int spriteNr){ //selects the region belonging to a certain sprite
+        region = new TextureRegion(textureAtlas, list[spriteNr][0], list[spriteNr][1], 32, 32);
     }
+    public region getRegion{
+    return region;
+    }
+
+
+    public void setSpriteNumber(int spriteNr){
+        spriteNumber = spriteNr;
+    }
+    public int getSpriteNumber{
+        return spriteNumber;
+    }
+
+
+    public void setStatus(int sts){
+        status = sts;
+    }
+    private void getStatus{
+        return status;
+    }
+
+
+
+} //end class
 
