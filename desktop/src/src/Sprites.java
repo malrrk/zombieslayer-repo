@@ -1,9 +1,12 @@
-package com.badlogic.gdx.graphics.g2d;
+package src;
 
 import static com.badlogic.gdx.graphics.g2d.SpriteBatch.*;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -21,7 +24,7 @@ public class Sprites{
 // test begin
 
 
-    public Sprites{
+    public Sprites() {
         textureAtlas = new Texture(Gdx.files.internal("testatlas.png")); // file in assets folder
         spriteNumber = 0;
         status = 0;
@@ -42,10 +45,10 @@ public class Sprites{
 
     public void drawRegion(int spriteNr, float printAtx, float printAty){ //prints a region at the passed position
         setRegion(spriteNr);
-        batch.begin();
-        batch.enableBlending();
-        batch.draw(region, float x, float y);
-        batch.end();
+       // batch.begin();
+        //batch.enableBlending();
+        //batch.draw(region, float x, float y);
+        //batch.end();
     }
 
 
@@ -72,10 +75,10 @@ public class Sprites{
 
 
     //getter
-    public int getStatus{return status;}
+    public int getStatus(){return status;}
     public int getSpriteNumber() {return spriteNumber;}
 
-    public TextureRegion getRegion{return region;}
+    public TextureRegion getRegion(){return region;}
 
 
     //setter
@@ -87,7 +90,7 @@ public class Sprites{
     }
 
     public void setRegionNew(int x, int y){ //sets the region to a square of 32x32 at given position
-        region = new TextureRegion(texture, x, y, 32, 32);
+        region = new TextureRegion(textureAtlas, x, y, 32, 32);
     }
 
 
@@ -97,10 +100,10 @@ public class Sprites{
     }
 
     public void drawRegionNew(float x, float y){ //draws the current region at given postion
-        batch.begin();
-        batch.enableBlending();
-        batch.draw(getRegion(), float x, float y);
-        batch.end();
+        //batch.begin();
+        //batch.enableBlending();
+        //batch.draw(getRegion(), float x, float y);
+        //batch.end();
     }
 
     public void setCharacterSprite(int status, int spriteNumber){
