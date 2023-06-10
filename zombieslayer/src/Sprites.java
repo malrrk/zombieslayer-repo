@@ -7,8 +7,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Sprites{
+public class Sprites extends SpriteBatch{
 
+    private Texture map; //basic map without any extras
     private Texture textureAtlas; //collection for all sprites
     private TextureRegion region; //portion of the atlas
     private int[][] list; //list of coordinates for regions
@@ -22,7 +23,8 @@ public class Sprites{
 
 
     public Sprites{
-        textureAtlas = new Texture(Gdx.files.internal("testatlas.png")); // file in assets folder
+        map = new Texture(Gdx.files.internal("map.png"));
+        textureAtlas = new Texture(Gdx.files.internal("testatlas.png")); // files in assets folder
         spriteNumber = 0;
         status = 0;
         setRegionNew(0, 0);
@@ -67,7 +69,7 @@ public class Sprites{
     }
     public void drawCharacter(int x, int y){
         setCharacterSprite();
-        drawRegionNew(x, y);
+        drawRegionItem(x, y);
     }
 
 
@@ -86,9 +88,11 @@ public class Sprites{
         spriteNumber = spriteNr;
     }
 
-    public void setRegionNew(int x, int y){ //sets the region to a square of 32x32 at given position
+    public void setRegionItem(int x, int y){ //sets the region to a square of 32x32 at given position
         region = new TextureRegion(texture, x, y, 32, 32);
     }
+
+    public void setRegionMap(int x, int y){region = new TextureRegion(map, x, y, 128, 72)}
 
 
     //auxiliary
@@ -104,11 +108,11 @@ public class Sprites{
     }
 
     public void setCharacterSprite(int status, int spriteNumber){
-        setRegionNew(spriteNumber * 32,status * 32);
+        setRegionItem(spriteNumber * 32,status * 32);
     }
 
     public void setCharacterSprite(){
-        setRegionNew(getSpriteNumber() * 32, getStatus() * 32);
+        setRegionItem(getSpriteNumber() * 32, getStatus() * 32);
     }
 
 
