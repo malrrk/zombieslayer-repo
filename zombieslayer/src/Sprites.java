@@ -7,12 +7,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Sprites extends SpriteBatch{
+public class Sprites extends Spritebatch{
 
+    private Spritebatch batch; // creates batch
     private Texture map; //basic map without any extras
     private Texture textureAtlas; //collection for all sprites
     private TextureRegion region; //portion of the atlas
-    private int[][] list; //list of coordinates for regions
+    private int[][] list; //list of coordinates for regions OUTDATED
     private int spriteNumber; //from 0 to 7, referring W - AW  clockwise
     private int status; //from 1 to 9, referring to (1)zombie, (2)basic, (3)sword, (4)plate, (5)shield,
                                                   // (6)plateshield, (7)platesword, (8)shieldsword, (9)plateshieldsword
@@ -23,13 +24,16 @@ public class Sprites extends SpriteBatch{
 
 
     public Sprites{
+        batch = new Spritebatch();
+        Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
+
         map = new Texture(Gdx.files.internal("map.png"));
-        textureAtlas = new Texture(Gdx.files.internal("testatlas.png")); // files in assets folder
+        textureAtlas = new Texture(Gdx.files.internal("textureatlas.png")); // files in assets folder
         spriteNumber = 0;
         status = 0;
         setRegionNew(0, 0);
 
-        list = new int[4][2];
+        list = new int[4][2]; //OUTDATED
         list[0][0] = 0; // spriteNumber 0 = S
         list[0][1] = 0;
         list[1][0] = 32; // spriteNumber 1 = W
@@ -48,13 +52,13 @@ public class Sprites extends SpriteBatch{
         batch.enableBlending();
         batch.draw(region, float x, float y);
         batch.end();
-    }
+    } //OUTDATED
 
 
 
     public void setRegion(int spriteNr){ //selects the region belonging to a certain sprite
         region = new TextureRegion(textureAtlas, list[spriteNr][0], list[spriteNr][1], 32, 32);
-    }
+    }//OUTDATED
 
 
     //test end
@@ -100,10 +104,10 @@ public class Sprites extends SpriteBatch{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 
-    public void drawRegionNew(float x, float y){ //draws the current region at given postion
+    public void drawRegionNew(float printAtx, float printAty){ //draws the current region at given postion
         batch.begin();
         batch.enableBlending();
-        batch.draw(getRegion(), float x, float y);
+        batch.draw(getRegion(), float printAtx, float printAty);
         batch.end();
     }
 
