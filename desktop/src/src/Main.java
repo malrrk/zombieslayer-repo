@@ -8,15 +8,16 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 public class Main extends ApplicationAdapter {
 
-		SpriteBatch batch;
-		Texture img;
+		Sprites batch;
+		//Texture img;
 		Player player;
 
 
 		@Override
 		public void create () {
-			batch = new SpriteBatch();
-			img = new Texture("badlogic.jpg");
+			batch = new Sprites();
+			batch.drawRegion ( 0,1,1);
+			//img = new Texture("badlogic.jpg");
 			player = new Player();
 
 		}
@@ -24,20 +25,16 @@ public class Main extends ApplicationAdapter {
 		@Override
 		public void render () {
 			ScreenUtils.clear(1, 0, 0, 1);
-			batch.begin();
-
-
-			batch.draw(img, 0, 0);
-
-			batch.end();
-
+			batch.setRegion(0);
+			batch.drawRegion(1,1,1);
+			batch.drawCharacter(0, 0);
 			player.move();
 		}
 
 		@Override
 		public void dispose () {
 			batch.dispose();
-			img.dispose();
+			///img.dispose();
 		}
 
 

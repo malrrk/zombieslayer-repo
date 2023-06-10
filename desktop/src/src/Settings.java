@@ -1,13 +1,13 @@
 package src;
 
 public class Settings {
-    private int speed = 200;
+    private static int speed = 200;
 
 //
 public void setSpeed(int speed) {
     this.speed = speed;
 }
-    public int getSpeed ()
+    public static int getSpeed()
     {
         return speed;
     }

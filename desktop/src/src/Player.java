@@ -12,12 +12,18 @@ public void Player(){
 }
 public void move(){
 
-    if(Gdx.input.isKeyPressed(Input.Keys.LEFT))
-        //this.x -= 200* Gdx.graphics.getDeltaTime();
-    System.out.print (" links");
-    if(Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-        //this.x += 200 * Gdx.graphics.getDeltaTime();
-    System.out.print( "rechts");
+    if(Gdx.input.isKeyPressed(Input.Keys.A))
+    { this.x -= Settings.getSpeed()* Gdx.graphics.getDeltaTime();
+    System.out.print (" links");}
+    if(Gdx.input.isKeyPressed(Input.Keys.W))
+    { this.y += Settings.getSpeed()* Gdx.graphics.getDeltaTime();
+        System.out.print (" hoch");}
+    if(Gdx.input.isKeyPressed(Input.Keys.S))
+    { this.y -= Settings.getSpeed()* Gdx.graphics.getDeltaTime();
+        System.out.print (" runter");}
+    if(Gdx.input.isKeyPressed(Input.Keys.D))
+    { this.x += Settings.getSpeed() * Gdx.graphics.getDeltaTime();
+    System.out.print( "rechts");}
 }
 
 }
