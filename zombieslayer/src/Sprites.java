@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Sprites{
+
     private Texture textureAtlas; //collection for all sprites
     private TextureRegion region; //portion of the atlas
     private int[][] list; //list of coordinates for regions
@@ -22,6 +23,10 @@ public class Sprites{
 
     public Sprites{
         textureAtlas = new Texture(Gdx.files.internal("testatlas.png")); // file in assets folder
+        spriteNumber = 0;
+        status = 0;
+        setRegionNew(0, 0);
+
         list = new int[4][2];
         list[0][0] = 0; // spriteNumber 0 = S
         list[0][1] = 0;
@@ -55,28 +60,40 @@ public class Sprites{
 
 
 
-    public region getRegion{
-    return region;
+    //methods doing actual stuff
+    public void drawCharacter(int status, int spriteNumber, int x, int y){
+        setCharacterSprite(status, spriteNumber);
+        drawRegionNew(x, y);
+    }
+    public void drawCharacter(int x, int y){
+        setCharacterSprite();
+        drawRegionNew(x, y);
     }
 
 
-    public void setSpriteNumber(int spriteNr){
-        spriteNumber = spriteNr;
-    }
-    public int getSpriteNumber{
-        return spriteNumber;
-    }
+    //getter
+    public int getStatus{return status;}
+    public int getSpriteNumber() {return spriteNumber;}
+
+    public TextureRegion getRegion{return region;}
 
 
+    //setter
     public void setStatus(int sts){
         status = sts;
     }
-    private int getStatus{
-        return status;
+    public void setSpriteNumber(int spriteNr){
+        spriteNumber = spriteNr;
     }
 
     public void setRegionNew(int x, int y){ //sets the region to a square of 32x32 at given position
         region = new TextureRegion(texture, x, y, 32, 32);
+    }
+
+
+    //auxiliary
+    public void clearScreen(){
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 
     public void drawRegionNew(float x, float y){ //draws the current region at given postion
@@ -86,18 +103,17 @@ public class Sprites{
         batch.end();
     }
 
-    public void clear(){
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    }
-
     public void setCharacterSprite(int status, int spriteNumber){
         setRegionNew(spriteNumber * 32,status * 32);
     }
+
     public void setCharacterSprite(){
-        setRegion(getSpriteNumber() * 32, getStatus() * 32);
+        setRegionNew(getSpriteNumber() * 32, getStatus() * 32);
     }
+
+
 }
-// end class
+// end sprites
 
 
 
