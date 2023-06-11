@@ -17,6 +17,7 @@ public class Sprites extends Spritebatch{
     private int spriteNumber; //from 0 to 7, referring W - AW  clockwise
     private int status; //from 1 to 9, referring to (1)zombie, (2)basic, (3)sword, (4)plate, (5)shield,
                                                   // (6)plateshield, (7)platesword, (8)shieldsword, (9)plateshieldsword
+    private int itemNumber; // from 0 to 16, referring to the items
 
 
 
@@ -73,7 +74,7 @@ public class Sprites extends Spritebatch{
     }
     public void drawCharacter(int x, int y){ // set status and spriteNumber with setCharacterSprite below
         setCharacterSprite();
-        drawRegionItem(x, y);
+        drawRegion(x, y);
     }
 
 
@@ -92,7 +93,7 @@ public class Sprites extends Spritebatch{
         spriteNumber = spriteNr;
     }
 
-    public void setRegionItem(int x, int y){ //sets the region to a square of 32x32 at given position
+    public void setRegion(int x, int y){ //sets the region to a square of 32x32 at given position
         region = new TextureRegion(texture, x, y, 32, 32);
     }
 
@@ -112,16 +113,32 @@ public class Sprites extends Spritebatch{
     }
 
     public void setCharacterSprite(int status, int spriteNumber){
-        setRegionItem(spriteNumber * 32,status * 32);
+        if(status >= 1 && status <= 9 && spriteNumber >= 0 && spriteNumber <= 7) {
+            setRegion(spriteNumber * 32, status * 32);
+        }
+        else {setRegion(0, 0);}
     } // sets sprite for drawCharacter(int x, int y)
 
     public void setCharacterSprite(){
-        setRegionItem(getSpriteNumber() * 32, getStatus() * 32);
+        setRegion(getSpriteNumber() * 32, getStatus() * 32);
     }
 
+    public void drawItem(int itemNumber, int printAtx, int printAty){
+        setRegion(256, itemNumber * 32);
+        drawRegionNew(printAtx, printAty);
+    }
+
+    public void drawPlant(boolean normal, int printAtx, int printAty){
+        if(normal){
+            //draw normal sprites
+        }
+        else{
+            //draw cursed sprites
+        }
+    }
 
 }
-// end sprites
+// end Sprites
 
 
 
