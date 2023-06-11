@@ -120,6 +120,7 @@ public class Sprites extends SpriteBatch{
     public void dispose(){
         batch.dispose();
     }
+
 }
 // end sprites
 

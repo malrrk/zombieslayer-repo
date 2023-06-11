@@ -4,26 +4,36 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
 public class Player  {
-private float x;
-private float y;
-public void Player(){
-    x= 10;
-    y=5;
-}
-public void move(){
 
-    if(Gdx.input.isKeyPressed(Input.Keys.A))
-    { this.x -= Settings.getSpeed()* Gdx.graphics.getDeltaTime();
-    System.out.print (" links");}
+public Player(){
+
+}
+public float move1(){
+
+    if(Gdx.input.isKeyPressed(Input.Keys.A)) {
+        return -Settings.getSpeed() * Gdx.graphics.getDeltaTime();}
+    if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+
+        return Settings.getSpeed() * Gdx.graphics.getDeltaTime();}
+
+    return 0;
+}
+    public float move2(){
+
     if(Gdx.input.isKeyPressed(Input.Keys.W))
-    { this.y += Settings.getSpeed()* Gdx.graphics.getDeltaTime();
-        System.out.print (" hoch");}
+    { return + Settings.getSpeed()* Gdx.graphics.getDeltaTime();
+    }
     if(Gdx.input.isKeyPressed(Input.Keys.S))
-    { this.y -= Settings.getSpeed()* Gdx.graphics.getDeltaTime();
-        System.out.print (" runter");}
-    if(Gdx.input.isKeyPressed(Input.Keys.D))
-    { this.x += Settings.getSpeed() * Gdx.graphics.getDeltaTime();
-    System.out.print( "rechts");}
+    { return - Settings.getSpeed()* Gdx.graphics.getDeltaTime();
+    }
+    return 0;
+}
+public int pic(){
+    if (Gdx.input.isKeyPressed(Input.Keys.W)) {return 1;}
+    if (Gdx.input.isKeyPressed(Input.Keys.A)) {return 0;}
+    if (Gdx.input.isKeyPressed(Input.Keys.S)){return 0;}
+    if (Gdx.input.isKeyPressed(Input.Keys.D)){return 0;}
+return 0;
 }
 
 }
