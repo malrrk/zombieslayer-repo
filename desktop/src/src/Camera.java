@@ -14,7 +14,6 @@ public class Camera {
         // Constructs a new OrthographicCamera, using the given viewport width and height
         // Height is multiplied by aspect ratio.
         cam = new OrthographicCamera(10, 10 * (h / w));
-
         cam.position.set(0, 0, 0);
         System.out.print ("ewew");
         cam.update();
@@ -24,7 +23,7 @@ public class Camera {
         cam.position.set(x, y, 0);
     }
 
-    public void
+
 
 
 

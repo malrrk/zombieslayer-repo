@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Matrix4;
 
 
 public class Main extends ApplicationAdapter {
@@ -39,7 +40,7 @@ public class Main extends ApplicationAdapter {
 			y = y+player.move2();
 			batch.drawCharacter(0, player.pic(),(int) x, (int) y);
 			cam.positionSet((int) x,(int) y);
-			cam.setProjektionMatrix(cam.combined);
+			//batch.setProjectionMatrix(cam.combined);
 		}
 
 		@Override
