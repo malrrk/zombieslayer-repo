@@ -71,7 +71,7 @@ public class Sprites extends Spritebatch{
         setCharacterSprite(status, spriteNumber);
         drawRegionNew(x, y);
     }
-    public void drawCharacter(int x, int y){
+    public void drawCharacter(int x, int y){ // set status and spriteNumber with setCharacterSprite below
         setCharacterSprite();
         drawRegionItem(x, y);
     }
@@ -113,7 +113,7 @@ public class Sprites extends Spritebatch{
 
     public void setCharacterSprite(int status, int spriteNumber){
         setRegionItem(spriteNumber * 32,status * 32);
-    }
+    } // sets sprite for drawCharacter(int x, int y)
 
     public void setCharacterSprite(){
         setRegionItem(getSpriteNumber() * 32, getStatus() * 32);
