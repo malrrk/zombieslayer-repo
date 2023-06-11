@@ -67,7 +67,7 @@ public class Sprites extends Spritebatch{
 
 
     //methods doing actual stuff
-    public void drawCharacter(int status, int spriteNumber, int x, int y){
+    public void drawCharacter(int status, int spriteNumber, int printAtx, int printAty){
         setCharacterSprite(status, spriteNumber);
         drawRegionNew(x, y);
     }
