@@ -40,7 +40,7 @@ public class Main extends ApplicationAdapter {
 			y = y+player.move2();
 			batch.drawCharacter(0, player.pic(),(int) x, (int) y);
 			cam.positionSet((int) x,(int) y);
-			//batch.setProjectionMatrix(cam.combined);
+			//batch.lol(cam.combined);
 		}
 
 		@Override
