@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Matrix4;
 
 public class Camera {
     public Matrix4 combined;
+
     private OrthographicCamera cam;
     public Camera(){
 

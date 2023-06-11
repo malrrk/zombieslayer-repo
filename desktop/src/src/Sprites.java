@@ -7,13 +7,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Sprites extends SpriteBatch{
-
+    private Rectangle versuch1;
     private Texture textureAtlas; //collection for all sprites
     private TextureRegion region; //portion of the atlas
     private int[][] list; //list of coordinates for regions
@@ -21,7 +22,7 @@ public class Sprites extends SpriteBatch{
     private int status; //from 1 to 9, referring to (1)zombie, (2)basic, (3)sword, (4)plate, (5)shield,
                                                // (6)plateshield, (7)platesword, (8)shieldsword, (9)plateshieldsword
 
-    SpriteBatch batch;
+    private SpriteBatch batch;
 
 
 // test begin
@@ -122,8 +123,19 @@ public class Sprites extends SpriteBatch{
         batch.dispose();
     }
 
-    public void lol(Matrix4 k ){
-        setProjectionMatrix(k);
+    public void test(){
+        versuch1 = new Rectangle();
+
+        versuch1.x = 20;
+        versuch1.y = 20;
+        versuch1.width = 64;
+        versuch1.height = 64;
+        batch.begin();
+        batch.draw(textureAtlas, versuch1.x, versuch1.y);
+        batch.end();
+    }
+    public void lol(Matrix4 k){
+        batch.setProjectionMatrix(k);
     }
 }
 // end sprites
