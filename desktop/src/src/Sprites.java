@@ -1,27 +1,24 @@
 package src;
 
-import static com.badlogic.gdx.graphics.g2d.SpriteBatch.*;
-
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Sprites extends SpriteBatch{
     private Rectangle versuch1;
+
+    private Texture map;
+
     private Texture textureAtlas; //collection for all sprites
     private TextureRegion region; //portion of the atlas
     private int[][] list; //list of coordinates for regions
-    private int spriteNumber; //from 0 to 7, referring W - AW  clockwise
+    private int spriteNr; //from 0 to 7, referring W - AW  clockwise
     private int status; //from 1 to 9, referring to (1)zombie, (2)basic, (3)sword, (4)plate, (5)shield,
                                                // (6)plateshield, (7)platesword, (8)shieldsword, (9)plateshieldsword
-
     private SpriteBatch batch;
 
 
@@ -29,8 +26,9 @@ public class Sprites extends SpriteBatch{
 
 
     public Sprites() {
-        textureAtlas = new Texture(Gdx.files.internal("testatlas.png")); // file in assets folder
-        spriteNumber = 0;
+        map = new Texture(Gdx.files.internal("map.png"));
+        textureAtlas = new Texture(Gdx.files.internal("testatlas.png")); // files in assets folder
+        spriteNr = 0;
         status = 0;
         batch = new SpriteBatch();
         setRegionNew(0, 0);
@@ -48,11 +46,11 @@ public class Sprites extends SpriteBatch{
     }
 
 
-    public void drawRegion(int spriteNr, float printAtx, float printAty){ //prints a region at the passed position
+    public void drawRegion(int spriteNr, float x, float y){ //prints a region at the passed position
         setRegion(spriteNr);
         batch.begin();
         batch.enableBlending();
-        batch.draw(region, printAtx, printAty);
+        batch.draw(region, x, y);
         batch.end();
     }
 
@@ -69,8 +67,8 @@ public class Sprites extends SpriteBatch{
 
 
     //methods doing actual stuff
-    public void drawCharacter(int status, int spriteNumber, int x, int y){
-        setCharacterSprite(status, spriteNumber);
+    public void drawCharacter(int status, int spriteNr, int x, int y){
+        setCharacterSprite(status, spriteNr);
         drawRegionNew(x, y);
     }
     public void drawCharacter(int x, int y){
@@ -81,17 +79,17 @@ public class Sprites extends SpriteBatch{
 
     //getter
     public int getStatus(){return status;}
-    public int getSpriteNumber() {return spriteNumber;}
+    public int getSpriteNr() {return spriteNr;}
 
     public TextureRegion getRegion(){return region;}
 
 
     //setter
-    public void setStatus(int sts){
-        status = sts;
+    public void setStatus(int status){
+        status = status;
     }
-    public void setSpriteNumber(int spriteNr){
-        spriteNumber = spriteNr;
+    public void setSpriteNr(int spriteNr){
+        spriteNr = spriteNr;
     }
 
     public void setRegionNew(int x, int y){ //sets the region to a square of 32x32 at given position
@@ -111,12 +109,12 @@ public class Sprites extends SpriteBatch{
         batch.end();
     }
 
-    public void setCharacterSprite(int status, int spriteNumber){
-        setRegionNew(spriteNumber * 32,status * 32);
+    public void setCharacterSprite(int status, int spriteNr){
+        setRegionNew(spriteNr * 32,status * 32);
     }
 
     public void setCharacterSprite(){
-        setRegionNew(getSpriteNumber() * 32, getStatus() * 32);
+        setRegionNew(getSpriteNr() * 32, getStatus() * 32);
     }
 
     public void dispose(){
@@ -136,6 +134,21 @@ public class Sprites extends SpriteBatch{
     }
     public void lol(Matrix4 k){
         batch.setProjectionMatrix(k);
+    }
+
+    public void drawItem(int itemNr, int x, int y){
+        setRegionNew(256, itemNr * 32);
+        drawRegionNew(x, y);
+    }
+
+    public void drawPlant(boolean normal, int x, int y){
+
+        if(normal){
+            //print normal plants
+        }
+        else{
+            //print cursed plants
+        }
     }
 }
 // end sprites
