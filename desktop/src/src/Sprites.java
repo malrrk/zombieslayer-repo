@@ -72,8 +72,8 @@ public class Sprites extends SpriteBatch{
         spriteNr = spriteNr;
     }
 
-    public void setRegionNew(int x, int y){ //sets the region to a square of 32x32 at given position
-        region = new TextureRegion(textureAtlas, x * 32, y * 32, 32, 32);
+    public void setRegionNew(int x, int y) { //sets the region to a square of 32x32 at given position
+    setRegionBig(x, y,1);
     }
 
 
@@ -123,32 +123,29 @@ public class Sprites extends SpriteBatch{
 
     public void setRegionBig(int x, int y, int size) { //sets the region to a square at given position
         if (size > 0) {
-            region = new TextureRegion(textureAtlas, x * 32, y * 32, size * 32, size * 32);
+            region = new TextureRegion(textureAtlas, size * 32 * x, size * 32 * y, size * 32, size * 32);
         }
     }
     public void drawPlant(int type, boolean normal, int x, int y){
 
         if(normal){
-           if(type < 4){
-               //small plants
-           }
-           if(type >= 4 && < 8){
-               //medium
-           }
-           if(type >= 8){
-               //large plants
-           }
-        }
+
+           for(int k = 0; k <= 10; k++){
+         //      if(k = type){
+                   setRegionBig((20 + type), 0, 2);
+               }
+            }
+
         else{
-            if(type < 4){
+          //  if(type < 4){
                 //small plants
-            }
-            if(type >= 4 && < 8){
+           // }
+          //  if(type >= 4 && type < 8){
                 //medium
-            }
-            if(type >= 8){
+           // }
+           // if(type >= 8){
                 //large plants
-            }
+            //}
         }
     }
 }
