@@ -36,19 +36,9 @@ public class Sprites extends SpriteBatch{
     }
 
 
-    public void drawRegion(int spriteNr, float x, float y){ //prints a region at the passed position
-        setRegion(spriteNr);
-        batch.begin();
-        batch.enableBlending();
-        batch.draw(region, x, y);
-        batch.end();
-    }
 
 
 
-    public void setRegion(int spriteNr){ //selects the region belonging to a certain sprite
-        region = new TextureRegion(textureAtlas, list[spriteNr][0], list[spriteNr][1], 32, 32);
-    }
 
 
     //test end
