@@ -1,7 +1,7 @@
 package src;
 
 public class Settings {
-    private static int speed = 200;
+    private static int speed = 100;
 
 //
 public void setSpeed(int speed) {
