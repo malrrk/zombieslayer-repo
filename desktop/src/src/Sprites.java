@@ -15,7 +15,6 @@ public class Sprites extends SpriteBatch{
 
     private Texture textureAtlas; //collection for all sprites
     private TextureRegion region; //portion of the atlas
-    private int[][] list; //list of coordinates for regions
     private int spriteNr; //from 0 to 7, referring W - AW  clockwise
     private int status; //from 1 to 9, referring to (1)zombie, (2)basic, (3)sword, (4)plate, (5)shield,
                                                // (6)plateshield, (7)platesword, (8)shieldsword, (9)plateshieldsword
@@ -33,15 +32,6 @@ public class Sprites extends SpriteBatch{
         batch = new SpriteBatch();
         setRegionNew(0, 0);
 
-        list = new int[4][2];
-        list[0][0] = 0; // spriteNumber 0 = S
-        list[0][1] = 0;
-        list[1][0] = 32; // spriteNumber 1 = W
-        list[1][1] = 0;
-        list[2][0] = 0; // spriteNumber 2 = D
-        list[2][1] = 32;
-        list[3][0] = 32; // spriteNumber 3 = A
-        list[3][1] = 32;
 
     }
 
@@ -93,7 +83,7 @@ public class Sprites extends SpriteBatch{
     }
 
     public void setRegionNew(int x, int y){ //sets the region to a square of 32x32 at given position
-        region = new TextureRegion(textureAtlas, x, y, 32, 32);
+        region = new TextureRegion(textureAtlas, x * 32, y * 32, 32, 32);
     }
 
 
@@ -110,11 +100,11 @@ public class Sprites extends SpriteBatch{
     }
 
     public void setCharacterSprite(int status, int spriteNr){
-        setRegionNew(spriteNr * 32,status * 32);
+        setRegionNew(spriteNr,status);
     }
 
     public void setCharacterSprite(){
-        setRegionNew(getSpriteNr() * 32, getStatus() * 32);
+        setRegionNew(getSpriteNr(), getStatus());
     }
 
     public void dispose(){
@@ -137,17 +127,38 @@ public class Sprites extends SpriteBatch{
     }
 
     public void drawItem(int itemNr, int x, int y){
-        setRegionNew(256, itemNr * 32);
+        setRegionNew(256, itemNr);
         drawRegionNew(x, y);
     }
 
-    public void drawPlant(boolean normal, int x, int y){
+    public void setRegionBig(int x, int y, int size) { //sets the region to a square at given position
+        if (size > 0) {
+            region = new TextureRegion(textureAtlas, x * 32, y * 32, size * 32, size * 32);
+        }
+    }
+    public void drawPlant(int type, boolean normal, int x, int y){
 
         if(normal){
-            //print normal plants
+           if(type < 4){
+               //small plants
+           }
+           if(type >= 4 && < 8){
+               //medium
+           }
+           if(type >= 8){
+               //large plants
+           }
         }
         else{
-            //print cursed plants
+            if(type < 4){
+                //small plants
+            }
+            if(type >= 4 && < 8){
+                //medium
+            }
+            if(type >= 8){
+                //large plants
+            }
         }
     }
 }
