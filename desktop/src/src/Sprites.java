@@ -12,8 +12,9 @@ public class Sprites extends SpriteBatch{
     private Rectangle versuch1;
 
     private Texture map;
+    private Texture itemAtlas;
 
-    private Texture textureAtlas; //collection for all sprites
+    private Texture characterAtlas; //collection for all sprites
     private TextureRegion region; //portion of the atlas
     private int spriteNr; //from 0 to 7, referring W - AW  clockwise
     private int status; //from 1 to 9, referring to (1)zombie, (2)basic, (3)sword, (4)plate, (5)shield,
@@ -26,7 +27,8 @@ public class Sprites extends SpriteBatch{
 
     public Sprites() {
         map = new Texture(Gdx.files.internal("map.png"));
-        textureAtlas = new Texture(Gdx.files.internal("testatlas.png")); // files in assets folder
+        itemAtlas = new Texture(Gdx.files.internal("itematlas.png"));
+        characterAtlas = new Texture(Gdx.files.internal("testatlas.png")); // files in assets folder
         spriteNr = 0;
         status = 0;
         batch = new SpriteBatch();
@@ -72,8 +74,8 @@ public class Sprites extends SpriteBatch{
         spriteNr = spriteNr;
     }
 
-    public void setRegionNew(int x, int y) { //sets the region to a square of 32x32 at given position
-    setRegionBig(x, y,1);
+    public void setRegionNew(int spriteNr, int status) { //sets the region to a square of 32x32 from given sprite
+        region = new TextureRegion(characterAtlas, 32 * spriteNr, 32 * status, 32, 32);
     }
 
 
@@ -109,7 +111,7 @@ public class Sprites extends SpriteBatch{
         versuch1.width = 64;
         versuch1.height = 64;
         batch.begin();
-        batch.draw(textureAtlas, versuch1.x, versuch1.y);
+        batch.draw(characterAtlas, versuch1.x, versuch1.y);
         batch.end();
     }
     public void lol(Matrix4 k){
@@ -117,23 +119,20 @@ public class Sprites extends SpriteBatch{
     }
 
     public void drawItem(int itemNr, int x, int y){
-        setRegionNew(256, itemNr);
+        setRegionItem(0, itemNr, 1);
         drawRegionNew(x, y);
     }
 
-    public void setRegionBig(int x, int y, int size) { //sets the region to a square at given position
+    public void setRegionItem(int x, int y, int size) { //sets the region to a square at given position
         if (size > 0) {
-            region = new TextureRegion(textureAtlas, size * 32 * x, size * 32 * y, size * 32, size * 32);
+            region = new TextureRegion(characterAtlas, size * 32 * x, size * 32 * y, size * 32, size * 32);
         }
     }
     public void drawPlant(int type, boolean normal, int x, int y){
 
         if(normal){
 
-           for(int k = 0; k <= 10; k++){
-         //      if(k = type){
-                   setRegionBig((20 + type), 0, 2);
-               }
+
             }
 
         else{
