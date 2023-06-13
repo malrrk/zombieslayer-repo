@@ -48,7 +48,7 @@ public class Main extends ApplicationAdapter {
 			Matrix4 matrix = cam.combined;
 			batch.lol(matrix);
 
-			batch.drawCharacter(4, player.pic(),(int) x, (int) y);
+			batch.drawCharacter(9, player.pic(),(int) x, (int) y);
 			System.out.print(x);
 
 
