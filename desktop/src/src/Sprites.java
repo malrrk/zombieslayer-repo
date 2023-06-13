@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Sprites extends SpriteBatch{
+public class Sprites {
     private Rectangle versuch1;
 
     private Texture map;
@@ -32,7 +32,7 @@ public class Sprites extends SpriteBatch{
         spriteNr = 0;
         status = 0;
         batch = new SpriteBatch();
-        setRegionNew(0, 0);
+
 
 
     }
@@ -74,8 +74,8 @@ public class Sprites extends SpriteBatch{
         spriteNr = spriteNr;
     }
 
-    public void setRegionNew(int spriteNr, int status) { //sets the region to a square of 32x32 from given sprite
-        region = new TextureRegion(characterAtlas, 32 * spriteNr, 32 * status, 32, 32);
+    public void setRegionCharacter(int spriteNr, int status) { //sets the region to a square of 32x32 from given sprite
+        setRegionCommon(characterAtlas, spriteNr, status, 1, 0, 0);
     }
 
 
@@ -92,11 +92,11 @@ public class Sprites extends SpriteBatch{
     }
 
     public void setCharacterSprite(int status, int spriteNr){
-        setRegionNew(spriteNr,status);
+        setRegionCharacter(spriteNr,status);
     }
 
     public void setCharacterSprite(){
-        setRegionNew(getSpriteNr(), getStatus());
+        setRegionCharacter(getSpriteNr(), getStatus());
     }
 
     public void dispose(){
@@ -118,16 +118,23 @@ public class Sprites extends SpriteBatch{
         batch.setProjectionMatrix(k);
     }
 
-    public void drawItem(int itemNr, int x, int y){
-        setRegionItem(0, itemNr, 1);
+
+
+
+
+    public void setRegionCommon(Texture texture, int x, int y, int size, int offsetx, int offsety) { //sets the region to a square at given position
+        if (size > 0) {
+            region = new TextureRegion(texture, size * 32 * x + offsetx, size * 32 * y + offsety, size * 32, size * 32);
+        }
+    }
+    public void setRegionItem(int x, int y, int size, int offsetx, int offsety){
+        setRegionCommon(itemAtlas, x, y, size, offsetx, offsety);
+    }
+    public void drawItem(int itemNr, int x, int y, int offsetx, int offsety){
+        setRegionItem(0, itemNr, 1, offsetx, offsety);
         drawRegionNew(x, y);
     }
 
-    public void setRegionItem(int x, int y, int size) { //sets the region to a square at given position
-        if (size > 0) {
-            region = new TextureRegion(characterAtlas, size * 32 * x, size * 32 * y, size * 32, size * 32);
-        }
-    }
     public void drawPlant(int type, boolean normal, int x, int y){
 
         if(normal){
@@ -136,18 +143,21 @@ public class Sprites extends SpriteBatch{
             }
 
         else{
-          //  if(type < 4){
-                //small plants
-           // }
-          //  if(type >= 4 && type < 8){
-                //medium
-           // }
-           // if(type >= 8){
-                //large plants
-            //}
+           /*
+           if(type < 4){
+              small plants
+           }
+           if(type >= 4 && type < 8){
+                medium
+           }
+           if(type >= 8){
+                large plants
+           */
+           }
         }
     }
-}
+
+
 // end sprites
 
 
