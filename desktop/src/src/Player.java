@@ -29,14 +29,26 @@ public float move1(){
     return 0;
 }
 public int pic(){
-    if (Gdx.input.isKeyPressed(Input.Keys.W)) {return 0;}
-    if (Gdx.input.isKeyPressed(Input.Keys.W) && Gdx.input.isKeyPressed(Input.Keys.D)) {return 1;}
-    if (Gdx.input.isKeyPressed(Input.Keys.D)) {return 2;}
-    if (Gdx.input.isKeyPressed(Input.Keys.S) && Gdx.input.isKeyPressed(Input.Keys.D)) {return 3;}
-    if (Gdx.input.isKeyPressed(Input.Keys.S)) {return 4;}
-    if (Gdx.input.isKeyPressed(Input.Keys.S) && Gdx.input.isKeyPressed(Input.Keys.A)) {return 5;}
-    if (Gdx.input.isKeyPressed(Input.Keys.A)) {return 6;}
-    if (Gdx.input.isKeyPressed(Input.Keys.W) && Gdx.input.isKeyPressed(Input.Keys.A)) {return 7;}
+    if (Gdx.input.isKeyPressed(Input.Keys.W)){
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {return 7;}
+    if (Gdx.input.isKeyPressed(Input.Keys.D)) {return 1;}
+    else {return 0;}}
+
+    if (Gdx.input.isKeyPressed(Input.Keys.A)){
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {return 7;}
+    if (Gdx.input.isKeyPressed(Input.Keys.S)) {return 5;}
+    else {return 6;}}
+
+    if (Gdx.input.isKeyPressed(Input.Keys.S)){
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {return 5;}
+    if (Gdx.input.isKeyPressed(Input.Keys.D)) {return 3;}
+    else {return 4;}}
+
+    if (Gdx.input.isKeyPressed(Input.Keys.D)){
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {return 1;}
+    if (Gdx.input.isKeyPressed(Input.Keys.S)) {return 3;}
+    else {return 2;}}
+
 return 0;
 }
 
