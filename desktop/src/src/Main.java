@@ -2,7 +2,6 @@ package src;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -14,14 +13,13 @@ public class Main extends ApplicationAdapter {
 		//Texture img;
 		Player player;
 		OrthographicCamera cam;
-		TextureRegion region;
 		float x;
 		float y;
 		Viewport viewport;
 		@Override
 		public void create () {
 			batch = new Sprites();
-			batch.setCharacterSprite(0, 5);
+			batch.setCharacterSprite(3, 5);
 			batch.drawRegionNew (1,1);
 			//img = new Texture("badlogic.jpg");
 			player = new Player();
@@ -50,7 +48,7 @@ public class Main extends ApplicationAdapter {
 			Matrix4 matrix = cam.combined;
 			batch.lol(matrix);
 
-			batch.drawCharacter(0, player.pic(),(int) x, (int) y);
+			batch.drawCharacter(4, player.pic(),(int) x, (int) y);
 			System.out.print(x);
 
 

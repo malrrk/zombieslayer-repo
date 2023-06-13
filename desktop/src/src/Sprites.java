@@ -28,7 +28,7 @@ public class Sprites {
     public Sprites() {
         map = new Texture(Gdx.files.internal("map.png"));
         itemAtlas = new Texture(Gdx.files.internal("itematlas.png"));
-        characterAtlas = new Texture(Gdx.files.internal("testatlas.png")); // files in assets folder
+        characterAtlas = new Texture(Gdx.files.internal("characteratlas.png")); // files in assets folder
         spriteNr = 0;
         status = 0;
         batch = new SpriteBatch();
@@ -92,7 +92,7 @@ public class Sprites {
     }
 
     public void setCharacterSprite(int status, int spriteNr){
-        setRegionCharacter(spriteNr,status);
+        setRegionCharacter(spriteNr, status);
     }
 
     public void setCharacterSprite(){
