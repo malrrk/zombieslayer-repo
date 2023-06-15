@@ -116,7 +116,7 @@ public class Sprites {
         versuch1.width = 64;
         versuch1.height = 64;
         batch.begin();
-        batch.draw(characterAtlas, versuch1.x, versuch1.y);
+        batch.draw(map, versuch1.x, versuch1.y);
         batch.end();
     }
 

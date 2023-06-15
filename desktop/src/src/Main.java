@@ -2,14 +2,9 @@ package src;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
-
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 
 public class Main extends ApplicationAdapter {
@@ -59,7 +54,9 @@ public class Main extends ApplicationAdapter {
 			batch.drawCharacter(2, player.pic(),(int) x, (int) y);
 			batch.kollsion();
 
-			batch.schrift(player.getLeben(), zeit+=Gdx.graphics.getDeltaTime(),turm.getlebenTurma(), (int)x,(int)y);
+			batch.schrift(player.getLeben(), zeit+= Gdx.graphics.getDeltaTime(),turm.getlebenTurma(), (int)x,(int)y);
+			batch.drawCharacter(12, player.pic(),(int) x, (int) y);
+			System.out.print(x);
 
 			//batch.end();
 
@@ -75,6 +72,7 @@ public class Main extends ApplicationAdapter {
 			batch.dispose();
 			///img.dispose();
 		}
+
 
 
 }
