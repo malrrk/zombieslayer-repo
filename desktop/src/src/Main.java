@@ -57,7 +57,7 @@ public class Main extends ApplicationAdapter {
 			batch.lol(matrix);
 			//batch.begin();
 			batch.drawCharacter(2, player.pic(),(int) x, (int) y);
-
+			batch.kollsion();
 
 			batch.schrift(player.getLeben(), zeit+=Gdx.graphics.getDeltaTime(),turm.getlebenTurma(), (int)x,(int)y);
 
