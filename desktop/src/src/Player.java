@@ -3,9 +3,13 @@ package src;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
+
 public class Player  {
+    private int leben;
 
 public Player(){
+    leben = Settings.getLeben();
+
 
 }
 public float move1(){
@@ -15,16 +19,18 @@ public float move1(){
     if (Gdx.input.isKeyPressed(Input.Keys.D)) {
 
         return Settings.getSpeed() * Gdx.graphics.getDeltaTime();}
+    //colision detaction
+    //leben = leben - getDamage;
 
     return 0;
 }
     public float move2(){
 
     if(Gdx.input.isKeyPressed(Input.Keys.W))
-    { return + Settings.getSpeed()* Gdx.graphics.getDeltaTime();
+    { return + Settings.getSpeed() * Gdx.graphics.getDeltaTime();
     }
     if(Gdx.input.isKeyPressed(Input.Keys.S))
-    { return - Settings.getSpeed()* Gdx.graphics.getDeltaTime();
+    { return - Settings.getSpeed() * Gdx.graphics.getDeltaTime();
     }
     return 0;
 }
@@ -51,5 +57,9 @@ public int pic(){
 
 return 0;
 }
+public int getLeben() {
+    return leben;
+}
+
 
 }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class Sprites {
     private Rectangle versuch1;
@@ -20,6 +21,8 @@ public class Sprites {
     private int status; //from 1 to 9, referring to (1)zombie, (2)basic, (3)sword, (4)plate, (5)shield,
                                                // (6)plateshield, (7)platesword, (8)shieldsword, (9)plateshieldsword
     private SpriteBatch batch;
+    BitmapFont font;
+    private Rectangle rectanglePlayer;
 
 
 // test begin
@@ -32,17 +35,11 @@ public class Sprites {
         spriteNr = 0;
         status = 0;
         batch = new SpriteBatch();
-
+        font = new BitmapFont();
+        rectanglePlayer = new Rectangle();
 
 
     }
-
-
-
-
-
-
-
     //test end
 
 
@@ -120,8 +117,6 @@ public class Sprites {
 
 
 
-
-
     public void setRegionCommon(Texture texture, int x, int y, int size, int offsetx, int offsety) { //sets the region to a square at given position
         if (size > 0) {
             region = new TextureRegion(texture, size * 32 * x + offsetx, size * 32 * y + offsety, size * 32, size * 32);
@@ -155,6 +150,30 @@ public class Sprites {
            */
            }
         }
+
+    public void schrift(int leben, float zeit, int lebenTurm, int x, int y){
+
+        String tmp = String.valueOf(leben);
+        String tmp1= String.valueOf((int)zeit);
+        String tmp2 = String.valueOf(lebenTurm);
+
+
+            batch.begin();
+            font.draw(batch,tmp1 , x+80,y+100);
+            font.draw(batch,tmp,x-85,y+100);
+            font.draw(batch,tmp2 ,x-85,y+80);
+            batch.end();
+        }
+    }
+    public void kollision(){
+        rectangleCat=catsprite.getBoundingRectangle();
+        boolean isOverlaping = rectanglePlayer.overlaps(rectangleShoes);
+        if(!isOverlaping) {
+            System.out.println("not overlap");
+            yPosition = yPosition + (20 * delta);
+
+        }
+
     }
 
 
