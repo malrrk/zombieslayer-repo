@@ -131,12 +131,12 @@ public class Sprites {
         }
     }
 
-    public void setRegionItem(int x, int y, int size, int offsetx, int offsety) {
-        setRegionCommon(itemAtlas, x, y, size, offsetx, offsety);
+    public void setRegionItem(int x, int y, int size) {
+        setRegionCommon(itemAtlas, x, y, size, 0, 0);
     }
 
     public void drawItem(int itemNr, int x, int y, int offsetx, int offsety) {
-        setRegionItem(0, itemNr, 1, offsetx, offsety);
+        setRegionItem(0, itemNr, 1);
         drawRegionNew(x, y);
     }
 
