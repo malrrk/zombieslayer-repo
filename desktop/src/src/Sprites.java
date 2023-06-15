@@ -167,26 +167,26 @@ public class Sprites {
 
 
         for (int j = 0; j < 300; j++) {
-                    drawPlant(1, (int) randomx[j] * 2, (int) (randomx[j + 300] * 4000) + 48, (int) (randomy[j + 300] * 4000));
+                    drawPlant(1, (int) randomx[j] * 2, (int) (randomx[j + 800] * 4000) + 48, (int) (randomy[j + 800] * 4000));
                 }
 
                 for (int j = 0; j < 200; j++) {
-                    drawPlant(2, (int) randomx[j] * 2, (int) (randomx[j + 600] * 4000) + 48, (int) (randomy[j + 600] * 4000));
+                    drawPlant(2, (int) randomx[j] * 2, (int) (randomx[j + 1100] * 4000) + 48, (int) (randomy[j + 1100] * 4000));
                 }
 
 
                 for (int j = 0; j < 200; j++) {
-                    drawPlant(3, (int) randomx[j] * 2, (int) (randomx[j + 800] * 4000) + 48, (int) (randomy[j + 800] * 4000));
+                    drawPlant(3, (int) randomx[j] * 2, (int) (randomx[j + 1300] * 4000) + 48, (int) (randomy[j + 1300] * 4000));
                 }
 
 
                 for (int j = 0; j < 150; j++) {
-                    drawPlant(4, (int) randomx[j] * 2, (int) (randomx[j + 900] * 4000) + 48, (int) (randomy[j + 900] * 4000));
+                    drawPlant(4, (int) randomx[j] * 2, (int) (randomx[j + 1500] * 4000) + 48, (int) (randomy[j + 1500] * 4000));
                 }
 
 
                 for (int j = 0; j < 150; j++) {
-                    drawPlant(5, (int) randomx[j] * 2, (int) (randomx[j + 100] * 4000) + 48, (int) (randomy[j + 100] * 4000));
+                    drawPlant(5, (int) randomx[j] * 2, (int) (randomx[j + 1650] * 4000) + 48, (int) (randomy[j + 1650] * 4000));
                 }
 
 
