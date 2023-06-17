@@ -211,22 +211,22 @@ public class Sprites {
         batch.end();
     }
 
-    public void kollision(float x,float y) {
-        rectanglePlayer.setPosition(x,y);
+    public void kollision(float x,float y) {}
+      //  rectanglePlayer.setPosition(x,y);
 
-        boolean isOverlaping = rectanglePlayer.overlaps(rectangleZombie);
-        rectanglePlayer.setPosition(x,y);
-        rectangleZombie.setSize(100,100);
-        batch.begin();
+        //boolean isOverlaping = rectanglePlayer.overlaps(rectangleZombie);
+        //rectanglePlayer.setPosition(x,y);
+        //*rectangleZombie.setSize(100,100);
+        //batch.begin();
 
 
-        if (!isOverlaping) {
+        //if (!isOverlaping) {
             //System.out.println("not overlap");
 
-        }
-        batch.end();
+        //}
+        //batch.end();//
 
-    }
+    //}
 }
 
 
