@@ -63,6 +63,8 @@ public class Main extends ApplicationAdapter {
 			batch.kollision(x,y);
 
 			batch.schrift((int)player.getLeben(), zeit+= Gdx.graphics.getDeltaTime(),turm.getlebenTurma(), (int)x,(int)y);
+			batch.drawManyPlantsNew();
+			batch.drawTower();
 			batch.drawCharacter(12, player.pic(),(int) x, (int) y);
 			playerr.setPosition(x,y);
 			if ((int)zeit- zeith>5){
@@ -71,7 +73,7 @@ public class Main extends ApplicationAdapter {
 			}
 			for (int i=0; i < z.zahler;i++)
 			{
-				batch.drawCharacter(0,1,(int)z.mx(i),(int)z.my(i));
+				batch.drawCharacter(1,1,(int)z.mx(i),(int)z.my(i));
 				zr.setPosition(z.mx(i),z.my(i));
 				if (playerr.overlaps(zr))
 				{

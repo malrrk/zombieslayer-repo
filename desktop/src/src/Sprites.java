@@ -1,17 +1,14 @@
 package src;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class Sprites {
     private Rectangle versuch1;
@@ -188,6 +185,10 @@ public class Sprites {
 
 
 
+
+    }
+    public void drawTower(){
+        drawPlant(1, 4, 2048, 2048);
 
     }
 
