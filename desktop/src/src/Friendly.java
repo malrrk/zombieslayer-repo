@@ -9,8 +9,15 @@ public class Friendly {
     public int getlebenTurma(){
         return lebenTurm;
     }
-    public void damage(){
+    public void hurt(){
         lebenTurm = lebenTurm-1;
+    }
+    public boolean lebent(){
+        if (lebenTurm<=0)
+        {
+            return true;
+        }
+        return false;
     }
 
 

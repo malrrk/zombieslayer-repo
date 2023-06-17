@@ -22,18 +22,18 @@ public class Hostile {
     }
 
     public float getx(){
-       if (xz<0)
+       if (xz<2048)
        { xz = xz+Settings.getZspeed() * Gdx.graphics.getDeltaTime();}
-       else if( xz==0)
+       else if( xz==2048)
        {}
        else{xz = xz-Settings.getZspeed() * Gdx.graphics.getDeltaTime();}
         return xz;
     }
     public float gety() {
-        if ((int) yz < 0) {
+        if ((int) yz < 2048) {
             yz = yz + Settings.getZspeed() * Gdx.graphics.getDeltaTime();
-            System.out.print(yz);
-        } else if ((int) yz == 0) {} else {
+
+        } else if ((int) yz == 2048) {} else {
                 yz = yz - Settings.getZspeed() * Gdx.graphics.getDeltaTime();
             }
             return yz;

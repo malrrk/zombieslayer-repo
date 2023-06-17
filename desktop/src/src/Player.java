@@ -12,7 +12,16 @@ public Player(){
 
 
 }
+public boolean lebenp() {
+    if (leben >= 0) {
+
+        return false;
+    }
+    leben = 100;
+    return true;
+}
 public float move1(){
+
 
     if(Gdx.input.isKeyPressed(Input.Keys.A)) {
         return -Settings.getSpeed() * Gdx.graphics.getDeltaTime();}

@@ -26,7 +26,7 @@ public class Hostilehilfsklasse {
     {
             if (zahler==49)
             {}
-            else{sammlung[zahler] = new Hostile((float) Math.random() * 100, (float) Math.random() * 100);
+            else{sammlung[zahler] = new Hostile((float) Math.random() * 2048, (float) Math.random() * 2048);
 
                 zahler++;}
 
