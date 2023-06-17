@@ -4,17 +4,22 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class Sprites {
     private Rectangle versuch1;
+    private double[] randomx;
+    private double[] randomy;
 
     private Texture map;
+    private Texture plantatlas;
     private Texture itemAtlas;
 
     private Texture characterAtlas; //collection for all sprites
@@ -31,16 +36,23 @@ public class Sprites {
 // test begin
 
 
-    public Sprites(float x, float y) {
+    public Sprites() {
         map = new Texture(Gdx.files.internal("map.png"));
+        plantatlas = new Texture(Gdx.files.internal("plantatlas.png"));
         itemAtlas = new Texture(Gdx.files.internal("itematlas.png"));
         characterAtlas = new Texture(Gdx.files.internal("characteratlas.png")); // files in assets folder
         spriteNr = 0;
         status = 0;
         batch = new SpriteBatch();
         font = new BitmapFont();
-        rectanglePlayer = new Rectangle(x,y,10,18);
-        rectangleZombie = new Rectangle(100,100,100,18);
+        rectanglePlayer = new Rectangle();
+        randomx = new double[2000];
+        randomy = new double[2000];
+
+        for(int i = 0; i < 2000; i++){
+            randomx[i] = MathUtils.random();
+            randomy[i] = MathUtils.random();
+        }
 
 
     }
@@ -130,36 +142,59 @@ public class Sprites {
 
     public void setRegionCommon(Texture texture, int x, int y, int size, int offsetx, int offsety) { //sets the region to a square at given position
         if (size > 0) {
-            region = new TextureRegion(texture, size * 32 * x + offsetx, size * 32 * y + offsety, size * 32, size * 32);
+            region = new TextureRegion(texture, (size * 32 * x) + offsetx, (size * 32 * y) + offsety, size * 32, size * 32);
         }
     }
 
-    public void setRegionItem(int x, int y, int size, int offsetx, int offsety) {
-        setRegionCommon(itemAtlas, x, y, size, offsetx, offsety);
+    public void setRegionItem(int x, int y) {
+        setRegionCommon(itemAtlas, x, y, 1, 0, 0);
     }
 
-    public void drawItem(int itemNr, int x, int y, int offsetx, int offsety) {
-        setRegionItem(0, itemNr, 1, offsetx, offsety);
+    public void drawItem(int itemNr, int x, int y){
+        setRegionItem(0, itemNr);
         drawRegionNew(x, y);
     }
 
-    public void drawPlant(int type, boolean normal, int x, int y) {
+    public void setRegionPlant(int plantType, int plantNr) {
+        setRegionCommon(plantatlas,plantNr, plantType, 2, 0, 0);
+    }
+    public void drawPlant(int plantType, int plantNr, int x, int y){
+        setRegionPlant(plantType, plantNr);
+        drawRegionNew(x, y);
+    }
 
-        if (normal) {
+    public void drawManyPlantsNew() {
+        for (int j = 0; j < 800; j++) {
+                        drawPlant(0, (int) randomx[j] * 2, (int) (randomx[j] * 4000) + 48, (int) (randomy[j] * 4000));
+                    }
 
 
-        } else {
-           /*
-           if(type < 4){
-              small plants
-           }
-           if(type >= 4 && type < 8){
-                medium
-           }
-           if(type >= 8){
-                large plants
-           */
-        }
+        for (int j = 0; j < 300; j++) {
+                    drawPlant(1, (int) randomx[j] * 2, (int) (randomx[j + 800] * 4000) + 48, (int) (randomy[j + 800] * 4000));
+                }
+
+                for (int j = 0; j < 200; j++) {
+                    drawPlant(2, (int) randomx[j] * 2, (int) (randomx[j + 1100] * 4000) + 48, (int) (randomy[j + 1100] * 4000));
+                }
+
+
+                for (int j = 0; j < 200; j++) {
+                    drawPlant(3, (int) randomx[j] * 2, (int) (randomx[j + 1300] * 4000) + 48, (int) (randomy[j + 1300] * 4000));
+                }
+
+
+                for (int j = 0; j < 150; j++) {
+                    drawPlant(4, (int) randomx[j] * 2, (int) (randomx[j + 1500] * 4000) + 48, (int) (randomy[j + 1500] * 4000));
+                }
+
+
+                for (int j = 0; j < 150; j++) {
+                    drawPlant(5, (int) randomx[j] * 2, (int) (randomx[j + 1650] * 4000) + 48, (int) (randomy[j + 1650] * 4000));
+                }
+
+
+
+
     }
 
     public void schrift(int leben, float zeit, int lebenTurm, int x, int y) {

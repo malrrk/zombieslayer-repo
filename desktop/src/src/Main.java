@@ -22,7 +22,7 @@ public class Main extends ApplicationAdapter {
 
 		@Override
 		public void create () {
-			batch = new Sprites(x,y);
+			batch = new Sprites();
 
 			//batch.drawRegion ( 0,1,1);
 			//img = new Texture("badlogic.jpg");
@@ -42,10 +42,11 @@ public class Main extends ApplicationAdapter {
 		@Override
 		public void render () {
 
-			ScreenUtils.clear(0, 0, 255, 255);
+			ScreenUtils.clear(0, 0, 0, 1);
 			//batch.setRegion(0);
-
 			//batch.drawRegion(0,1,1);
+
+
 			x = x + player.move1();
 			y = y + player.move2();
 
