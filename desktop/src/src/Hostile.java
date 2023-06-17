@@ -9,12 +9,14 @@ public class Hostile {
     float yz ;
     int leben;
     Vector vector;
+    int zahlert;
+    Friendly turm;
 
 
     public Hostile(float x,float y ){
              yz = y;
              xz = x;
-            leben = 100;
+            leben = 10;
             vector = new Vector2(x,y);
 
     }
@@ -27,15 +29,21 @@ public class Hostile {
        else{xz = xz-Settings.getZspeed() * Gdx.graphics.getDeltaTime();}
         return xz;
     }
-    public float gety(){
-        if (yz<0)
-        {yz= yz+Settings.getZspeed() * Gdx.graphics.getDeltaTime();}
-        else if (yz==0)
-        {}
-        else{yz= yz-Settings.getZspeed() * Gdx.graphics.getDeltaTime();}
-        return yz ;
-    }
+    public float gety() {
+        if ((int) yz < 0) {
+            yz = yz + Settings.getZspeed() * Gdx.graphics.getDeltaTime();
+            System.out.print(yz);
+        } else if ((int) yz == 0) {} else {
+                yz = yz - Settings.getZspeed() * Gdx.graphics.getDeltaTime();
+            }
+            return yz;
+        }
 
+
+
+    public void hurt(){
+        leben = leben -1;
+    }
 
 
 }

@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input;
 
 
 public class Player  {
-    private int leben;
+    private float leben;
 
 public Player(){
     leben = Settings.getLeben();
@@ -57,9 +57,11 @@ public int pic(){
 
 return 4;
 }
-public int getLeben() {
+public float getLeben() {
     return leben;
 }
-
+public void hurt(){
+    leben -= 0.1;
+}
 
 }

@@ -9,5 +9,9 @@ public class Friendly {
     public int getlebenTurma(){
         return lebenTurm;
     }
+    public void damage(){
+        lebenTurm = lebenTurm-1;
+    }
+
 
 }

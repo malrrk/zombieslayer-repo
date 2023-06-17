@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 
@@ -19,6 +20,8 @@ public class Main extends ApplicationAdapter {
 		float zeit;
 		Hostilehilfsklasse z;
 		int zeith;
+		Rectangle playerr;
+		Rectangle zr;
 
 		@Override
 		public void create () {
@@ -33,7 +36,8 @@ public class Main extends ApplicationAdapter {
 			z = new Hostilehilfsklasse();
 			zeith= 0;
 			x=y=0;
-
+			zr= new Rectangle(0,0,12,18);
+			playerr= new Rectangle (0,0,12,18);
 
 
 
@@ -58,17 +62,22 @@ public class Main extends ApplicationAdapter {
 			batch.lol(matrix);
 			batch.kollision(x,y);
 
-			batch.schrift(player.getLeben(), zeit+= Gdx.graphics.getDeltaTime(),turm.getlebenTurma(), (int)x,(int)y);
+			batch.schrift((int)player.getLeben(), zeit+= Gdx.graphics.getDeltaTime(),turm.getlebenTurma(), (int)x,(int)y);
 			batch.drawCharacter(12, player.pic(),(int) x, (int) y);
+			playerr.setPosition(x,y);
 			if ((int)zeit- zeith>5){
 				z.z();
-
 				zeith = (int) zeit;
-
 			}
 			for (int i=0; i < z.zahler;i++)
 			{
 				batch.drawCharacter(0,1,(int)z.mx(i),(int)z.my(i));
+				zr.setPosition(z.mx(i),z.my(i));
+				if (playerr.overlaps(zr))
+				{
+
+					player.hurt();
+				}
 			}
 		}
 

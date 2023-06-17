@@ -30,7 +30,9 @@ public class Hostilehilfsklasse {
 
                 zahler++;}
 
-
+    }
+    public void hurt(int i){
+        sammlung[i].hurt();
     }
 
 }
