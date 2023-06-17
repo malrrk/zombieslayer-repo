@@ -214,9 +214,9 @@ public class Sprites {
                     drawRegionGameOver( k * 320, 360 + i * 180, x, y);
                     delay(150);
                 }
-                else{
-                    for(int j = 0; j < 6; j++){
-                        drawRegionGameOver(j * 320, 900, x, y);
+                if(i == 3){
+                    while(k < 6){
+                        drawRegionGameOver(k * 320, 900, x, y);
                         delay(150);
                     }
                 }
