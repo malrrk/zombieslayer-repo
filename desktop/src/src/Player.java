@@ -55,7 +55,7 @@ public int pic(){
     if (Gdx.input.isKeyPressed(Input.Keys.S)) {return 3;}
     else {return 2;}}
 
-return 0;
+return 4;
 }
 public int getLeben() {
     return leben;

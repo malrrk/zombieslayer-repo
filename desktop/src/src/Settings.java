@@ -4,6 +4,7 @@ public class Settings {
     private static int speed = 100;
     private static int lebenTurm = 100;
     private static int leben= 100;
+    private static int Anzahlz1= 50;
 
 //
 public void setSpeed(int speed) {
@@ -21,4 +22,5 @@ public void setSpeed(int speed) {
     {
         return leben;
     }
+    public static int getZombieZahl1(){return Anzahlz1;}
 }

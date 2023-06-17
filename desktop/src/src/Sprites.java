@@ -1,10 +1,12 @@
 package src;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -29,7 +31,7 @@ public class Sprites {
 // test begin
 
 
-    public Sprites() {
+    public Sprites(float x, float y) {
         map = new Texture(Gdx.files.internal("map.png"));
         itemAtlas = new Texture(Gdx.files.internal("itematlas.png"));
         characterAtlas = new Texture(Gdx.files.internal("characteratlas.png")); // files in assets folder
@@ -37,7 +39,8 @@ public class Sprites {
         status = 0;
         batch = new SpriteBatch();
         font = new BitmapFont();
-        rectanglePlayer = new Rectangle();
+        rectanglePlayer = new Rectangle(x,y,10,18);
+        rectangleZombie = new Rectangle(100,100,100,18);
 
 
     }
@@ -173,13 +176,20 @@ public class Sprites {
         batch.end();
     }
 
-    public void kollision() {
+    public void kollision(float x,float y) {
+        rectanglePlayer.setPosition(x,y);
 
         boolean isOverlaping = rectanglePlayer.overlaps(rectangleZombie);
+        rectanglePlayer.setPosition(x,y);
+        rectangleZombie.setSize(100,100);
+        batch.begin();
+
+
         if (!isOverlaping) {
-            System.out.println("not overlap");
+            //System.out.println("not overlap");
 
         }
+        batch.end();
 
     }
 }
