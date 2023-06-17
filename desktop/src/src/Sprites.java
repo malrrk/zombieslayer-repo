@@ -56,7 +56,7 @@ public class Sprites {
     //test end
 
 
-    //methods doing actual stuff
+    //methods to actually use
     public void drawCharacter(int status, int spriteNr, int x, int y) {
         setCharacterSprite(status, spriteNr);
         drawRegionNew(x, y);
@@ -64,6 +64,11 @@ public class Sprites {
 
     public void drawCharacter(int x, int y) {
         setCharacterSprite();
+        drawRegionNew(x, y);
+    }
+
+    public void drawItem(int itemNr, int x, int y){
+        setRegionItem(0, itemNr);
         drawRegionNew(x, y);
     }
 
@@ -141,10 +146,7 @@ public class Sprites {
         setRegionCommon(itemAtlas, x, y, 1, 0, 0);
     }
 
-    public void drawItem(int itemNr, int x, int y){
-        setRegionItem(0, itemNr);
-        drawRegionNew(x, y);
-    }
+
 
     public void setRegionPlant(int plantType, int plantNr) {
         setRegionCommon(plantatlas,plantNr, plantType, 2, 0, 0);
