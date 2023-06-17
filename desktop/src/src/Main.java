@@ -7,6 +7,8 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
+
 
 public class Main extends ApplicationAdapter {
 
@@ -22,6 +24,7 @@ public class Main extends ApplicationAdapter {
 		int zeith;
 		Rectangle playerr;
 		Rectangle zr;
+		Rectangle turmr;
 
 		@Override
 		public void create () {
@@ -35,10 +38,10 @@ public class Main extends ApplicationAdapter {
 			cam.position.set(x+10,y+10,0);
 			z = new Hostilehilfsklasse();
 			zeith= 0;
-			x=y=0;
+			x=y=2048;
 			zr= new Rectangle(0,0,12,18);
 			playerr= new Rectangle (0,0,12,18);
-
+			turmr = new Rectangle(2048,2048,41,50);
 
 
 
@@ -77,10 +80,22 @@ public class Main extends ApplicationAdapter {
 				zr.setPosition(z.mx(i),z.my(i));
 				if (playerr.overlaps(zr))
 				{
-
 					player.hurt();
 				}
+				if (turmr.overlaps(zr))
+				{
+					turm.hurt();
 			}
+			}
+			if (player.lebenp()==true){
+				x= 2048;
+				y = 2048;
+				delay(300);
+			}
+			if (turm.lebent()==true){
+				batch.dispose();
+			}
+
 		}
 
 		@Override
