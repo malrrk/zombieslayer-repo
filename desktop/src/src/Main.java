@@ -52,7 +52,7 @@ public class Main extends ApplicationAdapter {
 
 			ScreenUtils.clear(0, 0, 0, 1);
 			//batch.setRegion(0);
-			//batch.drawRegion(0,1,1);
+			//batch.drawRegion(0,1,1);ass
 
 			x = x + player.move1();
 			y = y + player.move2();
@@ -64,10 +64,11 @@ public class Main extends ApplicationAdapter {
 			batch.lol(matrix);
 			batch.kollision(x,y);
 
-			batch.schrift((int)player.getLeben(), zeit+= Gdx.graphics.getDeltaTime(),turm.getlebenTurma(), (int)x,(int)y);
+
 			batch.drawManyPlantsNew();
 			batch.drawTower();
 			batch.drawCharacter(12, player.pic(),(int) x, (int) y);
+			batch.schrift((int)player.getLeben(), zeit+= Gdx.graphics.getDeltaTime(),turm.getlebenTurma(), (int)x,(int)y);
 			playerr.setPosition(x,y);
 
 			if ((int)zeit- zeith>5){
