@@ -202,27 +202,27 @@ public class Sprites {
 
     }
 
-    public void drawRegionGameOver(int x, int y){
+    public void drawRegionGameOver(int x, int y, int drawx, int drawy){
         region = new TextureRegion(gameOver, x, y, 80, 45);
-        drawRegionNew(0, 0);
+        drawRegionNew(drawx, drawy);
     }
 
-    public void drawGameOver(){
+    public void drawGameOver(int x, int y){
         for(int i = 0; i < 4; i++){
             for(int k = 0; k < 12; k++){
                 if(i < 3){
-                    drawRegionGameOver( k * 80, 90 + i * 45);
-                    delay(1000);
+                    drawRegionGameOver( k * 80, 90 + i * 45, x, y);
+                    delay(100);
                 }
                 else{
                     for(int j = 0; j < 6; j++){
-                        drawRegionGameOver(j * 80, 225);
-                        delay(1000);
+                        drawRegionGameOver(j * 80, 225, x, y);
+                        delay(100);
                     }
                 }
             }
         }
-        drawRegionGameOver(320 ,225);
+        drawRegionGameOver(320 ,225, x, y);
 
     }
 
