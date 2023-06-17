@@ -65,6 +65,7 @@ public class Main extends ApplicationAdapter {
 			batch.kollision(x,y);
 
 
+
 			batch.drawManyPlantsNew();
 			batch.drawTower();
 			batch.drawCharacter(12, player.pic(),(int) x, (int) y);
@@ -96,6 +97,9 @@ public class Main extends ApplicationAdapter {
 			if (turm.lebent()==true){
 				batch.dispose();
 			}
+
+
+
 
 
 		}

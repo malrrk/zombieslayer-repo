@@ -10,6 +10,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
+
 public class Sprites {
     private Rectangle versuch1;
     private double[] randomx;
@@ -210,11 +212,12 @@ public class Sprites {
             for(int k = 0; k < 12; k++){
                 if(i < 3){
                     drawRegionGameOver( k * 80, 90 + i * 45);
-
+                    delay(1000);
                 }
                 else{
                     for(int j = 0; j < 6; j++){
                         drawRegionGameOver(j * 80, 225);
+                        delay(1000);
                     }
                 }
             }
