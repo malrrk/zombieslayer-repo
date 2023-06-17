@@ -123,15 +123,9 @@ public class Sprites {
         batch.dispose();
     }
 
-    public void test() {
-        versuch1 = new Rectangle();
-
-        versuch1.x = 20;
-        versuch1.y = 20;
-        versuch1.width = 64;
-        versuch1.height = 64;
+    public void maps() {
         batch.begin();
-        batch.draw(map, versuch1.x, versuch1.y);
+        batch.draw(map, 0, 0);
         batch.end();
     }
 

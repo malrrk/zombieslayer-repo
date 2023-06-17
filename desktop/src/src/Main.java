@@ -32,6 +32,7 @@ public class Main extends ApplicationAdapter {
 			cam.position.set(x+10,y+10,0);
 			z = new Hostilehilfsklasse();
 			zeith= 0;
+			x=y=0;
 
 
 
@@ -52,17 +53,14 @@ public class Main extends ApplicationAdapter {
 
 			cam.position.set(x+10,y+10,0);
 			cam.update();
-			batch.test();
+			batch.maps();
 			Matrix4 matrix = cam.combined;
 			batch.lol(matrix);
-			//batch.begin();
-			batch.drawCharacter(2, player.pic(),(int) x, (int) y);
 			batch.kollision(x,y);
-
 
 			batch.schrift(player.getLeben(), zeit+= Gdx.graphics.getDeltaTime(),turm.getlebenTurma(), (int)x,(int)y);
 			batch.drawCharacter(12, player.pic(),(int) x, (int) y);
-			if ((int)zeit- zeith>0){
+			if ((int)zeit- zeith>5){
 				z.z();
 
 				zeith = (int) zeit;
@@ -71,16 +69,7 @@ public class Main extends ApplicationAdapter {
 			for (int i=0; i < z.zahler;i++)
 			{
 				batch.drawCharacter(0,1,(int)z.mx(i),(int)z.my(i));
-				System.out.print(i);
 			}
-
-			//batch.end();
-
-
-
-			//cam.positionSet((int) x,(int) y);
-
-
 		}
 
 		@Override

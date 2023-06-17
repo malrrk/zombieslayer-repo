@@ -22,7 +22,8 @@ public class Hostilehilfsklasse {
             return sammlung[i].gety();
 
     }
-    public void z(){
+    public void z()
+    {
             if (zahler==49)
             {}
             else{sammlung[zahler] = new Hostile((float) Math.random() * 100, (float) Math.random() * 100);
@@ -30,8 +31,7 @@ public class Hostilehilfsklasse {
                 zahler++;}
 
 
-        }
-
+    }
 
 }
 
