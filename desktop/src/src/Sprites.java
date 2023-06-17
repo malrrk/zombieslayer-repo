@@ -211,13 +211,13 @@ public class Sprites {
         for(int i = 0; i < 4; i++){
             for(int k = 0; k < 12; k++){
                 if(i < 3){
-                    drawRegionGameOver( k * 80, 90 + i * 45, x, y);
-                    delay(100);
+                    drawRegionGameOver( k * 320, 360 + i * 180, x, y);
+                    delay(150);
                 }
                 else{
                     for(int j = 0; j < 6; j++){
-                        drawRegionGameOver(j * 80, 225, x, y);
-                        delay(100);
+                        drawRegionGameOver(j * 320, 900, x, y);
+                        delay(150);
                     }
                 }
             }
