@@ -1,16 +1,16 @@
 package src;
 
 public class Friendly {
-    private int lebenTurm;
+    private float lebenTurm;
     public Friendly() {
       lebenTurm  = Settings.getlebenTurm();
 
     }
-    public int getlebenTurma(){
+    public float getlebenTurma(){
         return lebenTurm;
     }
     public void hurt(){
-        lebenTurm = lebenTurm-1;
+        lebenTurm -= 0.1;
     }
     public boolean lebent(){
         if (lebenTurm<=0)
@@ -18,6 +18,9 @@ public class Friendly {
             return true;
         }
         return false;
+    }
+    public void setLebenTurm(){
+        lebenTurm= 100;
     }
 
 
