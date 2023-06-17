@@ -1,4 +1,5 @@
 package src;
+package com.journaldev.threads;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -14,6 +15,7 @@ public class Sprites {
     private Rectangle versuch1;
     private double[] randomx;
     private double[] randomy;
+    private Texture gameOver;
 
     private Texture map;
     private Texture plantatlas;
@@ -34,6 +36,7 @@ public class Sprites {
 
 
     public Sprites() {
+        gameOver = new Texture(Gdx.files.internal("game over.png"));
         map = new Texture(Gdx.files.internal("map.png"));
         plantatlas = new Texture(Gdx.files.internal("plantatlas.png"));
         itemAtlas = new Texture(Gdx.files.internal("itematlas.png"));
@@ -191,6 +194,27 @@ public class Sprites {
     }
     public void drawTower(){
         drawPlant(1, 4, 2048, 2048);
+
+    }
+
+    public void drawRegionGameOver(int x, int y){
+        region = new TextureRegion(gameOver, x, y, 80, 45);
+        drawRegionNew(0, 0);
+    }
+
+    public void drawGameOver(){
+        for(int i = 0; i < 4; i++){
+            for(int k = 0; k < 12; k++){
+                if(i < 3){
+                    drawRegionGameOver( k * 80, 90 + i * 45);
+                }
+                else{
+                    for(int j = 0; j < 6; j++){
+                        drawRegionGameOver(j * 80, 225);
+                    }
+                }
+            }
+        }
 
     }
 
