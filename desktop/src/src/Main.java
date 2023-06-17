@@ -54,7 +54,6 @@ public class Main extends ApplicationAdapter {
 			//batch.setRegion(0);
 			//batch.drawRegion(0,1,1);
 
-
 			x = x + player.move1();
 			y = y + player.move2();
 
@@ -70,6 +69,7 @@ public class Main extends ApplicationAdapter {
 			batch.drawTower();
 			batch.drawCharacter(12, player.pic(),(int) x, (int) y);
 			playerr.setPosition(x,y);
+
 			if ((int)zeit- zeith>5){
 				z.z();
 				zeith = (int) zeit;

@@ -100,6 +100,8 @@ public class Sprites {
 
     public void setRegionCharacter(int spriteNr, int status) { //sets the region to a square of 32x32 from given sprite
         setRegionCommon(characterAtlas, spriteNr, status, 1, 0, 0);
+        setSpriteNr(spriteNr);
+        setStatus(status);
     }
 
 
@@ -117,6 +119,8 @@ public class Sprites {
 
     public void setCharacterSprite(int status, int spriteNr) {
         setRegionCharacter(spriteNr, status);
+        setSpriteNr(spriteNr);
+        setStatus(status);
     }
 
     public void setCharacterSprite() {
