@@ -1,5 +1,4 @@
 package src;
-package com.journaldev.threads;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -207,6 +206,7 @@ public class Sprites {
             for(int k = 0; k < 12; k++){
                 if(i < 3){
                     drawRegionGameOver( k * 80, 90 + i * 45);
+
                 }
                 else{
                     for(int j = 0; j < 6; j++){
@@ -215,6 +215,7 @@ public class Sprites {
                 }
             }
         }
+        drawRegionGameOver(320 ,225);
 
     }
 
