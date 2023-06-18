@@ -1,39 +1,68 @@
 package src;
 
+import java.sql.Array;
+import java.util.ArrayList;
+
 public class Hostilehilfsklasse {
-    Hostile[] sammlung;
+    ArrayList<Hostile> sammlung;
     public int zahler;
+    public int zahler2;
 
     public Hostilehilfsklasse() {
-        sammlung = new Hostile[Settings.getZombieZahl1()];
-        zahler= 0;
-
+        sammlung = new ArrayList<>();
+        zahler = 49;
 
     }
-
     public float mx(int i) {
 
 
-                return sammlung[i].getx();
-            }
+        return sammlung.get(i).getx();
+    }
 
-    public float my(int i){
+    public float my(int i) {
 
-            return sammlung[i].gety();
+        return sammlung.get(i).gety();
 
     }
-    public void z()
-    {
-            if (zahler==49)
-            {}
-            else{sammlung[zahler] = new Hostile((float) Math.random() * 2048, (float) Math.random() * 2048);
 
-                zahler++;}
+    public void z() {
+        if (zahler2 <= 49) {
+
+            sammlung.add(new Hostile((float) Math.random() * 2048, (float) Math.random() * 2048));
+
+            zahler2++;
+            sammlung.add(new Hostile((float) Math.random() * 2048, (float) Math.random() * 2048));
+            zahler2++;
+            sammlung.add(new Hostile((float) Math.random() * 2048, (float) Math.random() * 2048));
+            zahler2++;}
+        else{}
+        }
+
+
+
+    public boolean hurt(int i) {
+        sammlung.get(i).hurt();
+        if (sammlung.get(i).getLeben() == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean lebt(int i) {
+        if (sammlung.get(i).getLeben() == 0) {
+            return false;
+        }
+        {
+            return true;
+        }
 
     }
-    public void hurt(int i){
-        sammlung[i].hurt();
-    }
+    public void remove(int i){
+        sammlung.remove(i);
+
+zahler2--;    }
 
 }
+
+
 
