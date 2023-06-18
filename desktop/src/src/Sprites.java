@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
-
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 
 public class Sprites {
@@ -165,37 +165,54 @@ public class Sprites {
     }
 
     public void drawManyPlantsNew() {
+int q;
         for (int j = 0; j < 800; j++) {
-                        drawPlant(0, (int) randomx[j] * 2, (int) (randomx[j] * 4000) + 48, (int) (randomy[j] * 4000));
+
+                        drawPlant(0, compare(((int) (randomx[j] * 3900) + 100), j), (int) (randomx[j] * 3900) + 100, (int) (randomy[j] * 3900) + 100);
                     }
 
 
         for (int j = 0; j < 300; j++) {
-                    drawPlant(1, (int) randomx[j] * 2, (int) (randomx[j + 800] * 4000) + 48, (int) (randomy[j + 800] * 4000));
+
+                    drawPlant(1, compare(((int) (randomx[j + 800] * 3900) + 100), j), (int) (randomx[j + 800] * 3900) + 100, (int) (randomy[j + 800] * 3900) + 100);
                 }
 
                 for (int j = 0; j < 200; j++) {
-                    drawPlant(2, (int) randomx[j] * 2, (int) (randomx[j + 1100] * 4000) + 48, (int) (randomy[j + 1100] * 4000));
+
+                    drawPlant(2, compare(((int) (randomx[j + 1100] * 3900) + 100), j), (int) (randomx[j + 1100] * 3900) + 100, (int) (randomy[j + 1100] * 3900) + 100);
                 }
 
 
                 for (int j = 0; j < 200; j++) {
-                    drawPlant(3, (int) randomx[j] * 2, (int) (randomx[j + 1300] * 4000) + 48, (int) (randomy[j + 1300] * 4000));
+
+                    drawPlant(3, compare(((int) (randomx[j + 1300] * 3900) + 100), j), (int) (randomx[j + 1300] * 3900) + 100, (int) (randomy[j + 1300] * 3900) + 100);
                 }
 
 
                 for (int j = 0; j < 150; j++) {
-                    drawPlant(4, (int) randomx[j] * 2, (int) (randomx[j + 1500] * 4000) + 48, (int) (randomy[j + 1500] * 4000));
+
+                    drawPlant(4, compare(((int) (randomx[j + 1500] * 3900) + 100), j), (int) (randomx[j + 1500] * 3900) + 100, (int) (randomy[j + 1500] * 3900) + 100);
                 }
 
 
                 for (int j = 0; j < 150; j++) {
-                    drawPlant(5, (int) randomx[j] * 2, (int) (randomx[j + 1650] * 4000) + 48, (int) (randomy[j + 1650] * 4000));
+
+                    drawPlant(5, compare(((int) (randomx[j + 1650] * 3900) + 100), j), (int) (randomx[j + 1650] * 3900) + 100, (int) (randomy[j + 1650] * 3900) + 100);
                 }
 
 
 
-
+    }
+    public int compare(int abscissa, int j){
+        int q;
+        if(abscissa < 3000){
+            q = (int) (randomx[j] * 2);
+        }
+        else if(((int) (randomx[j] * 2)) + 2 > 3)
+        {q = 3;}
+        else
+        {q = 2;}
+        return q;
     }
     public void drawTower(){
         drawPlant(1, 4, 2048, 2048);
@@ -241,7 +258,7 @@ public class Sprites {
     }
     public void endschrift(){
         batch.begin();
-        font.draw(batch,"druecke E zum starten",0,0);
+        font.draw(batch,"droecke E zum starten",0,0);
         batch.end();
     }
     public void leeren(){
