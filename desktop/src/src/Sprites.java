@@ -245,17 +245,19 @@ int q;
 
     }
 
-    public void schrift(int leben, float zeit, int lebenTurm, int x, int y) {
+    public void schrift(int leben, float zeit, int lebenTurm, int x, int y, int kills) {
 
         String tmp = String.valueOf(leben);
         String tmp1 = String.valueOf((int) zeit);
         String tmp2 = String.valueOf(lebenTurm);
+        String tmp3 = String.valueOf(kills);
 
 
         batch.begin();
         font.draw(batch, tmp1, x + 80, y + 100);
         font.draw(batch, tmp, x - 85, y + 100);
         font.draw(batch, tmp2, x - 85, y + 80);
+        font.draw(batch, tmp3, x + 80, y + 80);
         batch.end();
     }
     public void endschrift(){

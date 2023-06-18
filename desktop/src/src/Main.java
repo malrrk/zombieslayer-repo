@@ -35,6 +35,7 @@ public class Main extends ApplicationAdapter {
 	Rectangle  turmr;
 	Rectangle item;
 
+
 	@Override
 	public void create() {
 		batch = new Sprites();
@@ -77,11 +78,11 @@ public class Main extends ApplicationAdapter {
 			Matrix4 matrix = cam.combined;
 			batch.lol(matrix);
 			zeit = zeit + Gdx.graphics.getDeltaTime();
-			batch.schrift((int) player.getLeben(), (int) zeit, (int) turm.getlebenTurma(), (int) x, (int) y);
+
 			batch.drawManyPlantsNew();
 			batch.drawTower();
-			batch.drawCharacter(12, player.pic(), (int) x, (int) y);
-			batch.schrift((int) player.getLeben(), (int) zeit, (int) turm.getlebenTurma(), (int) x, (int) y);
+			batch.drawCharacter(player.getStatus(), player.picNr(), (int) x, (int) y);
+			batch.schrift((int) player.getLeben(), (int) zeit, (int) turm.getlebenTurma(), (int) x, (int) y, player.getKills());
 			playerr.setPosition(x, y);
 			item.setPosition(x,y+9);
 			if ((int) zeit - zeith >3) {
@@ -106,7 +107,17 @@ public class Main extends ApplicationAdapter {
 						}
 					}
 				}
-				else{z.remove(i);}
+				else{
+					z.remove(i);
+					player.addKill();
+					if(player.getKills() > 0){
+						player.setStatus(3);
+					}
+					if(player.getKills() > 5){
+						player.setStatus(10);
+					}
+
+				}
 				}
 
 

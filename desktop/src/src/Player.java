@@ -6,9 +6,13 @@ import com.badlogic.gdx.Input;
 
 public class Player  {
     private float leben;
+    private int kills;
+    private int status;
 
 public Player(){
     leben = Settings.getLeben();
+    kills = 0;
+    status = 2;
 
 
 }
@@ -43,7 +47,7 @@ public float move1(){
     }
     return 0;
 }
-public int pic(){
+public int picNr(){
     if (Gdx.input.isKeyPressed(Input.Keys.W)){
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {return 7;}
     if (Gdx.input.isKeyPressed(Input.Keys.D)) {return 1;}
@@ -66,12 +70,21 @@ public int pic(){
 
 return 4;
 }
+
 public float getLeben() {
     return leben;
 }
 public void hurt(){
     leben -= 0.1;
 }
+public void addKill(){
+    kills++;
+}
+public int getKills(){
+    return kills;
+}
+public void setStatus(int s){ status = s;}
+    public int getStatus(){return status;}
 
 
 }
