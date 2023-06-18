@@ -21,7 +21,7 @@ public class Settings {
     public static int getLebenTurm() {
         return lebenTurm;
     }
-    public static int setLebenTurm(int i){lebenTurm = i;}
+    public static void setLebenTurm(int i){lebenTurm = i;}
 
     public static int getLeben() {
         return leben;
