@@ -12,13 +12,13 @@ public Player(){
 
 
 }
-public boolean lebenp() {
+public boolean lebet() {
     if (leben >= 0) {
 
-        return false;
+        return true;
     }
     leben = 100;
-    return true;
+    return false;
 }
 public float move1(){
 
@@ -72,5 +72,6 @@ public float getLeben() {
 public void hurt(){
     leben -= 0.1;
 }
+
 
 }

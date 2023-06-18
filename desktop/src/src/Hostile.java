@@ -9,14 +9,14 @@ public class Hostile {
     float yz ;
     int leben;
     Vector vector;
-    int zahlert;
+
     Friendly turm;
 
 
     public Hostile(float x,float y ){
              yz = y;
              xz = x;
-            leben = 10;
+            leben = 3;
             vector = new Vector2(x,y);
 
     }
@@ -43,7 +43,10 @@ public class Hostile {
 
     public void hurt(){
         leben = leben -1;
+        System.out.print(leben);
     }
+    public int getLeben()
+    {return leben;}
 
 
 }
