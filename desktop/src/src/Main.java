@@ -43,7 +43,7 @@ public class Main extends ApplicationAdapter {
 		//img = new Texture("badlogic.jpg");
 		player = new Player();
 		turm = new Friendly();
-		cam = new OrthographicCamera(3440, 1440);
+		cam = new OrthographicCamera(320, 180);
 		cam.position.set(x + 10, y + 10, 0);
 		z = new Hostilehilfsklasse();
 		zeith = 0;
