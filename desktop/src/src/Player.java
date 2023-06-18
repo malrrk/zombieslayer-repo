@@ -67,10 +67,13 @@ public int picNr(){
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {return 1;}
     if (Gdx.input.isKeyPressed(Input.Keys.S)) {return 3;}
     else {return 2;}}
-
-return 4;
+return 0;
 }
 
+public void setLeben(int i){
+   if((leben + i) < 100){ leben = leben + i;}
+   else{leben = 100;}
+}
 public float getLeben() {
     return leben;
 }

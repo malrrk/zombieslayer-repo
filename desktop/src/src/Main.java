@@ -114,7 +114,13 @@ public class Main extends ApplicationAdapter {
 						player.setStatus(3);
 					}
 					if(player.getKills() > 5){
-						player.setStatus(10);
+						player.setStatus(8);
+					}
+					if(player.getKills() > 10){
+						player.setStatus(12);
+					}
+					if(player.getKills() > 100){
+						player.setLeben(1);
 					}
 
 				}

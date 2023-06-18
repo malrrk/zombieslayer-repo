@@ -254,10 +254,10 @@ int q;
 
 
         batch.begin();
-        font.draw(batch, tmp1, x + 80, y + 100);
-        font.draw(batch, tmp, x - 85, y + 100);
-        font.draw(batch, tmp2, x - 85, y + 80);
-        font.draw(batch, tmp3, x + 80, y + 80);
+        font.draw(batch, tmp1, x + 140, y + 100);
+        font.draw(batch, tmp, x - 140, y + 100);
+        font.draw(batch, tmp2, x - 140, y + 80);
+        font.draw(batch, tmp3, x + 140, y + 80);
         batch.end();
     }
     public void endschrift(){
