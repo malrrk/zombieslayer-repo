@@ -5,48 +5,54 @@ import com.badlogic.gdx.Input;
 
 
 public class Player  {
-    private float leben;
+    private float health;
     private int kills;
     private int status;
+    public float x;
+    public float y;
 
-public Player(){
-    leben = Settings.getLeben();
+    Sprites batch;
+
+public Player(Sprites batch, float x, float y){
+    this.x = x;
+    this.y = y;
+    this.batch = batch;
+
+    health = Settings.getLeben();
     kills = 0;
     status = 2;
 
 
 }
 public boolean lebet() {
-    if (leben >= 0) {
+    if (health >= 0) {
 
         return true;
     }
-    leben = 100;
+    health = 100;
     return false;
 }
-public float move1(){
 
-
+public void move(){
+    // right, left movement
     if(Gdx.input.isKeyPressed(Input.Keys.A)) {
-        return -Settings.getSpeed() * Gdx.graphics.getDeltaTime();}
+        x -= Settings.getSpeed() * Gdx.graphics.getDeltaTime();}
     if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+        x += Settings.getSpeed() * Gdx.graphics.getDeltaTime();}
 
-        return Settings.getSpeed() * Gdx.graphics.getDeltaTime();}
-    //colision detaction
-    //leben = leben - getDamage;
-
-    return 0;
-}
-    public float move2(){
-
-    if(Gdx.input.isKeyPressed(Input.Keys.W))
-    { return + Settings.getSpeed() * Gdx.graphics.getDeltaTime();
+    // up, down movement
+    if(Gdx.input.isKeyPressed(Input.Keys.W)) {
+        y += Settings.getSpeed() * Gdx.graphics.getDeltaTime();
     }
-    if(Gdx.input.isKeyPressed(Input.Keys.S))
-    { return - Settings.getSpeed() * Gdx.graphics.getDeltaTime();
+    if(Gdx.input.isKeyPressed(Input.Keys.S)) {
+        y -= Settings.getSpeed() * Gdx.graphics.getDeltaTime();
     }
-    return 0;
 }
+
+public void draw(){
+    batch.drawCharacter(status, picNr(), (int) x, (int) y);
+}
+
 public int picNr(){
     if (Gdx.input.isKeyPressed(Input.Keys.W)){
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {return 7;}
@@ -71,14 +77,14 @@ return 0;
 }
 
 public void setLeben(int i){
-   if((leben + i) < 100){ leben = leben + i;}
-   else{leben = 100;}
+   if((health + i) < 100){ health = health + i;}
+   else{health = 100;}
 }
 public float getLeben() {
-    return leben;
+    return health;
 }
 public void hurt(){
-    leben -= (0.1 * Settings.getHurtf());
+    health -= (0.1 * Settings.getHurtf());
 }
 public void addKill(){
     kills++;

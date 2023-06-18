@@ -24,9 +24,9 @@ public class Main extends ApplicationAdapter {
 	//Texture img;
 	Player player;
 	OrthographicCamera cam;
+	Friendly turm;
 	float x;
 	float y;
-	Friendly turm;
 	float zeit;
 	Hostilehilfsklasse z;
 	int zeith;
@@ -42,13 +42,12 @@ public class Main extends ApplicationAdapter {
 
 		//batch.drawRegion ( 0,1,1);
 		//img = new Texture("badlogic.jpg");
-		player = new Player();
+		player = new Player(batch, 2048, 2048);
 		turm = new Friendly();
 		cam = new OrthographicCamera(320, 180);
 		cam.position.set(x + 10, y + 10, 0);
 		z = new Hostilehilfsklasse();
 		zeith = 0;
-		x = y = 2048;
 		zr = new Rectangle(0,0,12,18);
 		playerr = new Rectangle(0, 0, 12, 18);
 		turmr = new Rectangle(2048,2048,41,50);
@@ -68,11 +67,14 @@ public class Main extends ApplicationAdapter {
 		if (turm.lebent()) {
 			tot();
 		} else {
-			x = x + player.move1();
+			player.move();
+			//player.draw();
 
-			y = y + player.move2();
+			x = player.x;
+			y = player.y;
+
 			item.setPosition(x-2,y+4);
-			cam.position.set(x + 10, y + 10, 0);
+			cam.position.set(player.x + 10, player.y + 10, 0);
 			cam.update();
 			batch.maps();
 			Matrix4 matrix = cam.combined;
@@ -83,7 +85,7 @@ public class Main extends ApplicationAdapter {
 			batch.drawTower();
 			batch.drawCharacter(player.getStatus(), player.picNr(), (int) x, (int) y);
 			batch.schrift((int) player.getLeben(), (int) zeit, (int) turm.getlebenTurma(), (int) x, (int) y, player.getKills());
-			playerr.setPosition(x, y);
+			playerr.setPosition(player.x, player.y);
 			item.setPosition(x,y+9);
 			if ((int) zeit - zeith >3) {
 				z.z();
@@ -171,6 +173,8 @@ public class Main extends ApplicationAdapter {
 			zeit = 0;
 			create();
 		}
+
+		Gdx.app.exit();
 
 	}
 
