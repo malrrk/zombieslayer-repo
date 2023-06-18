@@ -203,15 +203,17 @@ int q;
 
 
     }
-    public int compare(int abscissa, int j){
+    public int compare(int abscissa, int j) {
         int q;
-        if(abscissa < 3000){
+        if (abscissa < 2980) {
             q = (int) (randomx[j] * 2);
+        } else {
+            if (((int) (randomx[j] * 2) == 1)){
+                q = 3;
+            } else {
+                q = 2;
+            }
         }
-        else if(((int) (randomx[j] * 2)) + 2 > 3)
-        {q = 3;}
-        else
-        {q = 2;}
         return q;
     }
     public void drawTower(){
