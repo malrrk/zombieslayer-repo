@@ -3,7 +3,7 @@ package src;
 public class Friendly {
     private float lebenTurm;
     public Friendly() {
-      lebenTurm  = Settings.getlebenTurm();
+      lebenTurm  = Settings.getLebenTurm();
 
     }
     public float getlebenTurma(){

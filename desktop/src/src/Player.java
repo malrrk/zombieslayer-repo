@@ -78,7 +78,7 @@ public float getLeben() {
     return leben;
 }
 public void hurt(){
-    leben -= 0.1;
+    leben -= (0.1 * Settings.getHurtf());
 }
 public void addKill(){
     kills++;

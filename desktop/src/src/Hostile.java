@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
+
 public class Hostile {
     float xz;
     float yz ;
@@ -16,7 +18,7 @@ public class Hostile {
     public Hostile(float x,float y ){
              yz = y;
              xz = x;
-            leben = 3;
+            leben = Settings.getZleben();
             vector = new Vector2(x,y);
 
     }
