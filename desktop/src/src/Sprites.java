@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 
-public class Sprites {
+public class Sprites extends SpriteBatch{
 
     private double[] randomx; //random x coordinate for plants
     private double[] randomy;  //random y coordinate for plants
