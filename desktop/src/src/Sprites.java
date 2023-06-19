@@ -159,36 +159,36 @@ public class Sprites {
 int q;
         for (int j = 0; j < 800; j++) {
 
-                        drawPlant(0, compare(((int) (randomx[j] * 3900) + 100), j), (int) (randomx[j] * 3900) + 100, (int) (randomy[j] * 3900) + 100);
+                        drawPlant(0, compare(((int) (randomx[j] * 3900) + 100), j), (int) (randomx[j] * 3800) + 100, (int) (randomy[j] * 3850) + 100);
                     }
 
 
         for (int j = 0; j < 300; j++) {
 
-                    drawPlant(1, compare(((int) (randomx[j + 800] * 3900) + 100), j), (int) (randomx[j + 800] * 3900) + 100, (int) (randomy[j + 800] * 3900) + 100);
+                    drawPlant(1, compare(((int) (randomx[j + 800] * 3900) + 100), j), (int) (randomx[j + 800] * 3800) + 100, (int) (randomy[j + 800] * 3850) + 100);
                 }
 
                 for (int j = 0; j < 200; j++) {
 
-                    drawPlant(2, compare(((int) (randomx[j + 1100] * 3900) + 100), j), (int) (randomx[j + 1100] * 3900) + 100, (int) (randomy[j + 1100] * 3900) + 100);
+                    drawPlant(2, compare(((int) (randomx[j + 1100] * 3900) + 100), j), (int) (randomx[j + 1100] * 3800) + 100, (int) (randomy[j + 1100] * 3850) + 100);
                 }
 
 
                 for (int j = 0; j < 200; j++) {
 
-                    drawPlant(3, compare(((int) (randomx[j + 1300] * 3900) + 100), j), (int) (randomx[j + 1300] * 3900) + 100, (int) (randomy[j + 1300] * 3900) + 100);
+                    drawPlant(3, compare(((int) (randomx[j + 1300] * 3900) + 100), j), (int) (randomx[j + 1300] * 3800) + 100, (int) (randomy[j + 1300] * 3850) + 100);
                 }
 
 
                 for (int j = 0; j < 150; j++) {
 
-                    drawPlant(4, compare(((int) (randomx[j + 1500] * 3900) + 100), j), (int) (randomx[j + 1500] * 3900) + 100, (int) (randomy[j + 1500] * 3900) + 100);
+                    drawPlant(4, compare(((int) (randomx[j + 1500] * 3900) + 100), j), (int) (randomx[j + 1500] * 3800) + 100, (int) (randomy[j + 1500] * 3850) + 100);
                 }
 
 
                 for (int j = 0; j < 150; j++) {
 
-                    drawPlant(5, compare(((int) (randomx[j + 1650] * 3900) + 100), j), (int) (randomx[j + 1650] * 3900) + 100, (int) (randomy[j + 1650] * 3900) + 100);
+                    drawPlant(5, compare(((int) (randomx[j + 1650] * 3900) + 100), j), (int) (randomx[j + 1650] * 3800) + 100, (int) (randomy[j + 1650] * 3850) + 100);
                 }
 
 
@@ -196,7 +196,7 @@ int q;
     }
     public int compare(int abscissa, int j) { //aux method for drawManyPlants
         int q;
-        if (abscissa < 2980) {
+        if (abscissa < 3030) {
             q = (int) (randomx[j] * 2);
         } else {
             if (((int) (randomx[j] * 2) == 1)){
