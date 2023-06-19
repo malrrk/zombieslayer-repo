@@ -21,12 +21,11 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 public class Main extends ApplicationAdapter {
 
 	Sprites batch;
-	//Texture img;
 	Player player;
-	OrthographicCamera cam;
-	Friendly turm;
+	Camera cam;
 	float x;
 	float y;
+	Friendly turm;
 	float zeit;
 	Hostilehilfsklasse z;
 	int zeith;
@@ -42,19 +41,16 @@ public class Main extends ApplicationAdapter {
 
 		//batch.drawRegion ( 0,1,1);
 		//img = new Texture("badlogic.jpg");
-		player = new Player(batch, 2048, 2048);
+		player = new Player(batch, Settings.getx0y0(), Settings.getx0y0());
 		turm = new Friendly();
-		cam = new OrthographicCamera(320, 180);
-		cam.position.set(x + 10, y + 10, 0);
+		cam = new Camera(x,y);
 		z = new Hostilehilfsklasse();
 		zeith = 0;
+		x = y = Settings.getx0y0();
 		zr = new Rectangle(0,0,12,18);
 		playerr = new Rectangle(0, 0, 12, 18);
-		turmr = new Rectangle(2048,2048,41,50);
-		item = new Rectangle(x-2,y+9,15,11);//item = new Polygon(new float[]{0,0,bounds.width,0,bounds.width,bounds.height,0,bounds.height});
-		//item.setOrigin(bounds.width/2, bounds.height/2);
-		//item.setRotation(125);
-
+		turmr = new Rectangle(Settings.getx0y0(),Settings.getx0y0(),41,50);
+		item = new Rectangle(x-2,y+9,15,11);
 
 	}
 
@@ -63,35 +59,31 @@ public class Main extends ApplicationAdapter {
 
 		ScreenUtils.clear(1, 1, 1, 1);
 		//batch.setRegion(0);
-		//batch.drawRegion(0,1,1);ass
+		//batch.drawRegion(0,1,1);
 		if (turm.lebent()) {
+			cam.positionSet(x,y);
+			batch.lol(cam.positionSet(x, y));
 			tot();
 		} else {
 			player.move();
-			//player.draw();
-
 			x = player.x;
 			y = player.y;
 
 			item.setPosition(x-2,y+4);
-			cam.position.set(player.x + 10, player.y + 10, 0);
-			cam.update();
 			batch.maps();
-			Matrix4 matrix = cam.combined;
-			batch.lol(matrix);
+			batch.lol(cam.positionSet((int )x, (int) y));
 			zeit = zeit + Gdx.graphics.getDeltaTime();
-
 			batch.drawManyPlantsNew();
 			batch.drawTower();
 			batch.drawCharacter(player.getStatus(), player.picNr(), (int) x, (int) y);
 			batch.schrift((int) player.getLeben(), (int) zeit, (int) turm.getlebenTurma(), (int) x, (int) y, player.getKills());
-			playerr.setPosition(player.x, player.y);
+			playerr.setPosition(x, y);
 			item.setPosition(x,y+9);
 			if ((int) zeit - zeith >3) {
 				z.z();
 				zeith = (int) zeit;
 			}
-			System.out.print(z.zahler2);
+
 			for (int i = 0; i < z.zahler2-1; i++) {
 
 				if (z.lebt(i)) {
@@ -114,30 +106,33 @@ public class Main extends ApplicationAdapter {
 					player.addKill();
 					if(player.getKills() > 0){
 						player.setStatus(3);
-						Settings.setZleben(30);
-					}
-
-					if(player.getKills() > 10){
-						player.setStatus(8);
-						Settings.setHurtf(2);
-					}
-					if(player.getKills() > 25){
-						player.setStatus(12);
 						Settings.setZleben(20);
 					}
 
-					if(player.getKills() > 50){
-						player.setStatus(13);
+					if(player.getKills() > 4){
+						player.setStatus(8);
+						Settings.setHurtf(1.5);
+					}
+					if(player.getKills() > 24){
+						Settings.setZleben(15);
+					}
+
+					if(player.getKills() > 39){
+						player.setStatus(12);
 						Settings.setHurtf(0.5);
 					}
-					if(player.getKills() > 100){
+					if(player.getKills() > 69){
 						player.setLeben(1);
 					}
-					if(player.getKills() > 150){
+					if(player.getKills() > 99){
+						player.setStatus(13);
+						Settings.setHurtf(0.2);
+					}
+					if(player.getKills() > 149){
 						Settings.setZleben(10);
 					}
-					if(player.getKills() > 200){
-						Settings.setLebenTurm(70);
+					if(player.getKills() > 199){
+						Settings.setLebenTurm(50);
 					}
 
 				}
@@ -162,19 +157,12 @@ public class Main extends ApplicationAdapter {
 	}
 
 	public void tot() {
-		cam.position.set(0, 0, 0);
-
-		cam.update();
-		Matrix4 matrix = cam.combined;
-		batch.lol(matrix);
-		batch.drawGameOver(0, 0);
-		batch.endschrift();
+		batch.gameOver((int)x, (int)x);
+		batch.endschrift((int)x,(int)y);
 		if (Gdx.input.isKeyPressed(Input.Keys.E)) {
 			zeit = 0;
 			create();
 		}
-
-		Gdx.app.exit();
 
 	}
 

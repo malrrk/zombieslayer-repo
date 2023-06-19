@@ -22,6 +22,10 @@ public class Friendly {
     public void setLebenTurm(){
         lebenTurm= 100;
     }
+    public void add(){
+        if (lebenTurm> Settings.getLebenTurm())
+        { lebenTurm= lebenTurm+1;}
+    }
 
 
 }

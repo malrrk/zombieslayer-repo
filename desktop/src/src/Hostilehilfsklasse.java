@@ -28,13 +28,10 @@ public class Hostilehilfsklasse {
     public void z() {
         if (zahler2 <= 49) {
 
-            sammlung.add(new Hostile((float) Math.random() * 2048, (float) Math.random() * 2048));
+            sammlung.add(new Hostile((float) Math.random() * 2*2048, (float) Math.random() * 2* 2048));
 
             zahler2++;
-            sammlung.add(new Hostile((float) Math.random() * 2048, (float) Math.random() * 2048));
-            zahler2++;
-            sammlung.add(new Hostile((float) Math.random() * 2048, (float) Math.random() * 2048));
-            zahler2++;}
+            zahler++;}
         else{}
         }
 
