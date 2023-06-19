@@ -120,19 +120,18 @@ public class Main extends ApplicationAdapter {
 						Settings.setHurtf(1.5);
 					}
 					if(player.getKills() > 24){
-						player.setStatus(12);
 						Settings.setZleben(15);
 					}
 
 					if(player.getKills() > 39){
-						player.setStatus(13);
+						player.setStatus(12);
 						Settings.setHurtf(0.5);
 					}
 					if(player.getKills() > 69){
 						player.setLeben(1);
 					}
 					if(player.getKills() > 99){
-						player.setStatus(14);
+						player.setStatus(13);
 						Settings.setHurtf(0.2);
 					}
 					if(player.getKills() > 149){
