@@ -245,7 +245,7 @@ int q;
 
     }
     public void gameOver(int x, int y){
-        drawRegionGameOver(100, 100, x, y);
+        drawRegionGameOver(320, 540, x, y);
     }
 
     public void schrift(int leben, float zeit, int lebenTurm, int x, int y, int kills) {
