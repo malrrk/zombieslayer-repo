@@ -21,7 +21,6 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 public class Main extends ApplicationAdapter {
 
 	Sprites batch;
-	//Texture img;
 	Player player;
 	OrthographicCamera cam;
 	float x;
@@ -64,7 +63,7 @@ public class Main extends ApplicationAdapter {
 
 		ScreenUtils.clear(1, 1, 1, 1);
 		//batch.setRegion(0);
-		//batch.drawRegion(0,1,1);ass
+		//batch.drawRegion(0,1,1);
 		if (turm.lebent()) {
 			tot();
 		} else {
@@ -89,7 +88,7 @@ public class Main extends ApplicationAdapter {
 				z.z();
 				zeith = (int) zeit;
 			}
-			System.out.print(z.zahler2);
+
 			for (int i = 0; i < z.zahler2-1; i++) {
 
 				if (z.lebt(i)) {
@@ -163,8 +162,8 @@ public class Main extends ApplicationAdapter {
 	}
 
 	public void tot() {
+		batch.drawGameOver(0, 0);
 		cam.position.set(0, 0, 0);
-
 		cam.update();
 		Matrix4 matrix = cam.combined;
 		batch.lol(matrix);

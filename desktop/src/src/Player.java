@@ -21,7 +21,7 @@ public boolean lebet() {
 
         return true;
     }
-    leben = 100;
+    leben = 25;
     return false;
 }
 public float move1(){
@@ -69,10 +69,14 @@ public int picNr(){
     else {return 2;}}
 return 0;
 }
+public void add(){
+    if (leben>Settings.getLeben()){
+    leben= leben+1;}
+}
 
 public void setLeben(int i){
-   if((leben + i) < 100){ leben = leben + i;}
-   else{leben = 100;}
+   if((leben + i) < 25){ leben = leben + i;}
+   else{leben = 25;}
 }
 public float getLeben() {
     return leben;
