@@ -112,33 +112,33 @@ public class Main extends ApplicationAdapter {
 					player.addKill();
 					if(player.getKills() > 0){
 						player.setStatus(3);
-						Settings.setZleben(25);
+						Settings.setZleben(20);
 					}
 
-					if(player.getKills() > 5){
+					if(player.getKills() > 4){
 						player.setStatus(8);
-						Settings.setHurtf(2);
+						Settings.setHurtf(1.5);
 					}
-					if(player.getKills() > 25){
+					if(player.getKills() > 24){
 						player.setStatus(12);
 						Settings.setZleben(15);
 					}
 
-					if(player.getKills() > 40){
+					if(player.getKills() > 39){
 						player.setStatus(13);
 						Settings.setHurtf(0.5);
 					}
-					if(player.getKills() > 80){
+					if(player.getKills() > 69){
 						player.setLeben(1);
 					}
-					if(player.getKills() > 100){
+					if(player.getKills() > 99){
 						player.setStatus(14);
-						Settings.setHurtf(0.25);
+						Settings.setHurtf(0.2);
 					}
-					if(player.getKills() > 150){
+					if(player.getKills() > 149){
 						Settings.setZleben(10);
 					}
-					if(player.getKills() > 200){
+					if(player.getKills() > 199){
 						Settings.setLebenTurm(50);
 					}
 
