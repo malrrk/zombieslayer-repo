@@ -44,13 +44,12 @@ public class Main extends ApplicationAdapter {
 		player = new Player();
 		turm = new Friendly();
 		cam = new Camera(x,y);
-		cam.positionSet(x+10,y+5);
 		z = new Hostilehilfsklasse();
 		zeith = 0;
-		x = y = 2048;
+		x = y = Settings.getx0y0();
 		zr = new Rectangle(0,0,12,18);
 		playerr = new Rectangle(0, 0, 12, 18);
-		turmr = new Rectangle(2048,2048,41,50);
+		turmr = new Rectangle(Settings.getx0y0(),Settings.getx0y0(),41,50);
 		item = new Rectangle(x-2,y+9,15,11);
 
 	}
@@ -62,7 +61,6 @@ public class Main extends ApplicationAdapter {
 		//batch.setRegion(0);
 		//batch.drawRegion(0,1,1);
 		if (turm.lebent()) {
-
 			cam.positionSet(x,y);
 			batch.lol(cam.positionSet(x, y));
 			tot();
@@ -74,7 +72,6 @@ public class Main extends ApplicationAdapter {
 			batch.maps();
 			batch.lol(cam.positionSet((int )x, (int) y));
 			zeit = zeit + Gdx.graphics.getDeltaTime();
-
 			batch.drawManyPlantsNew();
 			batch.drawTower();
 			batch.drawCharacter(player.getStatus(), player.picNr(), (int) x, (int) y);

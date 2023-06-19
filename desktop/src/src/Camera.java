@@ -11,7 +11,7 @@ public class Camera {
 
 
         cam = new OrthographicCamera(320, 180 );
-        cam.position.set(x+10, y-5, 0);
+        cam.position.set(x+10, y-20, 0);
 
         cam.update();
         matrix = cam.combined;

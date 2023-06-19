@@ -8,6 +8,7 @@ public class Settings {
     private static int zspeed = 25;
     private static int zleben = 25;
     private static double hurtf = 3;
+    private static int x0= 2048;
 
     //
     public void setSpeed(int speed) {
@@ -38,4 +39,5 @@ public class Settings {
     public static void setZleben(int i){zleben = i;}
     public static void setHurtf(double i){hurtf = i;}
     public static double getHurtf(){ return hurtf;}
+    public static int getx0y0(){return x0;}
 }
