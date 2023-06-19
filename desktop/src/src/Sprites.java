@@ -263,9 +263,9 @@ int q;
         font.draw(batch, tmp3, x + 140, y + 80);
         batch.end();
     }
-    public void endschrift(){
+    public void endschrift(int x, int y){
         batch.begin();
-        font.draw(batch,"droecke E zum starten",0,0);
+        font.draw(batch,"druecke E zum starten",x,y);
         batch.end();
     }
 }
