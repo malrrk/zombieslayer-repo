@@ -6,8 +6,8 @@ public class Settings {
     private static int leben = 100;
     private static int Anzahlz1 = 50;
     private static int zspeed = 25;
-    private static int zleben = 40;
-    private static double hurtf = 5;
+    private static int zleben = 30;
+    private static double hurtf = 4;
 
     //
     public void setSpeed(int speed) {
