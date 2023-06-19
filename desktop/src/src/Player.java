@@ -70,7 +70,7 @@ return 4;
 }
 public void add(){
     if (leben>Settings.getLeben()){
-    leben= leben+1;}
+    leben += 1;}
 }
 
 public void setLeben(int i){

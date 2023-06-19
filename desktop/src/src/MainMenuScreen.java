@@ -13,14 +13,15 @@ import com.badlogic.gdx.utils.Align;
 
 public class MainMenuScreen implements Screen{
 
-    private static final int EXIT_BUTTON_WIDTH = 250;
-    private static final int EXIT_BUTTON_HEIGHT = 120;
-    private static final int PLAY_BUTTON_WIDTH = 300;
-    private static final int PLAY_BUTTON_HEIGHT = 120;
-    private static final int EXIT_BUTTON_X = 0;
-    private static final int EXIT_BUTTON_Y = 200;
-    private static final int PLAY_BUTTON_X = 300;
-    private static final int PLAY_BUTTON_Y = 200;
+    private static final int EXIT_BUTTON_WIDTH = 177;
+    private static final int EXIT_BUTTON_HEIGHT = 50;
+    private static final int PLAY_BUTTON_WIDTH = 196;
+    private static final int PLAY_BUTTON_HEIGHT = 50;
+    private static final int EXIT_BUTTON_X = 20;
+    private static final int EXIT_BUTTON_Y = 100;
+    private static final int PLAY_BUTTON_X = 420;
+    private static final int PLAY_BUTTON_Y = 100;
+    private static final int SCREEN_HEIGHT = 480;
 
     Texture playButton;
 
@@ -52,9 +53,12 @@ public class MainMenuScreen implements Screen{
         game.batch.draw(exitButton, EXIT_BUTTON_X, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
 
         if (Gdx.input.isTouched()){
-            if (Gdx.input.getX() > PLAY_BUTTON_X && Gdx.input.getX() < PLAY_BUTTON_X + PLAY_BUTTON_WIDTH && Gdx.input.getY() > PLAY_BUTTON_Y && Gdx.input.getY() < PLAY_BUTTON_Y + PLAY_BUTTON_HEIGHT){
+            //System.out.println("1");
+            System.out.println(Gdx.input.getX());
+            System.out.println(Gdx.input.getY());
+            if (Gdx.input.getX() > PLAY_BUTTON_X && Gdx.input.getX() < PLAY_BUTTON_X + PLAY_BUTTON_WIDTH && Gdx.input.getY() > (SCREEN_HEIGHT - PLAY_BUTTON_HEIGHT - PLAY_BUTTON_Y) && Gdx.input.getY() < (SCREEN_HEIGHT - PLAY_BUTTON_Y)){
                 game.setScreen(new MainGameScreen(game));
-            }else if (Gdx.input.getX() > EXIT_BUTTON_X && Gdx.input.getX() < EXIT_BUTTON_X + EXIT_BUTTON_WIDTH && Gdx.input.getY() > EXIT_BUTTON_Y && Gdx.input.getY() < EXIT_BUTTON_Y + EXIT_BUTTON_HEIGHT){
+            }else if (Gdx.input.getX() > EXIT_BUTTON_X && Gdx.input.getX() < EXIT_BUTTON_X + EXIT_BUTTON_WIDTH && Gdx.input.getY() > (SCREEN_HEIGHT - EXIT_BUTTON_HEIGHT - EXIT_BUTTON_Y) && Gdx.input.getY() < (SCREEN_HEIGHT - EXIT_BUTTON_Y)){
                 Gdx.app.exit();
             }
         }
