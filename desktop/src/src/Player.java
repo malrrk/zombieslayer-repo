@@ -8,8 +8,15 @@ public class Player  {
     private float leben;
     private int kills;
     private int status;
+    public float x;
+    public float y;
 
-public Player(){
+    Sprites batch;
+
+    public Player(Sprites batch, float x, float y){
+        this.x = x;
+        this.y = y;
+        this.batch = batch;
     leben = Settings.getLeben();
     kills = 0;
     status = 2;
@@ -24,29 +31,21 @@ public boolean lebet() {
     leben = 25;
     return false;
 }
-public float move1(){
+public void move(){
+        // right, left movement
+        if(Gdx.input.isKeyPressed(Input.Keys.A)) {
+            x -= Settings.getSpeed() * Gdx.graphics.getDeltaTime();}
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            x += Settings.getSpeed() * Gdx.graphics.getDeltaTime();}
 
-
-    if(Gdx.input.isKeyPressed(Input.Keys.A)) {
-        return -Settings.getSpeed() * Gdx.graphics.getDeltaTime();}
-    if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-
-        return Settings.getSpeed() * Gdx.graphics.getDeltaTime();}
-    //colision detaction
-    //leben = leben - getDamage;
-
-    return 0;
-}
-    public float move2(){
-
-    if(Gdx.input.isKeyPressed(Input.Keys.W))
-    { return + Settings.getSpeed() * Gdx.graphics.getDeltaTime();
+        // up, down movement
+        if(Gdx.input.isKeyPressed(Input.Keys.W)) {
+            y += Settings.getSpeed() * Gdx.graphics.getDeltaTime();
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.S)) {
+            y -= Settings.getSpeed() * Gdx.graphics.getDeltaTime();
+        }
     }
-    if(Gdx.input.isKeyPressed(Input.Keys.S))
-    { return - Settings.getSpeed() * Gdx.graphics.getDeltaTime();
-    }
-    return 0;
-}
 public int picNr(){
     if (Gdx.input.isKeyPressed(Input.Keys.W)){
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {return 7;}

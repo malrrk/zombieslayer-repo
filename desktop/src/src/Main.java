@@ -41,7 +41,7 @@ public class Main extends ApplicationAdapter {
 
 		//batch.drawRegion ( 0,1,1);
 		//img = new Texture("badlogic.jpg");
-		player = new Player();
+		player = new Player(batch, Settings.getx0y0(), Settings.getx0y0());
 		turm = new Friendly();
 		cam = new Camera(x,y);
 		z = new Hostilehilfsklasse();
@@ -65,9 +65,10 @@ public class Main extends ApplicationAdapter {
 			batch.lol(cam.positionSet(x, y));
 			tot();
 		} else {
-			x = x + player.move1();
+			player.move();
+			x = player.x;
+			y = player.y;
 
-			y = y + player.move2();
 			item.setPosition(x-2,y+4);
 			batch.maps();
 			batch.lol(cam.positionSet((int )x, (int) y));
