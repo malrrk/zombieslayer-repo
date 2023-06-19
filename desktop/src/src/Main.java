@@ -65,6 +65,11 @@ public class Main extends ApplicationAdapter {
 		//batch.setRegion(0);
 		//batch.drawRegion(0,1,1);
 		if (turm.lebent()) {
+			cam.position.set(x + 10, y + 10, 0);
+			cam.update();
+
+			Matrix4 matrix = cam.combined;
+			batch.lol(matrix);
 			tot();
 		} else {
 			x = x + player.move1();
@@ -162,13 +167,8 @@ public class Main extends ApplicationAdapter {
 	}
 
 	public void tot() {
-		batch.drawGameOver(0, 0);
-		cam.position.set(0, 0, 0);
-		cam.update();
-		Matrix4 matrix = cam.combined;
-		batch.lol(matrix);
-		batch.drawGameOver(0, 0);
-		batch.endschrift();
+		batch.gameOver((int)x, (int)x);
+		batch.endschrift((int)x,(int)y);
 		if (Gdx.input.isKeyPressed(Input.Keys.E)) {
 			zeit = 0;
 			create();
