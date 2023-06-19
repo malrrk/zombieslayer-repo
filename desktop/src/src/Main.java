@@ -22,7 +22,8 @@ public class Main extends ApplicationAdapter {
 
 	Sprites batch;
 	Player player;
-	OrthographicCamera cam;
+	//OrthographicCamera cam;
+	Camera cam;
 	float x;
 	float y;
 	Friendly turm;
@@ -43,18 +44,15 @@ public class Main extends ApplicationAdapter {
 		//img = new Texture("badlogic.jpg");
 		player = new Player();
 		turm = new Friendly();
-		cam = new OrthographicCamera(320, 180);
-		cam.position.set(x + 10, y + 10, 0);
+		cam = new Camera(x,y);
+		cam.positionSet(x+10,y+5);
 		z = new Hostilehilfsklasse();
 		zeith = 0;
 		x = y = 2048;
 		zr = new Rectangle(0,0,12,18);
 		playerr = new Rectangle(0, 0, 12, 18);
 		turmr = new Rectangle(2048,2048,41,50);
-		item = new Rectangle(x-2,y+9,15,11);//item = new Polygon(new float[]{0,0,bounds.width,0,bounds.width,bounds.height,0,bounds.height});
-		//item.setOrigin(bounds.width/2, bounds.height/2);
-		//item.setRotation(125);
-
+		item = new Rectangle(x-2,y+9,15,11);
 
 	}
 
@@ -65,22 +63,17 @@ public class Main extends ApplicationAdapter {
 		//batch.setRegion(0);
 		//batch.drawRegion(0,1,1);
 		if (turm.lebent()) {
-			cam.position.set(x + 10, y + 10, 0);
-			cam.update();
 
-			Matrix4 matrix = cam.combined;
-			batch.lol(matrix);
+			cam.positionSet(x,y);
+			batch.lol(cam.positionSet(x, y));
 			tot();
 		} else {
 			x = x + player.move1();
 
 			y = y + player.move2();
 			item.setPosition(x-2,y+4);
-			cam.position.set(x + 10, y + 10, 0);
-			cam.update();
 			batch.maps();
-			Matrix4 matrix = cam.combined;
-			batch.lol(matrix);
+			batch.lol(cam.positionSet((int )x, (int) y));
 			zeit = zeit + Gdx.graphics.getDeltaTime();
 
 			batch.drawManyPlantsNew();
