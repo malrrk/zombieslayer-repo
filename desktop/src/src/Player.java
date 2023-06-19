@@ -67,7 +67,7 @@ public int picNr(){
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {return 1;}
     if (Gdx.input.isKeyPressed(Input.Keys.S)) {return 3;}
     else {return 2;}}
-return 0;
+return 4;
 }
 public void add(){
     if (leben>Settings.getLeben()){

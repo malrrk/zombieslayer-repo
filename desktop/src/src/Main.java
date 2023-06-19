@@ -64,7 +64,7 @@ public class Main extends ApplicationAdapter {
 		ScreenUtils.clear(1, 1, 1, 1);
 		//batch.setRegion(0);
 		//batch.drawRegion(0,1,1);
-		if (turm.lebent()) {
+		if (!turm.lebent()) {
 			cam.position.set(x + 10, y + 10, 0);
 			cam.update();
 
