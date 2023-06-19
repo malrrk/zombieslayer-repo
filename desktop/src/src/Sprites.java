@@ -265,10 +265,6 @@ int q;
         font.draw(batch,"droecke E zum starten",0,0);
         batch.end();
     }
-    public void leeren(){
-
-    }
-
 }
 
 

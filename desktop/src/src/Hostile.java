@@ -32,10 +32,10 @@ public class Hostile {
         return xz;
     }
     public float gety() {
-        if ((int) yz < 2048) {
+        if ((int) yz < 2060) {
             yz = yz + Settings.getZspeed() * Gdx.graphics.getDeltaTime();
 
-        } else if ((int) yz == 2048) {} else {
+        } else if ((int) yz == 2060) {} else {
                 yz = yz - Settings.getZspeed() * Gdx.graphics.getDeltaTime();
             }
             return yz;
