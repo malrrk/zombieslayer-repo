@@ -235,17 +235,17 @@ int q;
                 }
                 if(i == 3){
                     while(k < 6){
-                        drawRegionGameOver(k * 320, 900, x, y);
+                        drawRegionGameOver(k * 320, 720, x, y);
                         delay(150);
                     }
                 }
             }
         }
-        drawRegionGameOver(320 ,225, x, y);
+        drawRegionGameOver(320 ,720, x, y);
 
     }
     public void gameOver(int x, int y){
-        drawRegionGameOver(100, 100, x, y);
+        drawRegionGameOver(320, 540, x, y);
     }
 
     public void schrift(int leben, float zeit, int lebenTurm, int x, int y, int kills) {

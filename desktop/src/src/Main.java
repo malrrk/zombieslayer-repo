@@ -22,8 +22,7 @@ public class Main extends ApplicationAdapter {
 
 	Sprites batch;
 	Player player;
-	//OrthographicCamera cam;
-	Camera cam;
+		Camera cam;
 	float x;
 	float y;
 	Friendly turm;
