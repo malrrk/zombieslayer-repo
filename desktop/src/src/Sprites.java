@@ -13,14 +13,14 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 
 public class Sprites {
-    private Rectangle versuch1;
-    private double[] randomx;
-    private double[] randomy;
-    private Texture gameOver;
+
+    private double[] randomx; //random x coordinate for plants
+    private double[] randomy;  //random y coordinate for plants
+    private Texture gameOver; //game over frames
 
     private Texture map;
-    private Texture plantatlas;
-    private Texture itemAtlas;
+    private Texture plantatlas; //collection of all plants and the statue
+    private Texture itemAtlas; //collection off all items
 
     private Texture characterAtlas; //collection for all sprites
     private TextureRegion region; //portion of the atlas
@@ -29,11 +29,11 @@ public class Sprites {
     // (6)plateshield, (7)platesword, (8)shieldsword, (9)plateshieldsword
     private SpriteBatch batch;
     BitmapFont font;
-    private Rectangle rectanglePlayer;
-    private Rectangle rectangleZombie;
 
 
-// test begin
+
+
+
 
 
     public Sprites() {
@@ -46,7 +46,6 @@ public class Sprites {
         status = 0;
         batch = new SpriteBatch();
         font = new BitmapFont();
-        rectanglePlayer = new Rectangle();
         randomx = new double[2000];
         randomy = new double[2000];
 
@@ -57,21 +56,21 @@ public class Sprites {
 
 
     }
-    //test end
 
 
-    //methods to actually use
-    public void drawCharacter(int status, int spriteNr, int x, int y) {
+
+    //methods
+    public void drawCharacter(int status, int spriteNr, int x, int y) { //draws character from custom status and spriteNr at x and y coordinates
         setCharacterSprite(status, spriteNr);
         drawRegionNew(x, y);
     }
 
-    public void drawCharacter(int x, int y) {
+    public void drawCharacter(int x, int y) { //draws character sprite from preset status and spriteNr at x and y coordinates
         setCharacterSprite();
         drawRegionNew(x, y);
     }
 
-    public void drawItem(int itemNr, int x, int y){
+    public void drawItem(int itemNr, int x, int y){ //draws item at given coordinates
         setRegionItem(0, itemNr);
         drawRegionNew(x, y);
     }
@@ -105,46 +104,15 @@ public class Sprites {
         setSpriteNr(spriteNr);
         setStatus(status);
     }
-
-
-    //auxiliary
-    public void clearScreen() {
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    }
-
-    public void drawRegionNew(float x, float y) { //draws the current region at given postion
-        batch.begin();
-        batch.enableBlending();
-        batch.draw(getRegion(), x, y);
-        batch.end();
-    }
-
     public void setCharacterSprite(int status, int spriteNr) {
         setRegionCharacter(spriteNr, status);
         setSpriteNr(spriteNr);
         setStatus(status);
     }
-
     public void setCharacterSprite() {
         setRegionCharacter(getSpriteNr(), getStatus());
     }
-
-    public void dispose() {
-        batch.dispose();
-    }
-
-    public void maps() {
-        batch.begin();
-        batch.draw(map, 0, 0);
-        batch.end();
-    }
-
-    public void lol(Matrix4 k) {
-        batch.setProjectionMatrix(k);
-    }
-
-
-    public void setRegionCommon(Texture texture, int x, int y, int size, int offsetx, int offsety) { //sets the region to a square at given position
+    public void setRegionCommon(Texture texture, int x, int y, int size, int offsetx, int offsety) { //sets the region to a square of 32 * the size with the given offset at the coordinates x and y
         if (size > 0) {
             region = new TextureRegion(texture, (size * 32 * x) + offsetx, (size * 32 * y) + offsety, size * 32, size * 32);
         }
@@ -154,17 +122,40 @@ public class Sprites {
         setRegionCommon(itemAtlas, x, y, 1, 0, 0);
     }
 
-
-
     public void setRegionPlant(int plantType, int plantNr) {
         setRegionCommon(plantatlas,plantNr, plantType, 2, 0, 0);
     }
-    public void drawPlant(int plantType, int plantNr, int x, int y){
+
+
+    //auxiliary
+
+    public void drawRegionNew(float x, float y) { //draws the current region at given postion
+        batch.begin();
+        batch.enableBlending();
+        batch.draw(getRegion(), x, y);
+        batch.end();
+    }
+
+    public void dispose() {
+        batch.dispose();
+    }
+
+    public void maps() { //draws map
+        setRegionCommon(map, 0, 0, 128, 0, 0);
+        drawRegionNew(0,0);
+    }
+
+    public void lol(Matrix4 k) {
+        batch.setProjectionMatrix(k);
+    }
+
+
+    public void drawPlant(int plantType, int plantNr, int x, int y){ //draws a single plant, aux mehtod
         setRegionPlant(plantType, plantNr);
         drawRegionNew(x, y);
     }
 
-    public void drawManyPlantsNew() {
+    public void drawManyPlantsNew() { //draws plants at randomized locations
 int q;
         for (int j = 0; j < 800; j++) {
 
@@ -203,7 +194,7 @@ int q;
 
 
     }
-    public int compare(int abscissa, int j) {
+    public int compare(int abscissa, int j) { //aux method for drawManyPlants
         int q;
         if (abscissa < 2980) {
             q = (int) (randomx[j] * 2);
@@ -216,17 +207,17 @@ int q;
         }
         return q;
     }
-    public void drawTower(){
+    public void drawTower(){ //draws the tower
         drawPlant(1, 4, 2048, 2048);
 
     }
 
-    public void drawRegionGameOver(int x, int y, int drawx, int drawy){
+    public void drawRegionGameOver(int x, int y, int drawx, int drawy){ //selects the frame for game over screen
         region = new TextureRegion(gameOver, x, y, 320, 180);
         drawRegionNew(drawx, drawy);
     }
 
-    public void drawGameOver(int x, int y){
+    public void drawGameOver(int x, int y){ //draws (animated) game over screen
         for(int i = 0; i < 4; i++){
             for(int k = 0; k < 12; k++){
                 if(i < 3){
@@ -246,9 +237,9 @@ int q;
     }
     public void gameOver(int x, int y){
         drawRegionGameOver(320, 540, x, y);
-    }
+    } //draws game over screen (just a test)
 
-    public void schrift(int leben, float zeit, int lebenTurm, int x, int y, int kills) {
+    public void schrift(int leben, float zeit, int lebenTurm, int x, int y, int kills) { //creates numbers in the corner
 
         String tmp = String.valueOf(leben);
         String tmp1 = String.valueOf((int) zeit);
@@ -263,7 +254,7 @@ int q;
         font.draw(batch, tmp3, x + 140, y + 80);
         batch.end();
     }
-    public void endschrift(int x, int y){
+    public void endschrift(int x, int y){ //pretty selfexplanatory
         batch.begin();
         font.draw(batch,"druecke E zum starten",x,y);
         batch.end();
