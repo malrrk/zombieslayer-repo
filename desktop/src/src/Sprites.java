@@ -222,7 +222,7 @@ int q;
     }
 
     public void drawRegionGameOver(int x, int y, int drawx, int drawy){
-        region = new TextureRegion(gameOver, x, y, 80, 45);
+        region = new TextureRegion(gameOver, x, y, 320, 180);
         drawRegionNew(drawx, drawy);
     }
 
@@ -243,6 +243,9 @@ int q;
         }
         drawRegionGameOver(320 ,225, x, y);
 
+    }
+    public void gameOver(int x, int y){
+        drawRegionGameOver(100, 100, x, y);
     }
 
     public void schrift(int leben, float zeit, int lebenTurm, int x, int y, int kills) {
