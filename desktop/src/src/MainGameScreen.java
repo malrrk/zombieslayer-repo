@@ -87,7 +87,7 @@ public class MainGameScreen implements Screen{
             zeit = zeit + Gdx.graphics.getDeltaTime();
             game.batch.drawManyPlantsNew();
             game.batch.drawTower();
-            game.batch.drawCharacter(player.getStatus(), player.picNr(), (int) x, (int) y);
+            game.batch.drawCharacter(player.getStatus(), player.getSpriteNr(), (int) x, (int) y);
             game.batch.schrift((int) player.getLeben(), (int) zeit, (int) turm.getlebenTurma(), (int) x, (int) y, player.getKills());
             playerr.setPosition(x, y);
             item.setPosition(x,y+9);
@@ -107,8 +107,9 @@ public class MainGameScreen implements Screen{
                     if (turmr.overlaps(zr)) {
                         turm.hurt();
                     }
-                    if (item.overlaps(zr)) {
-                        if (Gdx.input.isKeyPressed(Input.Keys.K)) {
+                    if (Gdx.input.isKeyPressed(Input.Keys.K)) {
+                        game.batch.hitAnimation(player.getStatus(), player.getSpriteNr(), (int)x, (int)y);
+                        if (item.overlaps(zr)) {
                             z.hurt(i);
                         }
                     }
@@ -130,16 +131,13 @@ public class MainGameScreen implements Screen{
                     }
 
                     if(player.getKills() > 39){
-                        player.setStatus(12);
+                        player.setStatus(9);
                         Settings.setHurtf(0.5);
                     }
                     if(player.getKills() > 69){
                         player.setLeben(1);
                     }
-                    if(player.getKills() > 99){
-                        player.setStatus(13);
-                        Settings.setHurtf(0.2);
-                    }
+
                     if(player.getKills() > 149){
                         Settings.setZleben(10);
                     }
