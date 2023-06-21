@@ -151,8 +151,17 @@ public class Sprites extends SpriteBatch{
 
 
     public void drawPlant(int plantType, int plantNr, int x, int y){ //draws a single plant, aux mehtod
-        setRegionPlant(plantType, plantNr);
-        drawRegionNew(x, y);
+
+        if(plantType == 5){
+            if(plantNr < 2){
+                setRegionCommon(plantatlas, 0, 2, 4, 0, 64);
+            }
+            else{
+                setRegionCommon(plantatlas, 1, 2, 4, 0, 64);
+            }
+        }
+            else{setRegionPlant(plantType, plantNr);}
+            drawRegionNew(x, y);
     }
 
     public void drawManyPlantsNew() { //draws plants at randomized locations
@@ -186,10 +195,11 @@ int q;
                 }
 
 
-                for (int j = 0; j < 150; j++) {
+                for (int j = 0; j < 50; j++) {
 
                     drawPlant(5, compare(((int) (randomx[j + 1650] * 3900) + 100), j), (int) (randomx[j + 1650] * 3800) + 100, (int) (randomy[j + 1650] * 3850) + 100);
                 }
+
 
 
 
