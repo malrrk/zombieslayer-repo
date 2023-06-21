@@ -72,7 +72,7 @@ public class MainGameScreen implements Screen{
         ScreenUtils.clear(1, 1, 1, 1);
         //batch.setRegion(0);
         //batch.drawRegion(0,1,1);
-        if (!turm.lebent()) {
+        if (turm.lebent()) {
             cam.positionSet(x,y);
             game.batch.lol(cam.positionSet(x, y));
             tot();
