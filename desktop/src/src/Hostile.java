@@ -10,12 +10,9 @@ public class Hostile {
     float x;
     float y ;
     int leben;
-    Vector vector;
-
-    Friendly turm;
 
 
-    public Hostile(float x,float y ){
+    public Hostile(int x,int y ){
         this.y = y;
         this.x = x;
 

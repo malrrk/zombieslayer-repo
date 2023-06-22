@@ -5,12 +5,13 @@ import java.util.ArrayList;
 
 public class Hostilehilfsklasse {
     ArrayList<BasicZombie> sammlung;
-    public int zahler;
-    public int zahler2;
+    public int counter;
+    public int counter2;
 
     public Hostilehilfsklasse() {
         sammlung = new ArrayList<>();
-        zahler = 49;
+        counter = 0;
+        counter2 = 0;
 
     }
     public float mx(int i) {
@@ -26,12 +27,12 @@ public class Hostilehilfsklasse {
     }
 
     public void spawnZombies() {
-        if (zahler2 <= 49) {
+        if (counter2 <= 49) {
 
-            sammlung.add(new BasicZombie((float) Math.random() * 2*2048, (float) Math.random() * 2* 2048));
+            sammlung.add(new BasicZombie((int) Math.random() * 2*2048, (int) Math.random() * 2* 2048));
 
-            zahler2++;
-            zahler++;}
+            counter2++;
+            counter++;}
         else{}
         }
 
@@ -57,7 +58,7 @@ public class Hostilehilfsklasse {
     public void remove(int i){
         sammlung.remove(i);
 
-zahler2--;    }
+counter2--;    }
 
 }
 

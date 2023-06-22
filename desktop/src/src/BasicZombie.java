@@ -6,7 +6,7 @@ public class BasicZombie extends Hostile{
 
     int leben;
 
-    public BasicZombie(float x, float y) {
+    public BasicZombie(int x, int y) {
         super(x, y);
 
         leben = Settings.getLeben();
