@@ -33,10 +33,10 @@ public class MainGameScreen implements Screen{
     Friendly turm;
     float zeit;
     Hostilehilfsklasse z;
-    int zeith;
-    Rectangle playerr;
-    Rectangle  zr;
-    Rectangle  turmr;
+    int zombieTimer;
+    Rectangle playerRectangle;
+    Rectangle  zombieRectangle;
+    Rectangle  turmRectangle;
     Rectangle item;
 
     Main game;
@@ -51,11 +51,11 @@ public class MainGameScreen implements Screen{
         turm = new Friendly();
         cam = new Camera(x,y);
         z = new Hostilehilfsklasse();
-        zeith = 0;
+        zombieTimer = 0;
         x = y = Settings.getx0y0();
-        zr = new Rectangle(0,0,12,18);
-        playerr = new Rectangle(0, 0, 12, 18);
-        turmr = new Rectangle(Settings.getx0y0(),Settings.getx0y0(),41,50);
+        zombieRectangle = new Rectangle(0,0,12,18);
+        playerRectangle = new Rectangle(0, 0, 12, 18);
+        turmRectangle = new Rectangle(Settings.getx0y0(),Settings.getx0y0(),41,50);
         item = new Rectangle(x-2,y+9,15,11);
 
         if(game.music) {
@@ -89,31 +89,28 @@ public class MainGameScreen implements Screen{
             game.batch.maps();
             game.batch.lol(cam.positionSet((int )x, (int) y));
             zeit = zeit + Gdx.graphics.getDeltaTime();
-            game.batch.drawManyPlantsNew();
-            game.batch.drawTower();
-            game.batch.drawCharacter(player.getStatus(), player.getSpriteNr(), (int) x, (int) y);
-            game.batch.schrift((int) player.getLeben(), (int) zeit, (int) turm.getlebenTurma(), (int) x, (int) y, player.getKills());
-            playerr.setPosition(x, y);
+            draw();
+            playerRectangle.setPosition(x, y);
             item.setPosition(x,y+9);
-            if ((int) zeit - zeith >3) {
-                z.z();
-                zeith = (int) zeit;
+            if ((int) zeit - zombieTimer >3) {
+                z.spawnZombies();
+                zombieTimer = (int) zeit;
             }
 
             for (int i = 0; i < z.zahler2-1; i++) {
 
-                if (z.lebt(i)) {
+                if (z.zombieAlive(i)) {
                     game.batch.drawCharacter(1, 1, (int) z.mx(i), (int) z.my(i));
-                    zr.setPosition(z.mx(i), z.my(i));
-                    if (playerr.overlaps(zr)) {
+                    zombieRectangle.setPosition(z.mx(i), z.my(i));
+                    if (playerRectangle.overlaps(zombieRectangle)) {
                         player.hurt();
                     }
-                    if (turmr.overlaps(zr)) {
+                    if (turmRectangle.overlaps(zombieRectangle)) {
                         turm.hurt();
                     }
                     if (Gdx.input.isKeyPressed(Input.Keys.K)) {
                         game.batch.hitAnimation(player.getStatus(), player.getSpriteNr(), (int)x, (int)y);
-                        if (item.overlaps(zr)) {
+                        if (item.overlaps(zombieRectangle)) {
                             z.hurt(i);
                         }
                     }
@@ -154,9 +151,9 @@ public class MainGameScreen implements Screen{
 
 
         }
-        if (!player.lebet()) {
-            x = 2048;
-            y = 2048;
+        if (!player.playerAlive()) {
+            player.x = 2048;
+            player.y = 2048;
             delay(300);
         }
 
@@ -188,10 +185,12 @@ public class MainGameScreen implements Screen{
     }
 
     public void tot() {
-        //game.batch.gameOver((int)x, (int)x);
-        //game.batch.endschrift((int)x,(int)y);
         game.setScreen(new GameOverScreen(game, player.getKills(), zeit));
-
-
+    }
+    public void draw(){
+        game.batch.drawManyPlantsNew();
+        game.batch.drawTower();
+        game.batch.drawCharacter(player.getStatus(), player.getSpriteNr(), (int) x, (int) y);
+        game.batch.drawText((int) player.getLeben(), (int) zeit, (int) turm.getlebenTurma(), (int) x, (int) y, player.getKills());
     }
 }

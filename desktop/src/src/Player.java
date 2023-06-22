@@ -23,7 +23,7 @@ public class Player  {
 
 
 }
-public boolean lebet() {
+public boolean playerAlive() {
     if (leben >= 0) {
 
         return true;
@@ -68,7 +68,7 @@ public int getSpriteNr(){
     else {return 2;}}
 return 4;
 }
-public void add(){
+public void addlives(){
     if (leben>Settings.getLeben()){
     leben += 1;}
 }

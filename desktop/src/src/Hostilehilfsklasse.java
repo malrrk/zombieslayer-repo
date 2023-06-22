@@ -25,7 +25,7 @@ public class Hostilehilfsklasse {
 
     }
 
-    public void z() {
+    public void spawnZombies() {
         if (zahler2 <= 49) {
 
             sammlung.add(new Hostile((float) Math.random() * 2*2048, (float) Math.random() * 2* 2048));
@@ -45,7 +45,7 @@ public class Hostilehilfsklasse {
         return true;
     }
 
-    public boolean lebt(int i) {
+    public boolean zombieAlive(int i) {
         if (sammlung.get(i).getLeben() == 0) {
             return false;
         }

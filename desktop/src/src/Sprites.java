@@ -249,7 +249,7 @@ int q;
         drawRegionGameOver(320, 540, x, y);
     } //draws game over screen (just a test)
 
-    public void schrift(int leben, float zeit, int lebenTurm, int x, int y, int kills) { //creates numbers in the corner
+    public void drawText(int leben, float zeit, int lebenTurm, int x, int y, int kills) { //creates numbers in the corner
 
         String tmp = String.valueOf(leben);
         String tmp1 = String.valueOf((int) zeit);
