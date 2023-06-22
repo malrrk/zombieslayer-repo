@@ -101,6 +101,7 @@ public class MainGameScreen implements Screen{
                     zombieRectangle.setPosition(zombieListe.mx(i), zombieListe.my(i));
                     if (playerRectangle.overlaps(zombieRectangle)) {
                         player.hurt();
+                        game.batch.hurtAnimation(player.getStatus(), player.getSpriteNr(), (int)x, (int)y);
                     }
                     if (turmRectangle.overlaps(zombieRectangle)) {
                         turm.hurt();
