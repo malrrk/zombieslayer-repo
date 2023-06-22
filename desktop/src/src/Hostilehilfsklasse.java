@@ -4,7 +4,7 @@ import java.sql.Array;
 import java.util.ArrayList;
 
 public class Hostilehilfsklasse {
-    ArrayList<BasicZombie> sammlung;
+    public ArrayList<BasicZombie> sammlung;
     public int zahler;
     public int zahler2;
 
@@ -23,6 +23,10 @@ public class Hostilehilfsklasse {
 
         return sammlung.get(i).gety();
 
+    }
+
+    public BasicZombie getZombie_at_index(int i){
+        return sammlung.get(i);
     }
 
     public void spawnZombies() {
