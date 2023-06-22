@@ -7,8 +7,8 @@ import com.badlogic.gdx.math.Vector2;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 
 public class Hostile {
-    float xz;
-    float yz ;
+    float x;
+    float y ;
     int leben;
     Vector vector;
 
@@ -16,39 +16,17 @@ public class Hostile {
 
 
     public Hostile(float x,float y ){
-             yz = y;
-             xz = x;
-            leben = Settings.getZleben();
-            vector = new Vector2(x,y);
+        this.y = y;
+        this.x = x;
 
     }
 
-    public float getx(){
-       if (xz<2048)
-       { xz = xz+Settings.getZspeed() * Gdx.graphics.getDeltaTime();}
-       else if( xz==2048)
-       {}
-       else{xz = xz-Settings.getZspeed() * Gdx.graphics.getDeltaTime();}
-        return xz;
+    public float getX(){
+        return x;
     }
-    public float gety() {
-        if ((int) yz < 2060) {
-            yz = yz + Settings.getZspeed() * Gdx.graphics.getDeltaTime();
-
-        } else if ((int) yz == 2060) {} else {
-                yz = yz - Settings.getZspeed() * Gdx.graphics.getDeltaTime();
-            }
-            return yz;
-        }
-
-
-
-    public void hurt(){
-        leben = leben -1;
-        System.out.print(leben);
+    public float getY() {
+        return y;
     }
-    public int getLeben()
-    {return leben;}
 
 
 }

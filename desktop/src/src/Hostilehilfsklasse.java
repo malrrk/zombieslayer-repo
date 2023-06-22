@@ -4,7 +4,7 @@ import java.sql.Array;
 import java.util.ArrayList;
 
 public class Hostilehilfsklasse {
-    ArrayList<Hostile> sammlung;
+    ArrayList<basicZombie> sammlung;
     public int zahler;
     public int zahler2;
 
@@ -28,7 +28,7 @@ public class Hostilehilfsklasse {
     public void spawnZombies() {
         if (zahler2 <= 49) {
 
-            sammlung.add(new Hostile((float) Math.random() * 2*2048, (float) Math.random() * 2* 2048));
+            sammlung.add(new basicZombie((float) Math.random() * 2*2048, (float) Math.random() * 2* 2048));
 
             zahler2++;
             zahler++;}

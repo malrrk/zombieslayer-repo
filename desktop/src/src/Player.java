@@ -10,6 +10,7 @@ public class Player  {
     private int status;
     public float x;
     public float y;
+    int picNr = 3;
 
     Sprites batch;
 
@@ -48,25 +49,25 @@ public void move(){
     }
 public int getSpriteNr(){
     if (Gdx.input.isKeyPressed(Input.Keys.W)){
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {return 7;}
-    if (Gdx.input.isKeyPressed(Input.Keys.D)) {return 1;}
-    else {return 0;}}
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {picNr = 7;}
+    if (Gdx.input.isKeyPressed(Input.Keys.D)) {picNr = 1;}
+    else {picNr = 0;}}
 
     if (Gdx.input.isKeyPressed(Input.Keys.A)){
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {return 7;}
-    if (Gdx.input.isKeyPressed(Input.Keys.S)) {return 5;}
-    else {return 6;}}
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {picNr = 7;}
+    if (Gdx.input.isKeyPressed(Input.Keys.S)) {picNr = 5;}
+    else {picNr = 6;}}
 
     if (Gdx.input.isKeyPressed(Input.Keys.S)){
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {return 5;}
-    if (Gdx.input.isKeyPressed(Input.Keys.D)) {return 3;}
-    else {return 4;}}
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {picNr = 5;}
+    if (Gdx.input.isKeyPressed(Input.Keys.D)) {picNr = 3;}
+    else {picNr = 4;}}
 
     if (Gdx.input.isKeyPressed(Input.Keys.D)){
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {return 1;}
-    if (Gdx.input.isKeyPressed(Input.Keys.S)) {return 3;}
-    else {return 2;}}
-return 4;
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {picNr = 1;}
+    if (Gdx.input.isKeyPressed(Input.Keys.S)) {picNr = 3;}
+    else {picNr = 2;}}
+return picNr;
 }
 public void addlives(){
     if (leben>Settings.getLeben()){
