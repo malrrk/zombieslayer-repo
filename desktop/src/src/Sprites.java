@@ -281,7 +281,7 @@ public class Sprites extends SpriteBatch {
         } else if (status == 9) {
             drawCharacter(13, spriteNr, x, y);
         }
-        delay(200);
+        delay(100);
 
     }
 
@@ -291,7 +291,7 @@ public class Sprites extends SpriteBatch {
 
     public void hurtAnimation(int status, int spriteNr, int x, int y){
         drawCharacter(status, spriteNr + 8, x, y);
-        delay(200);
+        delay(100);
 
     }
 }

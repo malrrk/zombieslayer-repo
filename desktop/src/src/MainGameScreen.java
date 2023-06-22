@@ -103,8 +103,13 @@ public class MainGameScreen implements Screen{
                     game.batch.drawCharacter(1, 1, (int) z.mx(i), (int) z.my(i));
                     zombieRectangle.setPosition(z.mx(i), z.my(i));
                     if (playerRectangle.overlaps(zombieRectangle)) {
+                        if(Gdx.input.isKeyPressed(Input.Keys.K)){
+                            game.batch.hitAnimation(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);
+                        }
+                        else{
+                            game.batch.hurtAnimation(player.getStatus(), player.getSpriteNr(), (int)x, (int)y);
+                        }
                         player.hurt();
-                        game.batch.hurtAnimation(player.getStatus(), player.getSpriteNr(), (int)x, (int)y);
                     }
                     if (turmRectangle.overlaps(zombieRectangle)) {
                         turm.hurt();
