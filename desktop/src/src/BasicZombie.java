@@ -2,11 +2,11 @@ package src;
 
 import com.badlogic.gdx.Gdx;
 
-public class basicZombie extends Hostile{
+public class BasicZombie extends Hostile{
 
     int leben;
 
-    public basicZombie(float x, float y) {
+    public BasicZombie(float x, float y) {
         super(x, y);
 
         leben = Settings.getLeben();
