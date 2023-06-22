@@ -107,6 +107,7 @@ public class MainGameScreen implements Screen{
                     zr.setPosition(z.mx(i), z.my(i));
                     if (playerr.overlaps(zr)) {
                         player.hurt();
+                        game.batch.hurtAnimation(player.getStatus(), player.getSpriteNr(), (int)x, (int)y);
                     }
                     if (turmr.overlaps(zr)) {
                         turm.hurt();
@@ -155,8 +156,8 @@ public class MainGameScreen implements Screen{
 
         }
         if (!player.lebet()) {
-            x = 2048;
-            y = 2048;
+            player.x = 2048;
+            player.y = 2048;
             delay(300);
         }
 

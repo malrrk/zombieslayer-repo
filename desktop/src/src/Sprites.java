@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 
-public class Sprites extends SpriteBatch{
+public class Sprites extends SpriteBatch {
 
     private double[] randomx; //random x coordinate for plants
     private double[] randomy;  //random y coordinate for plants
@@ -31,11 +31,6 @@ public class Sprites extends SpriteBatch{
     BitmapFont font;
 
 
-
-
-
-
-
     public Sprites() {
         gameOver = new Texture(Gdx.files.internal("game over.png"));
         map = new Texture(Gdx.files.internal("map.png"));
@@ -49,14 +44,13 @@ public class Sprites extends SpriteBatch{
         randomx = new double[2000];
         randomy = new double[2000];
 
-        for(int i = 0; i < 2000; i++){
+        for (int i = 0; i < 2000; i++) {
             randomx[i] = MathUtils.random();
             randomy[i] = MathUtils.random();
         }
 
 
     }
-
 
 
     //methods
@@ -70,7 +64,7 @@ public class Sprites extends SpriteBatch{
         drawRegionNew(x, y);
     }
 
-    public void drawItem(int itemNr, int x, int y){ //draws item at given coordinates
+    public void drawItem(int itemNr, int x, int y) { //draws item at given coordinates
         setRegionItem(0, itemNr);
         drawRegionNew(x, y);
     }
@@ -104,14 +98,17 @@ public class Sprites extends SpriteBatch{
         setSpriteNr(spriteNr);
         setStatus(status);
     }
+
     public void setCharacterSprite(int status, int spriteNr) {
         setRegionCharacter(spriteNr, status);
         setSpriteNr(spriteNr);
         setStatus(status);
     }
+
     public void setCharacterSprite() {
         setRegionCharacter(getSpriteNr(), getStatus());
     }
+
     public void setRegionCommon(Texture texture, int x, int y, int size, int offsetx, int offsety) { //sets the region to a square of 32 * the size with the given offset at the coordinates x and y
         if (size > 0) {
             region = new TextureRegion(texture, (size * 32 * x) + offsetx, (size * 32 * y) + offsety, size * 32, size * 32);
@@ -123,7 +120,7 @@ public class Sprites extends SpriteBatch{
     }
 
     public void setRegionPlant(int plantType, int plantNr) {
-        setRegionCommon(plantatlas,plantNr, plantType, 2, 0, 0);
+        setRegionCommon(plantatlas, plantNr, plantType, 2, 0, 0);
     }
 
 
@@ -142,7 +139,7 @@ public class Sprites extends SpriteBatch{
 
     public void maps() { //draws map
         setRegionCommon(map, 0, 0, 128, 0, 0);
-        drawRegionNew(0,0);
+        drawRegionNew(0, 0);
     }
 
     public void lol(Matrix4 k) {
@@ -150,66 +147,65 @@ public class Sprites extends SpriteBatch{
     }
 
 
-    public void drawPlant(int plantType, int plantNr, int x, int y){ //draws a single plant, aux mehtod
+    public void drawPlant(int plantType, int plantNr, int x, int y) { //draws a single plant, aux mehtod
 
-        if(plantType == 5){
-            if(plantNr < 2){
+        if (plantType == 5) {
+            if (plantNr < 2) {
                 setRegionCommon(plantatlas, 0, 2, 4, 0, 64);
-            }
-            else{
+            } else {
                 setRegionCommon(plantatlas, 1, 2, 4, 0, 64);
             }
+        } else {
+            setRegionPlant(plantType, plantNr);
         }
-            else{setRegionPlant(plantType, plantNr);}
-            drawRegionNew(x, y);
+        drawRegionNew(x, y);
     }
 
     public void drawManyPlantsNew() { //draws plants at randomized locations
-int q;
+        int q;
         for (int j = 0; j < 800; j++) {
 
-                        drawPlant(0, compare(((int) (randomx[j] * 3900) + 100), j), (int) (randomx[j] * 3800) + 100, (int) (randomy[j] * 3850) + 100);
-                    }
+            drawPlant(0, compare(((int) (randomx[j] * 3900) + 100), j), (int) (randomx[j] * 3800) + 100, (int) (randomy[j] * 3850) + 100);
+        }
 
 
         for (int j = 0; j < 300; j++) {
 
-                    drawPlant(1, compare(((int) (randomx[j + 800] * 3900) + 100), j), (int) (randomx[j + 800] * 3800) + 100, (int) (randomy[j + 800] * 3850) + 100);
-                }
+            drawPlant(1, compare(((int) (randomx[j + 800] * 3900) + 100), j), (int) (randomx[j + 800] * 3800) + 100, (int) (randomy[j + 800] * 3850) + 100);
+        }
 
-                for (int j = 0; j < 200; j++) {
+        for (int j = 0; j < 200; j++) {
 
-                    drawPlant(2, compare(((int) (randomx[j + 1100] * 3900) + 100), j), (int) (randomx[j + 1100] * 3800) + 100, (int) (randomy[j + 1100] * 3850) + 100);
-                }
-
-
-                for (int j = 0; j < 200; j++) {
-
-                    drawPlant(3, compare(((int) (randomx[j + 1300] * 3900) + 100), j), (int) (randomx[j + 1300] * 3800) + 100, (int) (randomy[j + 1300] * 3850) + 100);
-                }
+            drawPlant(2, compare(((int) (randomx[j + 1100] * 3900) + 100), j), (int) (randomx[j + 1100] * 3800) + 100, (int) (randomy[j + 1100] * 3850) + 100);
+        }
 
 
-                for (int j = 0; j < 150; j++) {
+        for (int j = 0; j < 200; j++) {
 
-                    drawPlant(4, compare(((int) (randomx[j + 1500] * 3900) + 100), j), (int) (randomx[j + 1500] * 3800) + 100, (int) (randomy[j + 1500] * 3850) + 100);
-                }
-
-
-                for (int j = 0; j < 50; j++) {
-
-                    drawPlant(5, compare(((int) (randomx[j + 1650] * 3900) + 100), j), (int) (randomx[j + 1650] * 3800) + 100, (int) (randomy[j + 1650] * 3850) + 100);
-                }
+            drawPlant(3, compare(((int) (randomx[j + 1300] * 3900) + 100), j), (int) (randomx[j + 1300] * 3800) + 100, (int) (randomy[j + 1300] * 3850) + 100);
+        }
 
 
+        for (int j = 0; j < 150; j++) {
+
+            drawPlant(4, compare(((int) (randomx[j + 1500] * 3900) + 100), j), (int) (randomx[j + 1500] * 3800) + 100, (int) (randomy[j + 1500] * 3850) + 100);
+        }
+
+
+        for (int j = 0; j < 50; j++) {
+
+            drawPlant(5, compare(((int) (randomx[j + 1650] * 3900) + 100), j), (int) (randomx[j + 1650] * 3800) + 100, (int) (randomy[j + 1650] * 3850) + 100);
+        }
 
 
     }
+
     public int compare(int abscissa, int j) { //aux method for drawManyPlants
         int q;
         if (abscissa < 3030) {
             q = (int) (randomx[j] * 2);
         } else {
-            if (((int) (randomx[j] * 2) == 1)){
+            if (((int) (randomx[j] * 2) == 1)) {
                 q = 3;
             } else {
                 q = 2;
@@ -217,35 +213,37 @@ int q;
         }
         return q;
     }
-    public void drawTower(){ //draws the tower
+
+    public void drawTower() { //draws the tower
         drawPlant(1, 4, 2048, 2048);
 
     }
 
-    public void drawRegionGameOver(int x, int y, int drawx, int drawy){ //selects the frame for game over screen
+    public void drawRegionGameOver(int x, int y, int drawx, int drawy) { //selects the frame for game over screen
         region = new TextureRegion(gameOver, x, y, 320, 180);
         drawRegionNew(drawx, drawy);
     }
 
-    public void drawGameOver(int x, int y){ //draws (animated) game over screen
-        for(int i = 0; i < 4; i++){
-            for(int k = 0; k < 12; k++){
-                if(i < 3){
-                    drawRegionGameOver( k * 320, 360 + i * 180, x, y);
+    public void drawGameOver(int x, int y) { //draws (animated) game over screen
+        for (int i = 0; i < 4; i++) {
+            for (int k = 0; k < 12; k++) {
+                if (i < 3) {
+                    drawRegionGameOver(k * 320, 360 + i * 180, x, y);
                     delay(150);
                 }
-                if(i == 3){
-                    while(k < 6){
+                if (i == 3) {
+                    while (k < 6) {
                         drawRegionGameOver(k * 320, 720, x, y);
                         delay(150);
                     }
                 }
             }
         }
-        drawRegionGameOver(320 ,720, x, y);
+        drawRegionGameOver(320, 720, x, y);
 
     }
-    public void gameOver(int x, int y){
+
+    public void gameOver(int x, int y) {
         drawRegionGameOver(320, 540, x, y);
     } //draws game over screen (just a test)
 
@@ -264,29 +262,40 @@ int q;
         font.draw(batch, tmp3, x + 140, y + 80);
         batch.end();
     }
-    public void endschrift(int x, int y){ //pretty selfexplanatory, ready to be deleted
+
+    public void endschrift(int x, int y) { //pretty selfexplanatory, ready to be deleted
         batch.begin();
-        font.draw(batch,"druecke E zum starten",x,y);
+        font.draw(batch, "druecke E zum starten", x, y);
         batch.end();
     }
 
-    public void hitAnimation(int status, int spriteNr, int x, int y){
-        if(status == 2){drawCharacter(status, spriteNr, x, y);}
-        else if(status == 3){drawCharacter( 10, spriteNr, x, y);}
-        else if(status == 7){drawCharacter( 11, spriteNr, x, y);}
-        else if(status == 8){drawCharacter( 12, spriteNr, x, y);}
-        else if(status == 9){drawCharacter( 13, spriteNr, x, y);}
+    public void hitAnimation(int status, int spriteNr, int x, int y) {
+        if (status == 2) {
+            drawCharacter(status, spriteNr, x, y);
+        } else if (status == 3) {
+            drawCharacter(10, spriteNr, x, y);
+        } else if (status == 7) {
+            drawCharacter(11, spriteNr, x, y);
+        } else if (status == 8) {
+            drawCharacter(12, spriteNr, x, y);
+        } else if (status == 9) {
+            drawCharacter(13, spriteNr, x, y);
+        }
+        delay(200);
+
+    }
+
+    public void moveAnimation(int status, int spriteNr) {
+
+    }
+
+    public void hurtAnimation(int status, int spriteNr, int x, int y){
+        drawCharacter(status, spriteNr + 8, x, y);
         delay(100);
 
     }
-    public void moveAnimation(int status, int spriteNr){
-
-    }
-
 }
-
-
-// end sprites
+    // end sprites
 
 
 
