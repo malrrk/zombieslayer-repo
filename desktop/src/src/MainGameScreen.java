@@ -107,6 +107,9 @@ public class MainGameScreen implements Screen{
                     zr.setPosition(z.mx(i), z.my(i));
                     if (playerr.overlaps(zr)) {
                         player.hurt();
+                        game.batch.hurtAnimation(player.getStatus(), player.getSpriteNr(), (int)x, (int)y);
+                    }
+                    if (turmr.overlaps(zr)) {
                     }if (turmr.overlaps(zr)) {
                         turm.hurt();
                     }
@@ -150,7 +153,7 @@ public class MainGameScreen implements Screen{
 
                 }
             }
-            game.batch.lol(cam.positionSet((int )x, (int) y));
+
 
         }
         if (!player.lebet()) {
