@@ -10,9 +10,6 @@ public class Hostile {
     float x;
     float y ;
     int leben;
-    Vector vector;
-
-    Friendly turm;
 
 
     public Hostile(float x,float y ){
@@ -21,12 +18,6 @@ public class Hostile {
 
     }
 
-    public float getX(){
-        return x;
-    }
-    public float getY() {
-        return y;
-    }
 
     public void hurt(){
         leben = leben -1;
