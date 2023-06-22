@@ -47,7 +47,7 @@ public void move(){
             y -= Settings.getSpeed() * Gdx.graphics.getDeltaTime();
         }
     }
-public int picNr(){
+public int getSpriteNr(){
     if (Gdx.input.isKeyPressed(Input.Keys.W)){
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {picNr = 7;}
     if (Gdx.input.isKeyPressed(Input.Keys.D)) {picNr = 1;}

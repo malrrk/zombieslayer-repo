@@ -1,8 +1,7 @@
 package src;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.*;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.*;
@@ -14,8 +13,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -60,6 +57,13 @@ public class MainGameScreen implements Screen{
         playerr = new Rectangle(0, 0, 12, 18);
         turmr = new Rectangle(Settings.getx0y0(),Settings.getx0y0(),41,50);
         item = new Rectangle(x-2,y+9,15,11);
+
+        if(game.music) {
+            Music menu_music = Gdx.audio.newMusic(Gdx.files.getFileHandle("music/where-the-brave-may-live-forever-viking-background-music-109867.mp3", Files.FileType.Internal));
+            menu_music.setVolume(0.2f);
+            menu_music.play();
+            menu_music.setLooping(true);
+        }
     }
 
     @Override
@@ -87,7 +91,7 @@ public class MainGameScreen implements Screen{
             zeit = zeit + Gdx.graphics.getDeltaTime();
             game.batch.drawManyPlantsNew();
             game.batch.drawTower();
-            game.batch.drawCharacter(player.getStatus(), player.picNr(), (int) x, (int) y);
+            game.batch.drawCharacter(player.getStatus(), player.getSpriteNr(), (int) x, (int) y);
             game.batch.schrift((int) player.getLeben(), (int) zeit, (int) turm.getlebenTurma(), (int) x, (int) y, player.getKills());
             playerr.setPosition(x, y);
             item.setPosition(x,y+9);
@@ -107,8 +111,9 @@ public class MainGameScreen implements Screen{
                     if (turmr.overlaps(zr)) {
                         turm.hurt();
                     }
-                    if (item.overlaps(zr)) {
-                        if (Gdx.input.isKeyPressed(Input.Keys.K)) {
+                    if (Gdx.input.isKeyPressed(Input.Keys.K)) {
+                        game.batch.hitAnimation(player.getStatus(), player.getSpriteNr(), (int)x, (int)y);
+                        if (item.overlaps(zr)) {
                             z.hurt(i);
                         }
                     }
@@ -130,16 +135,13 @@ public class MainGameScreen implements Screen{
                     }
 
                     if(player.getKills() > 39){
-                        player.setStatus(12);
+                        player.setStatus(9);
                         Settings.setHurtf(0.5);
                     }
                     if(player.getKills() > 69){
                         player.setLeben(1);
                     }
-                    if(player.getKills() > 99){
-                        player.setStatus(13);
-                        Settings.setHurtf(0.2);
-                    }
+
                     if(player.getKills() > 149){
                         Settings.setZleben(10);
                     }

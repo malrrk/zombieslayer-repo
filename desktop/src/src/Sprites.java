@@ -264,11 +264,25 @@ int q;
         font.draw(batch, tmp3, x + 140, y + 80);
         batch.end();
     }
-    public void endschrift(int x, int y){ //pretty selfexplanatory
+    public void endschrift(int x, int y){ //pretty selfexplanatory, ready to be deleted
         batch.begin();
         font.draw(batch,"druecke E zum starten",x,y);
         batch.end();
     }
+
+    public void hitAnimation(int status, int spriteNr, int x, int y){
+        if(status == 2){drawCharacter(status, spriteNr, x, y);}
+        else if(status == 3){drawCharacter( 10, spriteNr, x, y);}
+        else if(status == 7){drawCharacter( 11, spriteNr, x, y);}
+        else if(status == 8){drawCharacter( 12, spriteNr, x, y);}
+        else if(status == 9){drawCharacter( 13, spriteNr, x, y);}
+        delay(100);
+
+    }
+    public void moveAnimation(int status, int spriteNr){
+
+    }
+
 }
 
 
