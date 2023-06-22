@@ -8,6 +8,7 @@ public class Player  {
     private float leben;
     private int kills;
     private int status;
+    private HitboxRect hitbox;
     public float x;
     public float y;
     int picNr = 3;
@@ -18,9 +19,11 @@ public class Player  {
         this.x = x;
         this.y = y;
         this.batch = batch;
-    leben = Settings.getLeben();
-    kills = 0;
-    status = 2;
+        leben = Settings.getLeben();
+        kills = 0;
+        status = 2;
+
+        hitbox = new HitboxRect(this.x, this.y, 12, 18);
 }
 public boolean playerAlive() {
     if (leben >= 0) {
@@ -44,6 +47,8 @@ public void move(){
         if(Gdx.input.isKeyPressed(Input.Keys.S)) {
             y -= Settings.getSpeed() * Gdx.graphics.getDeltaTime();
         }
+
+        hitbox.moveTo(x, y);
     }
 public int getSpriteNr(){
     if (Gdx.input.isKeyPressed(Input.Keys.W)){
