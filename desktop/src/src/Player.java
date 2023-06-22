@@ -21,8 +21,6 @@ public class Player  {
     leben = Settings.getLeben();
     kills = 0;
     status = 2;
-
-
 }
 public boolean playerAlive() {
     if (leben >= 0) {

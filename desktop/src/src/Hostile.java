@@ -26,7 +26,18 @@ public class Hostile {
     }
     public float getY() {
         return y;
+        } else if ((int) yz == 2060) {} else {
+                yz = yz - Settings.getZspeed() * Gdx.graphics.getDeltaTime();
+            }
+            return yz;
+        }
+
+    public void hurt(){
+        leben = leben -1;
+        System.out.print(leben);
     }
 
 
+    public int getLeben()
+    {return leben;}
 }
