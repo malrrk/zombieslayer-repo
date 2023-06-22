@@ -18,12 +18,6 @@ public class Hostile {
 
     }
 
-    public float getX(){
-        return x;
-    }
-    public float getY() {
-        return y;
-    }
 
     public void hurt(){
         leben = leben -1;

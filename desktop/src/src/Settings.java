@@ -9,6 +9,7 @@ public class Settings {
     private static int zleben = 25;
     private static double hurtf = 3;
     private static int x0= 2048;
+    private static int speedDiagonal;
 
     //
     public void setSpeed(int speed) {
@@ -17,6 +18,9 @@ public class Settings {
 
     public static int getSpeed() {
         return speed;
+    }
+    public static int getSpeedDiagonal() {
+        return speedDiagonal;
     }
 
     public static int getLebenTurm() {

@@ -142,7 +142,7 @@ public class Sprites extends SpriteBatch {
         drawRegionNew(0, 0);
     }
 
-    public void lol(Matrix4 k) {
+    public void kombinieren(Matrix4 k) {
         batch.setProjectionMatrix(k);
     }
 
