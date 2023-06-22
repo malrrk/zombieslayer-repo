@@ -107,8 +107,7 @@ public class MainGameScreen implements Screen{
                     zr.setPosition(z.mx(i), z.my(i));
                     if (playerr.overlaps(zr)) {
                         player.hurt();
-                    }
-                    if (turmr.overlaps(zr)) {
+                    }if (turmr.overlaps(zr)) {
                         turm.hurt();
                     }
                     if (Gdx.input.isKeyPressed(Input.Keys.K)) {
@@ -151,7 +150,7 @@ public class MainGameScreen implements Screen{
 
                 }
             }
-
+            game.batch.lol(cam.positionSet((int )x, (int) y));
 
         }
         if (!player.lebet()) {
