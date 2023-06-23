@@ -10,7 +10,7 @@ public class Camera {
     public Camera(float x, float y){
 
 
-        cam = new OrthographicCamera(420, 180 );
+        cam = new OrthographicCamera(320, 180 );
         cam.position.set(x+10, y-20, 0);
 
         cam.update();
