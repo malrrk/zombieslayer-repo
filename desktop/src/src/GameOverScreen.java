@@ -21,11 +21,18 @@ public class GameOverScreen implements Screen{
     private static final int EXIT_BUTTON_Y = 100;
     private static final int PLAY_BUTTON_X = 420;
     private static final int PLAY_BUTTON_Y = 100;
+
+    private static final int TITLE_WIDTH = 424;
+    private static final int TITLE_HEIGHT = 35;
+    private static final int TITLE_X = 110;
+    private static final int TITLE_Y = 400;
     private static final int SCREEN_HEIGHT = 480;
 
     Texture playButton;
 
     Texture exitButton;
+
+    Texture TITLE;
 
     Main game;
 
@@ -39,6 +46,8 @@ public class GameOverScreen implements Screen{
 
         playButton = new Texture("PLAY.png");
         exitButton = new Texture("EXIT.png");
+
+        TITLE = new Texture("TITLE.png");
 
     }
 
@@ -55,6 +64,8 @@ public class GameOverScreen implements Screen{
 
         game.batch.draw(playButton, PLAY_BUTTON_X, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
         game.batch.draw(exitButton, EXIT_BUTTON_X, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
+
+        game.batch.draw(TITLE, TITLE_X, TITLE_Y, TITLE_WIDTH, TITLE_HEIGHT);
 
         if (Gdx.input.isTouched()){
             if (Gdx.input.isTouched()){

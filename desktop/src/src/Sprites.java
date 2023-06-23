@@ -28,7 +28,7 @@ public class Sprites extends SpriteBatch {
     private int spriteNr; //from 0 to 7, referring W - AW  clockwise
     private int status; //from 1 to 9, referring to (1)zombie, (2)basic, (3)sword, (4)plate, (5)shield,
     // (6)plateshield, (7)platesword, (8)shieldsword, (9)plateshieldsword
-    private SpriteBatch batch;
+    public SpriteBatch batch;
     BitmapFont font;
 
 

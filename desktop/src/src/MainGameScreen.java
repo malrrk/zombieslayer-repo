@@ -39,6 +39,8 @@ public class MainGameScreen implements Screen{
     Rectangle  turmRectangle;
     Rectangle item;
 
+    Texture OVERLAY;
+
     Main game;
 
     public MainGameScreen(Main game){
@@ -64,6 +66,8 @@ public class MainGameScreen implements Screen{
             menu_music.play();
             menu_music.setLooping(true);
         }
+
+        OVERLAY = new Texture("BLACK_OVERLAY.png");
     }
 
     @Override
@@ -252,5 +256,10 @@ public class MainGameScreen implements Screen{
         game.batch.drawTower();
         game.batch.drawCharacter(player.getStatus(), player.getSpriteNr(), (int) x, (int) y);
         game.batch.drawText((int) player.getLeben(), (int) zeit, (int) turm.getlebenTurma(), (int) x, (int) y, player.getKills());
+
+        /* game.batch.batch.begin();
+        game.batch.batch.draw(OVERLAY, (int) x - 305, (int) y - 220, 620, 480);
+        game.batch.batch.end();*/
+
     }
 }

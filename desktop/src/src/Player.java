@@ -45,7 +45,7 @@ public void move(){
         // right, left movement
         if(Gdx.input.isKeyPressed(Input.Keys.A)) {
             x -= Settings.getSpeed() * Gdx.graphics.getDeltaTime();
-            speedDiagonalFac = Settings.getSpeedDiagonal();
+            speedDiagonalFac = - Settings.getSpeedDiagonal();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             x += Settings.getSpeed() * Gdx.graphics.getDeltaTime();
@@ -56,12 +56,12 @@ public void move(){
 
         // up, down movement
         if(Gdx.input.isKeyPressed(Input.Keys.W)) {
-            y += Settings.getSpeed() * Gdx.graphics.getDeltaTime() * speedDiagonalFac;
-            x -= (Settings.getSpeed() - (Settings.getSpeed() * speedDiagonalFac)) * Gdx.graphics.getDeltaTime();
+            y += Settings.getSpeed() * Gdx.graphics.getDeltaTime() * Math.abs(speedDiagonalFac);
+            x -= (Settings.getSpeed() - (Settings.getSpeed() * Math.abs(speedDiagonalFac))) * Gdx.graphics.getDeltaTime() * (Math.abs(speedDiagonalFac)/speedDiagonalFac);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.S)) {
-            y -= Settings.getSpeed() * Gdx.graphics.getDeltaTime() * speedDiagonalFac;
-            x -= (Settings.getSpeed() - (Settings.getSpeed() * speedDiagonalFac)) * Gdx.graphics.getDeltaTime();
+            y -= Settings.getSpeed() * Gdx.graphics.getDeltaTime() * Math.abs(speedDiagonalFac);
+            x -= (Settings.getSpeed() - (Settings.getSpeed() * Math.abs(speedDiagonalFac))) * Gdx.graphics.getDeltaTime() * (Math.abs(speedDiagonalFac)/speedDiagonalFac);
         }
 
         speedDiagonalFac = 1;
