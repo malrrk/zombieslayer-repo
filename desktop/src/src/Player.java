@@ -23,7 +23,7 @@ public class Player  {
     status = 2;
 }
 public boolean playerAlive() {
-    if (leben >= 0) {
+    if (leben > 0) {
 
         return true;
     }

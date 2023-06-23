@@ -78,7 +78,7 @@ public class MainGameScreen implements Screen{
         //batch.drawRegion(0,1,1);
         if (turm.lebent()) {
             cam.positionSet(x,y);
-            game.batch.lol(cam.positionSet(x, y));
+            game.batch.kombinieren(cam.positionSet(x, y));
             tot();
         } else {
             player.move();
@@ -87,7 +87,7 @@ public class MainGameScreen implements Screen{
 
             item.setPosition(x-2,y+4);
             game.batch.maps();
-            game.batch.lol(cam.positionSet((int )x, (int) y));
+            game.batch.kombinieren(cam.positionSet((int )x, (int) y));
             zeit = zeit + Gdx.graphics.getDeltaTime();
             draw();
             playerRectangle.setPosition(x, y);
@@ -97,24 +97,49 @@ public class MainGameScreen implements Screen{
                 zombieTimer = (int) zeit;
             }
 
-            for (int i = 0; i < z.zahler2-1; i++) {
+            for (int i = 0; i < z.counter2-1; i++) {
 
                 if (z.zombieAlive(i)) {
                     game.batch.drawCharacter(1, 1, (int) z.mx(i), (int) z.my(i));
                     zombieRectangle.setPosition(z.mx(i), z.my(i));
-                    if (playerRectangle.overlaps(zombieRectangle)) {
-                        player.hurt();
-                        game.batch.hurtAnimation(player.getStatus(), player.getSpriteNr(), (int)x, (int)y);
-                    }
-                    if (turmRectangle.overlaps(zombieRectangle)) {
+                    if(turmRectangle.overlaps(zombieRectangle)){
                         turm.hurt();
                     }
+                    if(playerRectangle.overlaps(zombieRectangle)){
+                            player.hurt();
+                            if (item.overlaps(zombieRectangle) && Gdx.input.isKeyPressed(Input.Keys.K)) {
+                                z.hurt(i);
+                                game.batch.hurtAnimation(1, 9, (int)z.mx(i), (int)z.my((i)));
+                            }
+                            game.batch.hurtAnimation(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);
+                        }
+                    else{
+                        game.batch.hurtAnimation(player.getStatus(), player.getSpriteNr(), (int)x, (int)y);
+                        }
+
+
+
+
+
+                   /* if (playerRectangle.overlaps(zombieRectangle)) {
+                        player.hurt();
+                        game.batch.hurtAnimation(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);
+                    }
+
+
                     if (Gdx.input.isKeyPressed(Input.Keys.K)) {
-                        game.batch.hitAnimation(player.getStatus(), player.getSpriteNr(), (int)x, (int)y);
+                        if(playerRectangle.overlaps(zombieRectangle)){
+                            game.batch.hurtAnimation(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);
+                        }
+                        else{ game.batch.hurtAnimation(player.getStatus(), player.getSpriteNr(), (int)x, (int)y);
+                        }
                         if (item.overlaps(zombieRectangle)) {
                             z.hurt(i);
+                            game.batch.hurtAnimation(1, 1, (int)z.mx(i), (int)z.my((i)));
                         }
-                    }
+                    }*/
+
+
                 }
                 else{
                     z.remove(i);

@@ -1,6 +1,7 @@
 package src;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -10,7 +11,10 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
+import static com.badlogic.gdx.Gdx.input;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
+import static java.util.concurrent.CompletableFuture.Delayer.delay;
 
 public class Sprites extends SpriteBatch {
 
@@ -281,7 +285,8 @@ public class Sprites extends SpriteBatch {
         } else if (status == 9) {
             drawCharacter(13, spriteNr, x, y);
         }
-        delay(100);
+
+
 
     }
 
@@ -290,7 +295,21 @@ public class Sprites extends SpriteBatch {
     }
 
     public void hurtAnimation(int status, int spriteNr, int x, int y){
-        drawCharacter(status, spriteNr + 8, x, y);
+        if(input.isKeyPressed(Input.Keys.K)) {
+            if (status == 2) {
+                drawCharacter(status, spriteNr, x, y);
+            } else if (status == 3) {
+                drawCharacter(10, spriteNr, x, y);
+            } else if (status == 7) {
+                drawCharacter(11, spriteNr, x, y);
+            } else if (status == 8) {
+                drawCharacter(12, spriteNr, x, y);
+            } else if (status == 9) {
+                drawCharacter(13, spriteNr, x, y);
+            }
+        }
+        else{
+        drawCharacter(status, spriteNr, x, y);}
         delay(100);
 
     }
