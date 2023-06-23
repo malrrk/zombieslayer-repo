@@ -1,6 +1,7 @@
 package src;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -101,8 +102,6 @@ public class Sprites extends SpriteBatch {
 
     public void setCharacterSprite(int status, int spriteNr) {
         setRegionCharacter(spriteNr, status);
-        setSpriteNr(spriteNr);
-        setStatus(status);
     }
 
     public void setCharacterSprite() {
@@ -269,49 +268,36 @@ public class Sprites extends SpriteBatch {
         batch.end();
     }
 
-    public void hitAnimation(int status, int spriteNr, int x, int y) {
-        if (status == 2) {
-            drawCharacter(status, spriteNr, x, y);
-        } else if (status == 3) {
-            drawCharacter(10, spriteNr, x, y);
-        } else if (status == 7) {
-            drawCharacter(11, spriteNr, x, y);
-        } else if (status == 8) {
-            drawCharacter(12, spriteNr, x, y);
-        } else if (status == 9) {
-            drawCharacter(13, spriteNr, x, y);
-        }
-        delay(200);
-
-    }
-
     public void moveAnimation(int status, int spriteNr) {
 
     }
 
-    public void hurtAnimation(int status, int spriteNr, int x, int y, boolean hit){
 
-        if(hit = true) {
-            if (status == 2) {
-                drawCharacter(status, spriteNr, x, y);
-            } else if (status == 3) {
-                drawCharacter(10, spriteNr, x, y);
-            } else if (status == 7) {
-                drawCharacter(11, spriteNr, x, y);
-            } else if (status == 8) {
-                drawCharacter(12, spriteNr, x, y);
-            } else if (status == 9) {
-                drawCharacter(13, spriteNr, x, y);
-            }
-        }
-        else {
-            drawCharacter(status, spriteNr + 8, x, y);
-        }
-        delay(100);
-
+    public int checkHit(int status){
+       if(Gdx.input.isKeyPressed(Input.Keys.K)) {
+           if (status == 2) {
+               return 2;
+           } else if (status == 3) {
+               return 10;
+           } else if (status == 7) {
+               return 11;
+           } else if (status == 8) {
+               return 12;
+           } else if (status == 9) {
+               return 13;
+           } else {
+               return status;
+           }
+       }
+       return status;
     }
-}
-    // end sprites
+
+
+
+
+
+
+}   // end sprites
 
 
 

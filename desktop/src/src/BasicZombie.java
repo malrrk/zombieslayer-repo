@@ -9,7 +9,7 @@ public class BasicZombie extends Hostile{
     public final HitboxRect hitbox;
 
     public BasicZombie(float x, float y) {
-        super(x, y);
+        super((int)x, (int)y);
 
         leben = Settings.getLeben();
 
