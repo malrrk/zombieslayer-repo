@@ -8,8 +8,12 @@ public class Player  {
     private float leben;
     private int kills;
     private int status;
+    public final HitboxRect hitbox;
     public float x;
     public float y;
+
+    private float speedDiagonalFac = 0;
+
     int picNr = 3;
 
     Sprites batch;
@@ -18,10 +22,17 @@ public class Player  {
         this.x = x;
         this.y = y;
         this.batch = batch;
-    leben = Settings.getLeben();
-    kills = 0;
-    status = 2;
+        leben = Settings.getLeben();
+        kills = 0;
+        status = 2;
+
+        hitbox = new HitboxRect(this.x, this.y, 12, 18);
 }
+
+public boolean checkCollision(HitboxRect hitbox){
+        return this.hitbox.checkCollision(hitbox);
+}
+
 public boolean playerAlive() {
     if (leben > 0) {
 
@@ -33,17 +44,29 @@ public boolean playerAlive() {
 public void move(){
         // right, left movement
         if(Gdx.input.isKeyPressed(Input.Keys.A)) {
-            x -= Settings.getSpeed() * Gdx.graphics.getDeltaTime();}
+            x -= Settings.getSpeed() * Gdx.graphics.getDeltaTime();
+            speedDiagonalFac = Settings.getSpeedDiagonal();
+        }
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            x += Settings.getSpeed() * Gdx.graphics.getDeltaTime();}
+            x += Settings.getSpeed() * Gdx.graphics.getDeltaTime();
+            speedDiagonalFac = Settings.getSpeedDiagonal();
+        }
+
+        //System.out.println(speedDiagonalFac);
 
         // up, down movement
         if(Gdx.input.isKeyPressed(Input.Keys.W)) {
-            y += Settings.getSpeed() * Gdx.graphics.getDeltaTime();
+            y += Settings.getSpeed() * Gdx.graphics.getDeltaTime() * speedDiagonalFac;
+            x -= (Settings.getSpeed() - (Settings.getSpeed() * speedDiagonalFac)) * Gdx.graphics.getDeltaTime();
         }
         if(Gdx.input.isKeyPressed(Input.Keys.S)) {
-            y -= Settings.getSpeed() * Gdx.graphics.getDeltaTime();
+            y -= Settings.getSpeed() * Gdx.graphics.getDeltaTime() * speedDiagonalFac;
+            x -= (Settings.getSpeed() - (Settings.getSpeed() * speedDiagonalFac)) * Gdx.graphics.getDeltaTime();
         }
+
+        speedDiagonalFac = 1;
+
+        hitbox.moveTo(x, y);
     }
 public int getSpriteNr(){
     if (Gdx.input.isKeyPressed(Input.Keys.W)){

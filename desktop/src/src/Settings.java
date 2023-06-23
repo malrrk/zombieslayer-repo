@@ -1,5 +1,7 @@
 package src;
 
+import java.lang.Math;
+
 public class Settings {
     private static int speed = 100;
     private static int lebenTurm = 100;
@@ -19,8 +21,8 @@ public class Settings {
     public static int getSpeed() {
         return speed;
     }
-    public static int getSpeedDiagonal() {
-        return speedDiagonal;
+    public static float getSpeedDiagonal() {
+        return (float) (speed/(Math.sqrt(2 * Math.pow(speed, 2))));
     }
 
     public static int getLebenTurm() {

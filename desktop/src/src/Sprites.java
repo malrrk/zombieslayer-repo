@@ -90,11 +90,11 @@ public class Sprites extends SpriteBatch {
 
     //setter
     public void setStatus(int status) {
-        status = status;
+        this.status = status;
     }
 
     public void setSpriteNr(int spriteNr) {
-        spriteNr = spriteNr;
+        this.spriteNr = spriteNr;
     }
 
     public void setRegionCharacter(int spriteNr, int status) { //sets the region to a square of 32x32 from given sprite

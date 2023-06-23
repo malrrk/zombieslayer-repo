@@ -4,14 +4,13 @@ import java.sql.Array;
 import java.util.ArrayList;
 
 public class Hostilehilfsklasse {
-    ArrayList<BasicZombie> sammlung;
-    public int counter;
-    public int counter2;
+    public ArrayList<BasicZombie> sammlung;
+    public int zahler;
+    public int zahler2;
 
     public Hostilehilfsklasse() {
         sammlung = new ArrayList<>();
-        counter = 0;
-        counter2 = 0;
+        zahler = 49;
 
     }
     public float mx(int i) {
@@ -26,13 +25,17 @@ public class Hostilehilfsklasse {
 
     }
 
+    public BasicZombie getZombie_at_index(int i){
+        return sammlung.get(i);
+    }
+
     public void spawnZombies() {
-        if (counter2 <= 49) {
+        if (zahler2 <= 49) {
 
-            sammlung.add(new BasicZombie((int) Math.random() * 2*2048, (int) Math.random() * 2* 2048));
+            sammlung.add(new BasicZombie((float) Math.random() * 2*2048, (float) Math.random() * 2* 2048));
 
-            counter2++;
-            counter++;}
+            zahler2++;
+            zahler++;}
         else{}
         }
 
@@ -58,7 +61,7 @@ public class Hostilehilfsklasse {
     public void remove(int i){
         sammlung.remove(i);
 
-counter2--;    }
+zahler2--;    }
 
 }
 

@@ -6,10 +6,19 @@ public class BasicZombie extends Hostile{
 
     int leben;
 
-    public BasicZombie(int x, int y) {
+    public final HitboxRect hitbox;
+
+    public BasicZombie(float x, float y) {
         super(x, y);
 
         leben = Settings.getLeben();
+
+        hitbox = new HitboxRect(this.x, this.y, 12, 18);
+
+    }
+
+    public boolean checkCollision(HitboxRect hitbox){
+        return this.hitbox.checkCollision(hitbox);
     }
 
     public float getx(){
