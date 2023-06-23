@@ -45,7 +45,7 @@ public void move(){
         // right, left movement
         if(Gdx.input.isKeyPressed(Input.Keys.A)) {
             x -= Settings.getSpeed() * Gdx.graphics.getDeltaTime();
-            speedDiagonalFac = -Settings.getSpeedDiagonal();
+            speedDiagonalFac = Settings.getSpeedDiagonal();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             x += Settings.getSpeed() * Gdx.graphics.getDeltaTime();
