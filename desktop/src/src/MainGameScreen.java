@@ -104,81 +104,29 @@ public class MainGameScreen implements Screen{
             for (int i = 0; i < z.counter2-1; i++) {
 
                 if (z.zombieAlive(i)) {
-                    game.batch.drawCharacter(1, 1, (int) z.mx(i), (int) z.my(i));
                     zombieRectangle.setPosition(z.mx(i), z.my(i));
-                    if(turmRectangle.overlaps(zombieRectangle)){
+                    if(turmRectangle.overlaps(zombieRectangle)) {
                         turm.hurt();
                     }
-
-                    if (Gdx.input.isKeyPressed(Input.Keys.K)){
-                        if (item.overlaps(zombieRectangle)) {
+                    if (Gdx.input.isKeyPressed(Input.Keys.K) && item.overlaps(zombieRectangle)) {
                             z.hurt(i);
-                            game.batch.drawCharacter(1, 1 + 8, (int)z.mx(i), (int)z.my((i)));
-                        }
-                        else{
-                            game.batch.drawCharacter(1, 1, (int)z.mx(i), (int)z.my((i)));
-                        }
-
-                        if(playerRectangle.overlaps(zombieRectangle)){
-                            player.hurt();
-                            game.batch.drawCharacter(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);
-
-                        }
-                        else{
-                            game.batch.drawCharacter(player.getStatus(), player.getSpriteNr(), (int)x, (int)y);
-                        }
-
+                            game.batch.drawCharacter(1, 1 + 8, (int) z.mx(i), (int) z.my((i)));
                     }
                     else{
                             game.batch.drawCharacter(1, 1, (int)z.mx(i), (int)z.my((i)));
-
-                        if(playerRectangle.overlaps(zombieRectangle)){
-                            player.hurt();
-                            game.batch.drawCharacter(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);
-
                         }
-                        else{
-                            game.batch.drawCharacter(player.getStatus(), player.getSpriteNr(), (int)x, (int)y);
-                        }
+
+                    if(playerRectangle.overlaps(zombieRectangle)){
+                        player.hurt();
+                        game.batch.drawCharacter(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);
 
                     }
 
 
 
-
-
-
-
-
-                   /* if (Gdx.input.isKeyPressed(Input.Keys.K)) {
-                        if(playerRectangle.overlaps(zombieRectangle)){
-                            player.hurt();
-                            game.batch.hurtAnimation(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);
-                        }
-                        else{ game.batch.hurtAnimation(player.getStatus(), player.getSpriteNr(), (int)x, (int)y);
-                        }
-                        if (item.overlaps(zombieRectangle)) {
-                            z.hurt(i);
-                            game.batch.hurtAnimation(1, 1, (int)z.mx(i), (int)z.my((i)));
-                        }
-                    }
-                    else{
-                        if(playerRectangle.overlaps(zombieRectangle)){
-                            player.hurt();
-                            game.batch.hurtAnimation(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);
-                        }
-                        else{ game.batch.hurtAnimation(player.getStatus(), player.getSpriteNr(), (int)x, (int)y);
-                        }
-                        if (item.overlaps(zombieRectangle)) {
-                            z.hurt(i);
-                            game.batch.hurtAnimation(1, 1, (int)z.mx(i), (int)z.my((i)));
-                        }
-                    }
-
-
-
-                    */
                 }
+
+
                 else{
                     z.remove(i);
                     player.addKill();

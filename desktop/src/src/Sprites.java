@@ -25,9 +25,9 @@ public class Sprites extends SpriteBatch {
 
     private Texture characterAtlas; //collection for all sprites
     private TextureRegion region; //portion of the atlas
-    private int spriteNr; //from 0 to 7, referring W - AW  clockwise
-    private int status; //from 1 to 9, referring to (1)zombie, (2)basic, (3)sword, (4)plate, (5)shield,
-    // (6)plateshield, (7)platesword, (8)shieldsword, (9)plateshieldsword
+    private int spriteNr; //describes the direction the player is facing
+    private int status; //describes the current items the player is holding
+
     public SpriteBatch batch;
     BitmapFont font;
 
@@ -271,28 +271,6 @@ public class Sprites extends SpriteBatch {
     public void moveAnimation(int status, int spriteNr) {
 
     }
-
-
-    public int checkHit(int status){
-       if(Gdx.input.isKeyPressed(Input.Keys.K)) {
-           if (status == 2) {
-               return 2;
-           } else if (status == 3) {
-               return 10;
-           } else if (status == 7) {
-               return 11;
-           } else if (status == 8) {
-               return 12;
-           } else if (status == 9) {
-               return 13;
-           } else {
-               return status;
-           }
-       }
-       return status;
-    }
-
-
 
 
 

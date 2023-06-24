@@ -95,6 +95,24 @@ public void addlives(){
     leben += 1;}
 }
 
+    public int checkHit(int status){
+        if(Gdx.input.isKeyPressed(Input.Keys.K)) {
+            if (status == 2) {
+                return 10;
+            } else if (status == 3) {
+                return 10;
+            } else if (status == 7) {
+                return 11;
+            } else if (status == 8) {
+                return 12;
+            } else if (status == 9) {
+                return 13;
+            }
+        }
+        return status;
+    }
+
+
 public void setLeben(int i){
    if((leben + i) < 25){ leben = leben + i;}
    else{leben = 25;}
@@ -104,6 +122,7 @@ public float getLeben() {
 }
 public void hurt(){
     leben -= (0.1 * Settings.getHurtf());
+
 }
 public void addKill(){
     kills++;
@@ -112,7 +131,7 @@ public int getKills(){
     return kills;
 }
 public void setStatus(int s){ status = s;}
-    public int getStatus(){return status;}
+    public int getStatus(){return checkHit(status);}
 
 
 }
