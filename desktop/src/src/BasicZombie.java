@@ -7,13 +7,11 @@ import java.awt.*;
 
 public class BasicZombie extends Hostile{
 
-    int leben;
-
 
     public BasicZombie(float x, float y) {
         super((int)x, (int)y);
 
-        leben = Settings.getLeben();
+        health = Settings.getLeben();
 
     }
 
@@ -40,8 +38,8 @@ public class BasicZombie extends Hostile{
 
 
     public void hurt(){
-        leben = leben -1;
+        health -= 1;
     }
     public int getLeben()
-    {return leben;}
+    {return health;}
 }

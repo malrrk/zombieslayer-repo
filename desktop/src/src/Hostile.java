@@ -9,7 +9,7 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 public class Hostile {
     float x;
     float y ;
-    int leben;
+    int health;
 
 
     public Hostile(int x,int y ){
@@ -20,11 +20,11 @@ public class Hostile {
 
 
     public void hurt(){
-        leben = leben -1;
-        System.out.print(leben);
+        health -= 1;
+        //System.out.print(health);
     }
 
 
     public int getLeben()
-    {return leben;}
+    {return health;}
 }
