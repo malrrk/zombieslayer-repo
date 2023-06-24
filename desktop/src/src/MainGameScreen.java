@@ -30,7 +30,7 @@ public class MainGameScreen implements Screen{
     Camera cam;
     float x;
     float y;
-    Friendly turm;
+    Tower tower;
     float zeit;
     Hostilehilfsklasse z;
     int zombieTimer;
@@ -50,7 +50,7 @@ public class MainGameScreen implements Screen{
         //batch.drawRegion ( 0,1,1);
         //img = new Texture("badlogic.jpg");
         player = new Player(game.batch, Settings.getx0y0(), Settings.getx0y0());
-        turm = new Friendly();
+        tower = new Tower();
         cam = new Camera(x,y);
         z = new Hostilehilfsklasse();
         zombieTimer = 0;
@@ -80,7 +80,7 @@ public class MainGameScreen implements Screen{
         ScreenUtils.clear(1, 1, 1, 1);
         //batch.setRegion(0);
         //batch.drawRegion(0,1,1);
-        if (turm.lebent()) {
+        if (!tower.alive()) {
             cam.positionSet(x,y);
             game.batch.kombinieren(cam.positionSet(x, y));
             tot();
@@ -106,7 +106,7 @@ public class MainGameScreen implements Screen{
                 if (z.zombieAlive(i)) {
                     zombieRectangle.setPosition(z.mx(i), z.my(i));
                     if(turmRectangle.overlaps(zombieRectangle)) {
-                        turm.hurt();
+                        tower.hurt(0.1f);
                     }
                     if (Gdx.input.isKeyPressed(Input.Keys.K) && item.overlaps(zombieRectangle)) {
                             z.hurt(i);
@@ -203,7 +203,7 @@ public class MainGameScreen implements Screen{
         game.batch.drawManyPlantsNew();
         game.batch.drawTower();
         game.batch.drawCharacter(player.getStatus(), player.getSpriteNr(), (int) x, (int) y);
-        game.batch.drawText((int) player.getLeben(), (int) zeit, (int) turm.getlebenTurma(), (int) x, (int) y, player.getKills());
+        game.batch.drawText((int) player.getLeben(), (int) zeit, (int) tower.getHealth(), (int) x, (int) y, player.getKills());
 
         /* game.batch.batch.begin();
         game.batch.batch.draw(OVERLAY, (int) x - 305, (int) y - 220, 620, 480);

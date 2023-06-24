@@ -43,7 +43,6 @@ public class BasicZombie extends Hostile{
 
     public void hurt(){
         leben = leben -1;
-        System.out.print(leben);
     }
     public int getLeben()
     {return leben;}
