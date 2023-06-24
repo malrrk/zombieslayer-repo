@@ -21,6 +21,8 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Align;
 
+import java.util.ArrayList;
+
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 
 public class MainGameScreen implements Screen{
@@ -40,6 +42,8 @@ public class MainGameScreen implements Screen{
     Texture OVERLAY;
 
     Main game;
+
+    ArrayList<RedZombie> RedZombiesList;
 
     public MainGameScreen(Main game){
         this.game = game;
@@ -85,9 +89,12 @@ public class MainGameScreen implements Screen{
             x = player.x;
             y = player.y;
 
+            //RedZombiesList.get(0).move();
+
+
             item.setPosition(x-2,y+4);
             game.batch.maps();
-            game.batch.kombinieren(cam.positionSet((int )x, (int) y));
+            game.batch.kombinieren(cam.positionSet((int) x, (int) y));
             zeit = zeit + Gdx.graphics.getDeltaTime();
             this.draw();
             item.setPosition(x,y+9);
@@ -106,6 +113,7 @@ public class MainGameScreen implements Screen{
                     if (Gdx.input.isKeyPressed(Input.Keys.K) && item.overlaps(zombieRectangle)) {
                             z.hurt(i);
                             game.batch.drawCharacter(1, 1 + 8, (int) z.mx(i), (int) z.my((i)));
+
                     }
                     else{
                             game.batch.drawCharacter(1, 1, (int)z.mx(i), (int)z.my((i)));

@@ -1,11 +1,68 @@
 package src;
 
+import com.badlogic.gdx.Gdx;
+
 public class RedZombie extends Hostile{
 
-    public RedZombie(){
+    private float x_vector;
+    private float y_vector;
+    private float remDistance = 0; //remaining distance to move until another vector is calculated
 
-        super((int) (Math.random() * 2*2048), (int) (Math.random() * 2* 2048));
+    private final float randomFac = 2;
+
+    private int spriteNr = 0;
+
+    public RedZombie(float x, float y){
+        super(x, y);
+        //super((int) (Math.random() * 2*2048), (int) (Math.random() * 2* 2048));
 
 
+    }
+
+    public void move(){
+        if(remDistance > 0) {
+            x += x_vector * Gdx.graphics.getDeltaTime();
+            y += y_vector * Gdx.graphics.getDeltaTime();
+            remDistance -= Settings.getSpeed() * Gdx.graphics.getDeltaTime();
+        }else{
+            calculateVector();
+        }
+    }
+
+    public int getSpriteNr(){
+        return spriteNr;
+    }
+
+    public void calculateVector(){
+        float distanceAdd = (float)(lengthVector(Settings.getx0y0() - x, Settings.getx0y0() - y) * Math.random()/randomFac);
+        x_vector = (Settings.getx0y0() + distanceAdd) - x;
+        y_vector = (Settings.getx0y0() + distanceAdd) - y;
+
+        float vectorAverage = (Math.abs(x_vector) + Math.abs(y_vector))/2;
+
+        if(x_vector/vectorAverage > 0.5){
+            x_vector = Settings.getSpeed() * (Math.abs(x_vector)/x_vector);
+        }else{
+            x_vector = 0;
+        }
+
+        if(y_vector/vectorAverage > 0.5){
+            y_vector = Settings.getSpeed() * (Math.abs(y_vector)/y_vector);
+        }else{
+            y_vector = 0;
+        }
+
+        remDistance = (float) (lengthVector(x_vector, y_vector) * Math.random()/randomFac);
+
+    }
+
+    public float calculateVector_y(float x_start, float y_start, float x_end, float y_end){
+        float vectorFac = (float) (Settings.getSpeed()/Math.sqrt(Math.pow(x_end - x_start, 2) + Math.pow(y_end - y_start, 2)));
+
+        return (y_end - y_start) * vectorFac;
+    }
+
+    public float lengthVector(float x_vector, float y_vector){
+        return (float) Math.sqrt(Math.pow(x_vector, 2) + Math.pow(y_vector, 2));
     }
 }
