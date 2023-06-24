@@ -34,9 +34,7 @@ public class MainGameScreen implements Screen{
     float zeit;
     Hostilehilfsklasse z;
     int zombieTimer;
-    Rectangle playerRectangle;
     Rectangle  zombieRectangle;
-    Rectangle  turmRectangle;
     Rectangle item;
 
     Texture OVERLAY;
@@ -56,8 +54,6 @@ public class MainGameScreen implements Screen{
         zombieTimer = 0;
         x = y = Settings.getx0y0();
         zombieRectangle = new Rectangle(0,0,12,18);
-        playerRectangle = new Rectangle(0, 0, 12, 18);
-        turmRectangle = new Rectangle(Settings.getx0y0(),Settings.getx0y0(),41,50);
         item = new Rectangle(x-2,y+9,15,11);
 
         if(game.music) {
@@ -93,8 +89,7 @@ public class MainGameScreen implements Screen{
             game.batch.maps();
             game.batch.kombinieren(cam.positionSet((int )x, (int) y));
             zeit = zeit + Gdx.graphics.getDeltaTime();
-            draw();
-            playerRectangle.setPosition(x, y);
+            this.draw();
             item.setPosition(x,y+9);
             if ((int) zeit - zombieTimer >3) {
                 z.spawnZombies();
@@ -105,7 +100,7 @@ public class MainGameScreen implements Screen{
 
                 if (z.zombieAlive(i)) {
                     zombieRectangle.setPosition(z.mx(i), z.my(i));
-                    if(turmRectangle.overlaps(zombieRectangle)) {
+                    if(tower.hitbox.overlaps(zombieRectangle)) {
                         tower.hurt(0.1f);
                     }
                     if (Gdx.input.isKeyPressed(Input.Keys.K) && item.overlaps(zombieRectangle)) {
@@ -116,7 +111,7 @@ public class MainGameScreen implements Screen{
                             game.batch.drawCharacter(1, 1, (int)z.mx(i), (int)z.my((i)));
                         }
 
-                    if(playerRectangle.overlaps(zombieRectangle)){
+                    if(player.hitbox.overlaps(zombieRectangle)){
                         player.hurt();
                         game.batch.drawCharacter(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);
 

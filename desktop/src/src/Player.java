@@ -2,13 +2,14 @@ package src;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.math.Rectangle;
 
 
 public class Player  {
     private float leben;
     private int kills;
     private int status;
-    public final HitboxRect hitbox;
+    public final Rectangle hitbox;
     public float x;
     public float y;
 
@@ -18,7 +19,7 @@ public class Player  {
 
     Sprites batch;
 
-    public Player(Sprites batch, float x, float y){
+    public Player(Sprites batch, float x, float y) {
         this.x = x;
         this.y = y;
         this.batch = batch;
@@ -26,12 +27,8 @@ public class Player  {
         kills = 0;
         status = 2;
 
-        hitbox = new HitboxRect(this.x, this.y, 12, 18);
-}
-
-public boolean checkCollision(HitboxRect hitbox){
-        return this.hitbox.checkCollision(hitbox);
-}
+        hitbox = new Rectangle(this.x, this.y, 12, 18);
+    }
 
 public boolean playerAlive() {
     if (leben > 0) {
@@ -66,7 +63,7 @@ public void move(){
 
         speedDiagonalFac = 1;
 
-        hitbox.moveTo(x, y);
+        hitbox.setPosition(x,y);
     }
 public int getSpriteNr(){
     if (Gdx.input.isKeyPressed(Input.Keys.W)){

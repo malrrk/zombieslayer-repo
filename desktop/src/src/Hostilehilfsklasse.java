@@ -14,8 +14,6 @@ public class Hostilehilfsklasse {
 
     }
     public float mx(int i) {
-
-
         return sammlung.get(i).getx();
     }
 
@@ -35,9 +33,9 @@ public class Hostilehilfsklasse {
             sammlung.add(new BasicZombie((float) Math.random() * 2*2048, (float) Math.random() * 2* 2048));
 
             counter2++;
-            counter++;}
-        else{}
+            counter++;
         }
+    }
 
 
 
@@ -61,7 +59,8 @@ public class Hostilehilfsklasse {
     public void remove(int i){
         sammlung.remove(i);
 
-counter2--;    }
+        counter2--;
+    }
 
 }
 

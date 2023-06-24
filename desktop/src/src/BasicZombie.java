@@ -1,24 +1,20 @@
 package src;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Rectangle;
+
+import java.awt.*;
 
 public class BasicZombie extends Hostile{
 
     int leben;
 
-    public final HitboxRect hitbox;
 
     public BasicZombie(float x, float y) {
         super((int)x, (int)y);
 
         leben = Settings.getLeben();
 
-        hitbox = new HitboxRect(this.x, this.y, 12, 18);
-
-    }
-
-    public boolean checkCollision(HitboxRect hitbox){
-        return this.hitbox.checkCollision(hitbox);
     }
 
     public float getx(){
@@ -27,6 +23,7 @@ public class BasicZombie extends Hostile{
         else if(x==2048)
         {}
         else{x = x-Settings.getZspeed() * Gdx.graphics.getDeltaTime();}
+
         return x;
     }
     public float gety() {
@@ -36,6 +33,7 @@ public class BasicZombie extends Hostile{
         } else if ((int) y == 2060) {} else {
             y = y - Settings.getZspeed() * Gdx.graphics.getDeltaTime();
         }
+
         return y;
     }
 
