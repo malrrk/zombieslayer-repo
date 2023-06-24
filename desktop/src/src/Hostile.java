@@ -7,8 +7,8 @@ import com.badlogic.gdx.math.Vector2;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 
 public class Hostile {
-    public float x;
-    public float y ;
+    protected float x;
+    protected float y ;
     protected int health;
 
 
