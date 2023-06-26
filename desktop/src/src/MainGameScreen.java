@@ -89,9 +89,6 @@ public class MainGameScreen implements Screen{
             x = player.x;
             y = player.y;
 
-            //RedZombiesList.get(0).move();
-
-
             item.setPosition(x-2,y+4);
             game.batch.maps();
             game.batch.kombinieren(cam.positionSet((int) x, (int) y));
