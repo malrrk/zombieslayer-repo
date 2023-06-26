@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Rectangle;
 
 
-public class Player  {
+public class Player {
     private float leben;
     private int kills;
     private int status;
@@ -30,41 +30,45 @@ public class Player  {
         hitbox = new Rectangle(this.x, this.y, 12, 18);
     }
 
-public boolean playerAlive() {
-    if (leben > 0) {
+    public boolean playerAlive() {
+        if (leben > 0) {
 
-        return true;
+            return true;
+        }
+        leben = 25;
+        return false;
     }
-    leben = 25;
-    return false;
-}
-public void move(){
+
+    public void move() {
         // right, left movement
-        if(Gdx.input.isKeyPressed(Input.Keys.A)) {
-            x -= Settings.getSpeed() * Gdx.graphics.getDeltaTime();
-            speedDiagonalFac = - Settings.getSpeedDiagonal();
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            x += Settings.getSpeed() * Gdx.graphics.getDeltaTime();
-            speedDiagonalFac = Settings.getSpeedDiagonal();
-        }
 
-        //System.out.println(speedDiagonalFac);
+            if (Gdx.input.isKeyPressed(Input.Keys.A)&& x > 187 ) {
+                x -= Settings.getSpeed() * Gdx.graphics.getDeltaTime();
+                speedDiagonalFac = -Settings.getSpeedDiagonal();
+            }
 
-        // up, down movement
-        if(Gdx.input.isKeyPressed(Input.Keys.W)) {
-            y += Settings.getSpeed() * Gdx.graphics.getDeltaTime() * Math.abs(speedDiagonalFac);
-            x -= (Settings.getSpeed() - (Settings.getSpeed() * Math.abs(speedDiagonalFac))) * Gdx.graphics.getDeltaTime() * (Math.abs(speedDiagonalFac)/speedDiagonalFac);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.S)) {
-            y -= Settings.getSpeed() * Gdx.graphics.getDeltaTime() * Math.abs(speedDiagonalFac);
-            x -= (Settings.getSpeed() - (Settings.getSpeed() * Math.abs(speedDiagonalFac))) * Gdx.graphics.getDeltaTime() * (Math.abs(speedDiagonalFac)/speedDiagonalFac);
-        }
+            if (Gdx.input.isKeyPressed(Input.Keys.D)&&x < 3900) {
+                x += Settings.getSpeed() * Gdx.graphics.getDeltaTime();
+                speedDiagonalFac = Settings.getSpeedDiagonal();
+            }
+
+            //System.out.println(speedDiagonalFac);
+
+            // up, down movement
+            if (Gdx.input.isKeyPressed(Input.Keys.W)&& y < 3950) {
+                y += Settings.getSpeed() * Gdx.graphics.getDeltaTime() * Math.abs(speedDiagonalFac);
+                x -= (Settings.getSpeed() - (Settings.getSpeed() * Math.abs(speedDiagonalFac))) * Gdx.graphics.getDeltaTime() * (Math.abs(speedDiagonalFac) / speedDiagonalFac);
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.S)&&y>90) {
+                y -= Settings.getSpeed() * Gdx.graphics.getDeltaTime() * Math.abs(speedDiagonalFac);
+                x -= (Settings.getSpeed() - (Settings.getSpeed() * Math.abs(speedDiagonalFac))) * Gdx.graphics.getDeltaTime() * (Math.abs(speedDiagonalFac) / speedDiagonalFac);
+            }
 
         speedDiagonalFac = 1;
 
-        hitbox.setPosition(x,y);
+        hitbox.setPosition(x, y);
     }
+
 public int getSpriteNr(){
     if (Gdx.input.isKeyPressed(Input.Keys.W)){
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {return 7;}
