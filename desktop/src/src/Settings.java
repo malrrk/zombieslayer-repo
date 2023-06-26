@@ -7,7 +7,7 @@ public class Settings {
     private static int lebenTurm = 100;
     private static int leben = 25;
     private static int Anzahlz1 = 50;
-    private static int zspeed = 50;
+    private static int zspeed = 30;
     private static int zleben = 25;
     private static double hurtf = 3;
     private static int x0= 2048;
