@@ -2,6 +2,7 @@ package src;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.*;
@@ -38,6 +39,7 @@ public class MainGameScreen implements Screen{
     int zombieTimer;
     Rectangle  zombieRectangle;
     Rectangle item;
+    Sound zombieDied = Gdx.audio.newSound(Gdx.files.internal("music/Zombie_02.mp3"));;
 
     Texture OVERLAY;
 
@@ -65,9 +67,14 @@ public class MainGameScreen implements Screen{
             menu_music.setVolume(0.2f);
             menu_music.play();
             menu_music.setLooping(true);
+
         }
 
         OVERLAY = new Texture("BLACK_OVERLAY.png");
+
+        RedZombiesList = new ArrayList<>();
+
+        //RedZombiesList.add(new RedZombie(x - 300, y + 200));
     }
 
     @Override
@@ -88,6 +95,11 @@ public class MainGameScreen implements Screen{
             player.move();
             x = player.x;
             y = player.y;
+
+            //RedZombiesList.get(0).move();
+
+            //x = RedZombiesList.get(0).x;
+            //y = RedZombiesList.get(0).y;
 
             //RedZombiesList.get(0).move();
 
@@ -132,6 +144,7 @@ public class MainGameScreen implements Screen{
 
                 else{
                     z.remove(i);
+                    zombieDied.play(1.0f);
                     player.addKill();
                     if(player.getKills() > 0){
                         player.setStatus(3);
