@@ -15,8 +15,12 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 
 public class Sprites extends SpriteBatch {
 
-    private double[] randomx; //random x coordinate for plants
-    private double[] randomy;  //random y coordinate for plants
+    private int[][] x_y_Plants_0; //x any coordinates of the plants
+    private int[][] x_y_Plants_1; //x any coordinates of the plants
+    private int[][] x_y_Plants_2; //x any coordinates of the plants
+    private int[][] x_y_Plants_3; //x any coordinates of the plants
+    private int[][] x_y_Plants_4; //x any coordinates of the plants
+    private int[][] x_y_Plants_5; //x any coordinates of the plants
     private Texture gameOver; //game over frames
 
     private Texture map;
@@ -42,15 +46,92 @@ public class Sprites extends SpriteBatch {
         status = 0;
         batch = new SpriteBatch();
         font = new BitmapFont();
-        randomx = new double[2000];
-        randomy = new double[2000];
 
-        for (int i = 0; i < 2000; i++) {
-            randomx[i] = MathUtils.random();
-            randomy[i] = MathUtils.random();
+
+        x_y_Plants_0 = new int[800][3];
+        x_y_Plants_1 = new int[300][3];
+        x_y_Plants_2 = new int[200][3];
+        x_y_Plants_3 = new int[200][3];
+        x_y_Plants_4 = new int[150][3];
+        x_y_Plants_5 = new int[ 50][3];
+
+        for (int[] ints : x_y_Plants_0) {
+
+            ints[0] = (int) (Math.random() * 3800) + 100;
+            ints[1] = (int) (Math.random() * 3800) + 100;
+
+            if(ints[0] > 3030){
+                ints[2] = 2;
+            }else{
+                ints[2] = 1;
+            }
         }
+        for (int[] ints : x_y_Plants_1) {
 
+            ints[0] = (int) (Math.random() * 3800) + 100;
+            ints[1] = (int) (Math.random() * 3800) + 100;
 
+            if(ints[0] > 3030){
+                ints[2] = 2;
+            }else{
+                ints[2] = 1;
+            }
+        }
+        for (int[] ints : x_y_Plants_2) {
+
+            ints[0] = (int) (Math.random() * 3800) + 100;
+            ints[1] = (int) (Math.random() * 3800) + 100;
+
+            if(ints[0] > 3030){
+                ints[2] = 2;
+            }else{
+                ints[2] = 1;
+            }
+        }
+        for (int[] ints : x_y_Plants_3) {
+
+            ints[0] = (int) (Math.random() * 3800) + 100;
+            ints[1] = (int) (Math.random() * 3800) + 100;
+
+            if(ints[0] > 3030){
+                ints[2] = 2;
+            }else{
+                ints[2] = 1;
+            }
+        }
+        for (int[] ints : x_y_Plants_3) {
+
+            ints[0] = (int) (Math.random() * 3800) + 100;
+            ints[1] = (int) (Math.random() * 3800) + 100;
+
+            if(ints[0] > 3030){
+                ints[2] = 2;
+            }else{
+                ints[2] = 1;
+            }
+        }
+        for (int[] ints : x_y_Plants_4) {
+
+            ints[0] = (int) (Math.random() * 3800) + 100;
+            ints[1] = (int) (Math.random() * 3800) + 100;
+
+            if(ints[0] > 3030){
+                ints[2] = 2;
+            }else{
+                ints[2] = 1;
+            }
+        }
+        for (int[] ints : x_y_Plants_5) {
+
+            ints[0] = (int) (Math.random() * 3800) + 100;
+            ints[1] = (int) (Math.random() * 3800) + 100;
+
+            if(ints[0] > 3030){
+                ints[2] = 2;
+            }else{
+                ints[2] = 1;
+            }
+        }
     }
 
 
@@ -161,45 +242,39 @@ public class Sprites extends SpriteBatch {
     }
 
     public void drawManyPlantsNew() { //draws plants at randomized locations
-        int q;
-        for (int j = 0; j < 800; j++) {
 
-            drawPlant(0, compare(((int) (randomx[j] * 3900) + 100), j), (int) (randomx[j] * 3800) + 100, (int) (randomy[j] * 3850) + 100);
+        for (int[] ints : x_y_Plants_0) {
+
+            drawPlant(0, ints[2], ints[0], ints[1]);
         }
 
+        for (int[] ints : x_y_Plants_1) {
 
-        for (int j = 0; j < 300; j++) {
-
-            drawPlant(1, compare(((int) (randomx[j + 800] * 3900) + 100), j), (int) (randomx[j + 800] * 3800) + 100, (int) (randomy[j + 800] * 3850) + 100);
+            drawPlant(1, ints[2], ints[0], ints[1]);
         }
 
-        for (int j = 0; j < 200; j++) {
+        for (int[] ints : x_y_Plants_2) {
 
-            drawPlant(2, compare(((int) (randomx[j + 1100] * 3900) + 100), j), (int) (randomx[j + 1100] * 3800) + 100, (int) (randomy[j + 1100] * 3850) + 100);
+            drawPlant(2, ints[2], ints[0], ints[1]);
         }
 
+        for (int[] ints : x_y_Plants_3) {
 
-        for (int j = 0; j < 200; j++) {
-
-            drawPlant(3, compare(((int) (randomx[j + 1300] * 3900) + 100), j), (int) (randomx[j + 1300] * 3800) + 100, (int) (randomy[j + 1300] * 3850) + 100);
+            drawPlant(3, ints[2], ints[0], ints[1]);
         }
 
+        for (int[] ints : x_y_Plants_4) {
 
-        for (int j = 0; j < 150; j++) {
-
-            drawPlant(4, compare(((int) (randomx[j + 1500] * 3900) + 100), j), (int) (randomx[j + 1500] * 3800) + 100, (int) (randomy[j + 1500] * 3850) + 100);
+            drawPlant(4, ints[2], ints[0], ints[1]);
         }
 
+        for (int[] ints : x_y_Plants_5) {
 
-        for (int j = 0; j < 50; j++) {
-
-            drawPlant(5, compare(((int) (randomx[j + 1650] * 3900) + 100), j), (int) (randomx[j + 1650] * 3800) + 100, (int) (randomy[j + 1650] * 3850) + 100);
+            drawPlant(5, ints[2], ints[0], ints[1]);
         }
-
-
     }
 
-    public int compare(int abscissa, int j) { //aux method for drawManyPlants
+    /*public int compare(int abscissa, int j) { //aux method for drawManyPlants
         int q;
         if (abscissa < 3030) {
             q = (int) (randomx[j] * 2);
@@ -211,7 +286,7 @@ public class Sprites extends SpriteBatch {
             }
         }
         return q;
-    }
+    }*/
 
     public void drawTower() { //draws the tower
         drawPlant(1, 4, 2048, 2048);
@@ -272,6 +347,4 @@ public class Sprites extends SpriteBatch {
 
 
 }   // end sprites
-
-
 
