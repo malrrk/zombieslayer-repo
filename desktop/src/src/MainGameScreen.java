@@ -2,6 +2,7 @@ package src;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.*;
@@ -32,12 +33,15 @@ public class MainGameScreen implements Screen{
     Camera cam;
     float x;
     float y;
+    int intX;
+    int intY;
     Tower tower;
     float zeit;
     Hostilehilfsklasse z;
     int zombieTimer;
     Rectangle  zombieRectangle;
     Rectangle item;
+    Sound zombieDied = Gdx.audio.newSound(Gdx.files.internal("music/Zombie_02.mp3"));;
 
     Texture OVERLAY;
 
@@ -65,9 +69,14 @@ public class MainGameScreen implements Screen{
             menu_music.setVolume(0.2f);
             menu_music.play();
             menu_music.setLooping(true);
+
         }
 
         OVERLAY = new Texture("BLACK_OVERLAY.png");
+
+        RedZombiesList = new ArrayList<>();
+
+        RedZombiesList.add(new RedZombie(x - 300, y + 200));
     }
 
     @Override
@@ -88,19 +97,33 @@ public class MainGameScreen implements Screen{
             player.move();
             x = player.x;
             y = player.y;
+            intX = Math.round(x);
+            intY = Math.round(y);
+
+            RedZombiesList.get(0).move();
+
+            //x = RedZombiesList.get(0).x;
+            //y = RedZombiesList.get(0).y;
+
+            //RedZombiesList.get(0).move();
+
 
             item.setPosition(x-2,y+4);
             game.batch.maps();
-            game.batch.kombinieren(cam.positionSet((int) x, (int) y));
-            zeit = zeit + Gdx.graphics.getDeltaTime();
             this.draw();
+            game.batch.kombinieren(cam.positionSet(intX, intY));
+            game.batch.drawCharacter(player.getStatus(), player.getSpriteNr(), intX, intY);
+            game.batch.drawText((int) player.getLeben(), (int) zeit, (int) tower.getHealth(), intX, intY, player.getKills());
+            zeit = zeit + Gdx.graphics.getDeltaTime();
             item.setPosition(x,y+9);
             if ((int) zeit - zombieTimer >3) {
                 z.spawnZombies();
                 zombieTimer = (int) zeit;
             }
 
-            for (int i = 0; i < z.counter2-1; i++) {
+            //game.batch.drawCharacter(1, 4, (int)RedZombiesList.get(0).x, (int) RedZombiesList.get(0).y);
+
+            for (int i = 0; i < z.counter2 - 1; i++) {
 
                 if (z.zombieAlive(i)) {
                     zombieRectangle.setPosition(z.mx(i), z.my(i));
@@ -108,27 +131,25 @@ public class MainGameScreen implements Screen{
                         tower.hurt(0.1f);
                     }
                     if (Gdx.input.isKeyPressed(Input.Keys.K) && item.overlaps(zombieRectangle)) {
-                            z.hurt(i);
-                            game.batch.drawCharacter(1, 1 + 8, (int) z.mx(i), (int) z.my((i)));
+                        z.hurt(i);
+                        game.batch.drawCharacter(1, 1 + 8, (int) z.mx(i), (int) z.my((i)));
 
                     }
                     else{
-                            game.batch.drawCharacter(1, 1, (int)z.mx(i), (int)z.my((i)));
-                        }
+                        game.batch.drawCharacter(1, 1, (int)z.mx(i), (int)z.my((i)));
+                    }
 
                     if(player.hitbox.overlaps(zombieRectangle)){
                         player.hurt();
                         game.batch.drawCharacter(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);
 
                     }
-
-
-
                 }
 
 
                 else{
                     z.remove(i);
+                    zombieDied.play(1.0f);
                     player.addKill();
                     if(player.getKills() > 0){
                         player.setStatus(3);
@@ -202,11 +223,9 @@ public class MainGameScreen implements Screen{
     public void draw(){
         game.batch.drawManyPlantsNew();
         game.batch.drawTower();
-        game.batch.drawCharacter(player.getStatus(), player.getSpriteNr(), (int) x, (int) y);
-        game.batch.drawText((int) player.getLeben(), (int) zeit, (int) tower.getHealth(), (int) x, (int) y, player.getKills());
 
         /* game.batch.batch.begin();
-        game.batch.batch.draw(OVERLAY, (int) x - 305, (int) y - 220, 620, 480);
+        game.batch.batch.draw(OVERLAY, intX - 305, intY - 220, 620, 480);
         game.batch.batch.end();*/
 
     }
