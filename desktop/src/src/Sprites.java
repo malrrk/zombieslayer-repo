@@ -223,7 +223,7 @@ public class Sprites extends SpriteBatch {
         drawRegionNew(drawx, drawy);
     }
 
-    public void drawGameOver(int x, int y) { //draws (animated) game over screen
+    public void drawGameOver(int x, int y) { //draws game over screen, not used
         for (int i = 0; i < 4; i++) {
             for (int k = 0; k < 12; k++) {
                 if (i < 3) {
@@ -241,10 +241,6 @@ public class Sprites extends SpriteBatch {
         drawRegionGameOver(320, 720, x, y);
 
     }
-
-    public void gameOver(int x, int y) {
-        drawRegionGameOver(320, 540, x, y);
-    } //draws game over screen (just a test)
 
     public void drawText(int leben, float zeit, int lebenTurm, int x, int y, int kills) { //creates numbers in the corner
 
