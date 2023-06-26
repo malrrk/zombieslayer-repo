@@ -76,7 +76,7 @@ public class MainGameScreen implements Screen{
 
         RedZombiesList = new ArrayList<>();
 
-        //RedZombiesList.add(new RedZombie(x - 300, y + 200));
+        RedZombiesList.add(new RedZombie(x - 300, y + 200));
     }
 
     @Override
@@ -100,7 +100,7 @@ public class MainGameScreen implements Screen{
             intX = Math.round(x);
             intY = Math.round(y);
 
-            //RedZombiesList.get(0).move();
+            RedZombiesList.get(0).move();
 
             //x = RedZombiesList.get(0).x;
             //y = RedZombiesList.get(0).y;
@@ -121,7 +121,9 @@ public class MainGameScreen implements Screen{
                 zombieTimer = (int) zeit;
             }
 
-            for (int i = 0; i < z.counter2-1; i++) {
+            //game.batch.drawCharacter(1, 4, (int)RedZombiesList.get(0).x, (int) RedZombiesList.get(0).y);
+
+            for (int i = 0; i < z.counter2 - 1; i++) {
 
                 if (z.zombieAlive(i)) {
                     zombieRectangle.setPosition(z.mx(i), z.my(i));
@@ -142,9 +144,6 @@ public class MainGameScreen implements Screen{
                         game.batch.drawCharacter(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);
 
                     }
-
-
-
                 }
 
 

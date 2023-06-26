@@ -15,12 +15,12 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 
 public class Sprites extends SpriteBatch {
 
-    private int[][] x_y_Plants_0; //x any coordinates of the plants
-    private int[][] x_y_Plants_1; //x any coordinates of the plants
-    private int[][] x_y_Plants_2; //x any coordinates of the plants
-    private int[][] x_y_Plants_3; //x any coordinates of the plants
-    private int[][] x_y_Plants_4; //x any coordinates of the plants
-    private int[][] x_y_Plants_5; //x any coordinates of the plants
+    private int[][] x_y_Plants_0; //x and y coordinates of the plants
+    private int[][] x_y_Plants_1; //x and y coordinates of the plants
+    private int[][] x_y_Plants_2; //x and y coordinates of the plants
+    private int[][] x_y_Plants_3; //x and y coordinates of the plants
+    private int[][] x_y_Plants_4; //x and y coordinates of the plants
+    private int[][] x_y_Plants_5; //x and y coordinates of the plants
     private Texture gameOver; //game over frames
 
     private Texture map;
