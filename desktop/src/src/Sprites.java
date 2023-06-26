@@ -242,38 +242,35 @@ public class Sprites extends SpriteBatch {
     }
 
     public void drawManyPlantsNew() { //draws plants at randomized locations
-        int q;
-        for (int j = 0; j < 800; j++) {
 
-            for (int[] ints : x_y_Plants_0) {
+        for (int[] ints : x_y_Plants_0) {
 
-                drawPlant(0, ints[2], ints[0], ints[1]);
-            }
+            drawPlant(0, ints[2], ints[0], ints[1]);
+        }
 
-            for (int[] ints : x_y_Plants_1) {
+        for (int[] ints : x_y_Plants_1) {
 
-                drawPlant(1, ints[2], ints[0], ints[1]);
-            }
+            drawPlant(1, ints[2], ints[0], ints[1]);
+        }
 
-            for (int[] ints : x_y_Plants_2) {
+        for (int[] ints : x_y_Plants_2) {
 
-                drawPlant(2, ints[2], ints[0], ints[1]);
-            }
+            drawPlant(2, ints[2], ints[0], ints[1]);
+        }
 
-            for (int[] ints : x_y_Plants_3) {
+        for (int[] ints : x_y_Plants_3) {
 
-                drawPlant(3, ints[2], ints[0], ints[1]);
-            }
+            drawPlant(3, ints[2], ints[0], ints[1]);
+        }
 
-            for (int[] ints : x_y_Plants_4) {
+        for (int[] ints : x_y_Plants_4) {
 
-                drawPlant(4, ints[2], ints[0], ints[1]);
-            }
+            drawPlant(4, ints[2], ints[0], ints[1]);
+        }
 
-            for (int[] ints : x_y_Plants_5) {
+        for (int[] ints : x_y_Plants_5) {
 
-                drawPlant(5, ints[2], ints[0], ints[1]);
-            }
+            drawPlant(5, ints[2], ints[0], ints[1]);
         }
     }
 
@@ -350,6 +347,4 @@ public class Sprites extends SpriteBatch {
 
 
 }   // end sprites
-
-
 
