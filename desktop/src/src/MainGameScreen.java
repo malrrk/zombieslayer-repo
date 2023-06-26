@@ -33,6 +33,8 @@ public class MainGameScreen implements Screen{
     Camera cam;
     float x;
     float y;
+    int intX;
+    int intY;
     Tower tower;
     float zeit;
     Hostilehilfsklasse z;
@@ -95,6 +97,8 @@ public class MainGameScreen implements Screen{
             player.move();
             x = player.x;
             y = player.y;
+            intX = Math.round(x);
+            intY = Math.round(y);
 
             //RedZombiesList.get(0).move();
 
@@ -106,9 +110,11 @@ public class MainGameScreen implements Screen{
 
             item.setPosition(x-2,y+4);
             game.batch.maps();
-            game.batch.kombinieren(cam.positionSet((int) x, (int) y));
-            zeit = zeit + Gdx.graphics.getDeltaTime();
             this.draw();
+            game.batch.kombinieren(cam.positionSet(intX, intY));
+            game.batch.drawCharacter(player.getStatus(), player.getSpriteNr(), intX, intY);
+            game.batch.drawText((int) player.getLeben(), (int) zeit, (int) tower.getHealth(), intX, intY, player.getKills());
+            zeit = zeit + Gdx.graphics.getDeltaTime();
             item.setPosition(x,y+9);
             if ((int) zeit - zombieTimer >3) {
                 z.spawnZombies();
@@ -218,11 +224,9 @@ public class MainGameScreen implements Screen{
     public void draw(){
         game.batch.drawManyPlantsNew();
         game.batch.drawTower();
-        game.batch.drawCharacter(player.getStatus(), player.getSpriteNr(), (int) x, (int) y);
-        game.batch.drawText((int) player.getLeben(), (int) zeit, (int) tower.getHealth(), (int) x, (int) y, player.getKills());
 
         /* game.batch.batch.begin();
-        game.batch.batch.draw(OVERLAY, (int) x - 305, (int) y - 220, 620, 480);
+        game.batch.batch.draw(OVERLAY, intX - 305, intY - 220, 620, 480);
         game.batch.batch.end();*/
 
     }
