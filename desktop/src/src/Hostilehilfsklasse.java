@@ -42,14 +42,14 @@ public class Hostilehilfsklasse {
 
     public boolean hurt(int i) {
         sammlung.get(i).hurt();
-        if (sammlung.get(i).getLeben() == 0) {
+        if (sammlung.get(i).getHealth() == 0) {
             return false;
         }
         return true;
     }
 
     public boolean zombieAlive(int i) {
-        if (sammlung.get(i).getLeben() == 0) {
+        if (sammlung.get(i).getHealth() == 0) {
             return false;
         }
         {

@@ -12,9 +12,10 @@ public class Hostile {
     protected int health;
 
 
-    public Hostile(float x, float y ){
+    public Hostile(float x, float y, int health){
         this.y = y;
         this.x = x;
+        this.health = health;
 
     }
 
@@ -24,7 +25,11 @@ public class Hostile {
         //System.out.print(health);
     }
 
+    public boolean alive(){
+        return health >= 0;
+    }
 
-    public int getLeben()
+
+    public int getHealth()
     {return health;}
 }

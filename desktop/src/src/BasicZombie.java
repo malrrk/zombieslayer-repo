@@ -7,12 +7,10 @@ import java.awt.*;
 
 public class BasicZombie extends Hostile{
 
-    int leben;
-
     //public final HitboxRect hitbox;
 
     public BasicZombie(float x, float y) {
-        super((int)x, (int)y);
+        super((int)x, (int)y, Settings.getLeben());
 
         health = Settings.getLeben();
 
