@@ -8,6 +8,7 @@ public class Hostilehilfsklasse {
     public int counter;
     public int counter2;
 
+
     public Hostilehilfsklasse() {
         sammlung = new ArrayList<>();
         counter = 49;
@@ -61,6 +62,7 @@ public class Hostilehilfsklasse {
 
         counter2--;
     }
+
 
 }
 

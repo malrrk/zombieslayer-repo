@@ -7,6 +7,9 @@ import java.awt.*;
 
 public class BasicZombie extends Hostile{
 
+    int leben;
+
+    //public final HitboxRect hitbox;
 
     public BasicZombie(float x, float y) {
         super((int)x, (int)y);
@@ -14,6 +17,10 @@ public class BasicZombie extends Hostile{
         health = Settings.getLeben();
 
     }
+
+    //public boolean checkCollision(HitboxRect hitbox){
+    //    return this.hitbox.checkCollision(hitbox);
+    //}
 
     public float getx(){
         if (x<2048)
