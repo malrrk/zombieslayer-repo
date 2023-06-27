@@ -23,6 +23,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Align;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 
@@ -110,17 +111,18 @@ public class MainGameScreen implements Screen{
             zeit = zeit + Gdx.graphics.getDeltaTime();
             item.setPosition(x,y+9);
 
-            if ((int) zeit - zombieTimer >3) {
+            if ((int) zeit - zombieTimer >2) {
                 z.spawnZombies();
                 zombieTimer = (int) zeit;
 
-                //RedZombiesList.add(new RedZombie());
+                RedZombiesList.add(new RedZombie());
             }
 
 
-            if(RedZombiesList.size() > 0) {
 
-                for (RedZombie zombie : RedZombiesList) {
+                for (Iterator<RedZombie> zombieIterator = RedZombiesList.iterator(); zombieIterator.hasNext();) {
+
+                    RedZombie zombie = zombieIterator.next();
 
                     if (zombie.alive()) {
                         if (tower.hitbox.overlaps(RedzombieRectangle)) {
@@ -129,8 +131,9 @@ public class MainGameScreen implements Screen{
                             zombie.move();
                             RedzombieRectangle.setPosition(zombie.x, zombie.y);
                         }
+
                         if (Gdx.input.isKeyPressed(Input.Keys.K) && item.overlaps(RedzombieRectangle)) {
-                            zombie.health = -1;
+                            zombie.hurt();
                             game.batch.drawCharacter(1, 10, (int) zombie.x, (int) zombie.y);
 
                         } else {
@@ -143,13 +146,12 @@ public class MainGameScreen implements Screen{
 
                         }
                     } else {
-                        System.out.println(zombie.health);
-                        RedZombiesList.remove(zombie);
-                        System.out.println(zombie.health);
+                        RedzombieRectangle.setPosition(0, 0);
+                        zombieIterator.remove();
                         player.addKill();
                     }
                 }
-            }
+
 
             for (int i = 0; i < z.counter2 - 1; i++) {
 
@@ -180,7 +182,8 @@ public class MainGameScreen implements Screen{
                     zombieDied.play(1.0f);
                     player.addKill();
                 }
-                    if(player.getKills() > 0){
+
+                if(player.getKills() > 0){
                         player.setStatus(3);
                         Settings.setZleben(20);
                     }
