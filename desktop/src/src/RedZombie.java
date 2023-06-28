@@ -12,13 +12,17 @@ public class RedZombie extends Hostile{
 
     private int spriteNr = 0;
 
-    public RedZombie(float x, float y){
-        super(x, y);
-        //super((int) (Math.random() * 2*2048), (int) (Math.random() * 2* 2048));
+    public RedZombie(){
+        //super(Settings.getx0y0() + 100, Settings.getx0y0() + 200, Settings.getLeben());
+        super((int) (Math.random() * 2 * 2048), (int) (Math.random() * 2 * 2048), Settings.getZLeben());
         x_vector = calculateVector_x(x, y, Settings.getx0y0(), Settings.getx0y0());
         y_vector = calculateVector_y(x, y, Settings.getx0y0(), Settings.getx0y0());
 
     }
+    public void hurt(){
+        health -= 1;
+    }
+
 
     public void move(){
         x += x_vector * Gdx.graphics.getDeltaTime();
@@ -45,6 +49,8 @@ public class RedZombie extends Hostile{
     public float lengthVector(float x_vector, float y_vector){
         return (float) Math.sqrt(Math.pow(x_vector, 2) + Math.pow(y_vector, 2));
     }
+
+
 
 
     public void move2(){

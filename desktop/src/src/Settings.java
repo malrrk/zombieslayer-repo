@@ -13,6 +13,9 @@ public class Settings {
     private static int x0= 2048;
     private static int speedDiagonal;
 
+    public static int getZLeben() {return zleben;
+    }
+
     //
     public void setSpeed(int speed) {
         this.speed = speed;

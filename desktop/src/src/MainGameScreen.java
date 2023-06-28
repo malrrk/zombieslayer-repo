@@ -23,6 +23,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Align;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 
@@ -40,6 +41,7 @@ public class MainGameScreen implements Screen{
     Hostilehilfsklasse z;
     int zombieTimer;
     Rectangle  zombieRectangle;
+    Rectangle  RedzombieRectangle;
     Rectangle item;
     Sound zombieDied = Gdx.audio.newSound(Gdx.files.internal("music/Zombie_02.mp3"));;
 
@@ -62,6 +64,7 @@ public class MainGameScreen implements Screen{
         zombieTimer = 0;
         x = y = Settings.getx0y0();
         zombieRectangle = new Rectangle(0,0,12,18);
+        RedzombieRectangle = new Rectangle(0,0,12,18);
         item = new Rectangle(x-2,y+9,15,11);
 
         if(game.music) {
@@ -75,8 +78,6 @@ public class MainGameScreen implements Screen{
         OVERLAY = new Texture("BLACK_OVERLAY.png");
 
         RedZombiesList = new ArrayList<>();
-
-        RedZombiesList.add(new RedZombie(x - 300, y + 200));
     }
 
     @Override
@@ -100,13 +101,6 @@ public class MainGameScreen implements Screen{
             intX = Math.round(x);
             intY = Math.round(y);
 
-            RedZombiesList.get(0).move();
-
-            //x = RedZombiesList.get(0).x;
-            //y = RedZombiesList.get(0).y;
-
-            //RedZombiesList.get(0).move();
-
 
             item.setPosition(x-2,y+4);
             game.batch.maps();
@@ -116,12 +110,48 @@ public class MainGameScreen implements Screen{
             game.batch.drawText((int) player.getLeben(), (int) zeit, (int) tower.getHealth(), intX, intY, player.getKills());
             zeit = zeit + Gdx.graphics.getDeltaTime();
             item.setPosition(x,y+9);
-            if ((int) zeit - zombieTimer >3) {
+
+            if ((int) zeit - zombieTimer >2) {
                 z.spawnZombies();
                 zombieTimer = (int) zeit;
+
+                RedZombiesList.add(new RedZombie());
             }
 
-            //game.batch.drawCharacter(1, 4, (int)RedZombiesList.get(0).x, (int) RedZombiesList.get(0).y);
+
+
+                for (Iterator<RedZombie> zombieIterator = RedZombiesList.iterator(); zombieIterator.hasNext();) {
+
+                    RedZombie zombie = zombieIterator.next();
+
+                    if (zombie.alive()) {
+                        if (tower.hitbox.overlaps(RedzombieRectangle)) {
+                            tower.hurt(0.1f);
+                        } else {
+                            zombie.move();
+                            RedzombieRectangle.setPosition(zombie.x, zombie.y);
+                        }
+
+                        if (Gdx.input.isKeyPressed(Input.Keys.K) && item.overlaps(RedzombieRectangle)) {
+                            zombie.hurt();
+                            game.batch.drawCharacter(1, 10, (int) zombie.x, (int) zombie.y);
+
+                        } else {
+                            game.batch.drawCharacter(1, 10, (int) zombie.x, (int) zombie.y);
+                        }
+
+                        if (player.hitbox.overlaps(RedzombieRectangle)) {
+                            player.hurt();
+                            game.batch.drawCharacter(player.getStatus(), player.getSpriteNr() + 8, (int) x, (int) y);
+
+                        }
+                    } else {
+                        RedzombieRectangle.setPosition(0, 0);
+                        zombieIterator.remove();
+                        player.addKill();
+                    }
+                }
+
 
             for (int i = 0; i < z.counter2 - 1; i++) {
 
@@ -147,11 +177,13 @@ public class MainGameScreen implements Screen{
                 }
 
 
-                else{
+                else {
                     z.remove(i);
                     zombieDied.play(1.0f);
                     player.addKill();
-                    if(player.getKills() > 0){
+                }
+
+                if(player.getKills() > 0){
                         player.setStatus(3);
                         Settings.setZleben(20);
                     }
@@ -178,8 +210,6 @@ public class MainGameScreen implements Screen{
                     if(player.getKills() > 199){
                         Settings.setLebenTurm(50);
                     }
-
-                }
             }
 
 

@@ -7,12 +7,10 @@ import java.awt.*;
 
 public class BasicZombie extends Hostile{
 
-    int leben;
-
     //public final HitboxRect hitbox;
 
     public BasicZombie(float x, float y) {
-        super((int)x, (int)y);
+        super((int)x, (int)y, Settings.getLeben());
 
         health = Settings.getLeben();
 
@@ -23,9 +21,9 @@ public class BasicZombie extends Hostile{
     //}
 
     public float getx(){
-        if (x<2048)
+        if (x<2073)
         { x = x+Settings.getZspeed() * Gdx.graphics.getDeltaTime();}
-        else if(x==2048)
+        else if(x==2073)
         {}
         else{x = x-Settings.getZspeed() * Gdx.graphics.getDeltaTime();}
 
