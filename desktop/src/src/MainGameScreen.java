@@ -136,15 +136,15 @@ public class MainGameScreen implements Screen{
 
                         if (Gdx.input.isKeyPressed(Input.Keys.K) && item.overlaps(RedzombieRectangle)) {
                             zombie.hurt();
-                            game.batch.drawCharacter(1, 10, (int) zombie.x, (int) zombie.y);
+                            game.batch.drawCharacter(0, zombie.getSpriteNr() + 8, (int) zombie.x, (int) zombie.y);
 
                         } else {
-                            game.batch.drawCharacter(1, 10, (int) zombie.x, (int) zombie.y);
+                            game.batch.drawCharacter(0, zombie.getSpriteNr(), (int) zombie.x, (int) zombie.y);
                         }
 
                         if (player.hitbox.overlaps(RedzombieRectangle)) {
                             player.hurt();
-                            game.batch.drawCharacter(player.getStatus(), player.getSpriteNr() + 8, (int) x, (int) y);
+                            player.setHurt(true);
 
                         }
                     } else {
@@ -174,7 +174,7 @@ public class MainGameScreen implements Screen{
 
                     if(player.hitbox.overlaps(zombieRectangle)){
                         player.hurt();
-                        game.batch.drawCharacter(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);
+                        player.setHurt(true);
 
                     }
                 }
@@ -215,7 +215,13 @@ public class MainGameScreen implements Screen{
                     }
             }
             game.batch.kombinieren(cam.positionSet(intX, intY));
-            game.batch.drawCharacter(player.getStatus(), player.getSpriteNr(), intX, intY);
+            if(player.isHurt()){
+                game.batch.drawCharacter(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);//hier auch intX und intY
+            }else{
+                game.batch.drawCharacter(player.getStatus(), player.getSpriteNr(), intX, intY);
+            }
+            player.setHurt(false);
+
             game.batch.drawText((int) player.getLeben(), (int) zeit, (int) tower.getHealth(), intX, intY, player.getKills());
 
 

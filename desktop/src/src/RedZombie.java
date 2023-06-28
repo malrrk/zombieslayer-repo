@@ -22,7 +22,7 @@ public class RedZombie extends Hostile{
 
         if(y_vector/vectorAverage > 0.75){
             if(x_vector/vectorAverage > 0.75){
-                spriteNr = 8; // rechts oben
+                spriteNr = 1; // rechts oben
             }else if(x_vector/vectorAverage < -0.75){
                 spriteNr = 7; // links oben
             }else{
@@ -30,17 +30,17 @@ public class RedZombie extends Hostile{
             }
         }else if(y_vector/vectorAverage < -0.75){
             if(x_vector/vectorAverage > 0.75){
-                spriteNr = 5; // rechts unten
+                spriteNr = 3; // rechts unten
             }else if(x_vector/vectorAverage < -0.75){
-                spriteNr = 4; // links unten
+                spriteNr = 5; // links unten
             }else{
-                spriteNr = 3; //unten
+                spriteNr = 4; //unten
             }
         }else{
             if(x_vector/vectorAverage > 0.75){
                 spriteNr = 2; //rechts
             }else{
-                spriteNr = 1; //links
+                spriteNr = 6; //links
             }
         }
 

@@ -13,6 +13,8 @@ public class Player {
     public float x;
     public float y;
 
+    private boolean hurt = false;
+
     private float speedDiagonalFac = 0;
 
     int picNr = 3;
@@ -28,6 +30,12 @@ public class Player {
         status = 2;
 
         hitbox = new Rectangle(this.x, this.y, 12, 18);
+    }
+
+    public void setHurt(boolean hurt){this.hurt = hurt;}
+
+    public boolean isHurt(){
+        return hurt;
     }
 
     public boolean playerAlive() {
