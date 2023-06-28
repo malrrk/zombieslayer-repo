@@ -125,6 +125,7 @@ public class MainGameScreen implements Screen{
                     RedZombie zombie = zombieIterator.next();
 
                     if (zombie.alive()) {
+                        RedzombieRectangle.setPosition(zombie.x, zombie.y);
                         if (tower.hitbox.overlaps(RedzombieRectangle)) {
                             tower.hurt(0.1f);
                         } else {

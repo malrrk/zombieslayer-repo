@@ -21,7 +21,7 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 
 public class Main extends Game {
 
-	public boolean music = false;
+	public boolean music = true;
 	public Sprites batch;
 	@Override
 	public void create() {
