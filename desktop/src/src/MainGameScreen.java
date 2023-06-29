@@ -40,10 +40,11 @@ public class MainGameScreen implements Screen{
     float zeit;
     Hostilehilfsklasse z;
     int zombieTimer;
+
+    Sound zombieDied;
     Rectangle  zombieRectangle;
     Rectangle  RedzombieRectangle;
     Rectangle item;
-    Sound zombieDied = Gdx.audio.newSound(Gdx.files.internal("music/Zombie_02.mp3"));;
 
     Texture OVERLAY;
 
@@ -67,7 +68,10 @@ public class MainGameScreen implements Screen{
         RedzombieRectangle = new Rectangle(0,0,12,18);
         item = new Rectangle(x-2,y+9,15,11);
 
-        if(game.music) {
+        zombieDied = Gdx.audio.newSound(Gdx.files.internal("sounds/zombie-02.mp3"));
+
+
+        if(!game.music) {
             Music menu_music = Gdx.audio.newMusic(Gdx.files.getFileHandle("music/where-the-brave-may-live-forever-viking-background-music-109867.mp3", Files.FileType.Internal));
             menu_music.setVolume(0.2f);
             menu_music.play();
@@ -95,6 +99,7 @@ public class MainGameScreen implements Screen{
             game.batch.kombinieren(cam.positionSet(x, y));
             tot();
         } else {
+            game.batch.maps();
             player.move();
             x = player.x;
             y = player.y;
@@ -103,13 +108,9 @@ public class MainGameScreen implements Screen{
 
 
             item.setPosition(x-2,y+4);
-            game.batch.maps();
-            this.draw();
-            game.batch.kombinieren(cam.positionSet(intX, intY));
-            game.batch.drawCharacter(player.getStatus(), player.getSpriteNr(), intX, intY);
-            game.batch.drawText((int) player.getLeben(), (int) zeit, (int) tower.getHealth(), intX, intY, player.getKills());
             zeit = zeit + Gdx.graphics.getDeltaTime();
             item.setPosition(x,y+9);
+            this.draw();
 
             if ((int) zeit - zombieTimer >2) {
                 z.spawnZombies();
@@ -125,6 +126,7 @@ public class MainGameScreen implements Screen{
                     RedZombie zombie = zombieIterator.next();
 
                     if (zombie.alive()) {
+                        RedzombieRectangle.setPosition(zombie.x, zombie.y);
                         if (tower.hitbox.overlaps(RedzombieRectangle)) {
                             tower.hurt(0.1f);
                         } else {
@@ -134,20 +136,21 @@ public class MainGameScreen implements Screen{
 
                         if (Gdx.input.isKeyPressed(Input.Keys.K) && item.overlaps(RedzombieRectangle)) {
                             zombie.hurt();
-                            game.batch.drawCharacter(1, 10, (int) zombie.x, (int) zombie.y);
+                            game.batch.drawCharacter(0, zombie.getSpriteNr() + 8, (int) zombie.x, (int) zombie.y);
 
                         } else {
-                            game.batch.drawCharacter(1, 10, (int) zombie.x, (int) zombie.y);
+                            game.batch.drawCharacter(0, zombie.getSpriteNr(), (int) zombie.x, (int) zombie.y);
                         }
 
                         if (player.hitbox.overlaps(RedzombieRectangle)) {
                             player.hurt();
-                            game.batch.drawCharacter(player.getStatus(), player.getSpriteNr() + 8, (int) x, (int) y);
+                            player.setHurt(true);
 
                         }
                     } else {
                         RedzombieRectangle.setPosition(0, 0);
                         zombieIterator.remove();
+                        zombieDied.play(1.0f);
                         player.addKill();
                     }
                 }
@@ -171,7 +174,7 @@ public class MainGameScreen implements Screen{
 
                     if(player.hitbox.overlaps(zombieRectangle)){
                         player.hurt();
-                        game.batch.drawCharacter(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);
+                        player.setHurt(true);
 
                     }
                 }
@@ -211,6 +214,15 @@ public class MainGameScreen implements Screen{
                         Settings.setLebenTurm(50);
                     }
             }
+            game.batch.kombinieren(cam.positionSet(intX, intY));
+            if(player.isHurt()){
+                game.batch.drawCharacter(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);//hier auch intX und intY
+            }else{
+                game.batch.drawCharacter(player.getStatus(), player.getSpriteNr(), intX, intY);
+            }
+            player.setHurt(false);
+
+            game.batch.drawText((int) player.getLeben(), (int) zeit, (int) tower.getHealth(), intX, intY, player.getKills());
 
 
         }

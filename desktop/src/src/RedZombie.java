@@ -18,6 +18,32 @@ public class RedZombie extends Hostile{
         x_vector = calculateVector_x(x, y, Settings.getx0y0(), Settings.getx0y0());
         y_vector = calculateVector_y(x, y, Settings.getx0y0(), Settings.getx0y0());
 
+        float vectorAverage = (Math.abs(x_vector) + Math.abs(y_vector))/2;
+
+        if(y_vector/vectorAverage > 0.75){
+            if(x_vector/vectorAverage > 0.75){
+                spriteNr = 1; // rechts oben
+            }else if(x_vector/vectorAverage < -0.75){
+                spriteNr = 7; // links oben
+            }else{
+                spriteNr = 6; //oben
+            }
+        }else if(y_vector/vectorAverage < -0.75){
+            if(x_vector/vectorAverage > 0.75){
+                spriteNr = 3; // rechts unten
+            }else if(x_vector/vectorAverage < -0.75){
+                spriteNr = 5; // links unten
+            }else{
+                spriteNr = 4; //unten
+            }
+        }else{
+            if(x_vector/vectorAverage > 0.75){
+                spriteNr = 2; //rechts
+            }else{
+                spriteNr = 6; //links
+            }
+        }
+
     }
     public void hurt(){
         health -= 1;
