@@ -11,6 +11,6 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setTitle("Zombieslayer");
 
-		new Lwjgl3Application(new src.Main(), config);
+		new Lwjgl3Application(new com.mygdx.game.Main(), config);
 	}
 }

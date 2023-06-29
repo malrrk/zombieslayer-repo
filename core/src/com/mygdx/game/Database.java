@@ -1,4 +1,4 @@
-package src;
+package com.mygdx.game;
 import java.sql.*;
 public class Database{
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package src;
+package com.mygdx.game;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.audio.Music;

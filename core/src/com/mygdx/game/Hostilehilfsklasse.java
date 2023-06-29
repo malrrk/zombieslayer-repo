@@ -1,4 +1,4 @@
-package src;
+package com.mygdx.game;
 
 import java.sql.Array;
 import java.util.ArrayList;
