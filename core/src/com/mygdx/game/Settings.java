@@ -12,6 +12,9 @@ public class Settings {
     private static double hurtf = 3;
     private static int x0= 2048;
     private static int speedDiagonal;
+    private static float swordCoolDown = 0.7f;
+
+    private static float volume = 0.7f;
 
     public static int getZLeben() {return zleben;
     }
@@ -20,6 +23,9 @@ public class Settings {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
+
+    public static float getVolume(){return volume;}
+    public static float getSwordCoolDown(){return swordCoolDown;}
 
     public static int getSpeed() {
         return speed;
