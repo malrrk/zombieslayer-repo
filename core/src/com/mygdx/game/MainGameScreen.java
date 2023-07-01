@@ -1,27 +1,18 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.*;
+import com.badlogic.gdx.Files;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.*;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.ScreenUtils;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -51,6 +42,10 @@ public class MainGameScreen implements Screen{
     Main game;
 
     ArrayList<RedZombie> RedZombiesList;
+
+    Database db;
+
+    String username;
 
     public MainGameScreen(Main game){
         this.game = game;
@@ -261,7 +256,23 @@ public class MainGameScreen implements Screen{
 
     public void tot() {
         game.setScreen(new GameOverScreen(game, player.getKills(), zeit));
+
+        db = new Database();
+        Connection con = null;
+        PreparedStatement ps = null;
+        try {
+            con = DriverManager.getConnection("jdbc :mysql ://localhost :3306/web?useSSL=false", "q11_s01","12345");
+            String query = "insert into table(Name, Time, Kills) values(?,?,?) ";
+            ps = con.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setInt(2,  (int)zeit);
+            ps.setInt(3, player.getKills());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
+
     public void draw(){
         game.batch.drawManyPlantsNew();
         game.batch.drawTower();
