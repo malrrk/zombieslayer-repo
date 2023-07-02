@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -44,7 +45,7 @@ public class MainGameScreen implements Screen{
 
     ArrayList<RedZombie> RedZombiesList;
 
-    Database db;
+    static Database db;
 
     private static String u;
     private static int t;
