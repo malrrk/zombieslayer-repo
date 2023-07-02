@@ -74,7 +74,7 @@ public class MainGameScreen implements Screen{
         zombieDied = Gdx.audio.newSound(Gdx.files.internal("sounds/zombie-02.mp3"));
 
 
-        if(!game.music) {
+        if(game.music) {
             Music menu_music = Gdx.audio.newMusic(Gdx.files.getFileHandle("music/where-the-brave-may-live-forever-viking-background-music-109867.mp3", Files.FileType.Internal));
             menu_music.setVolume(0.2f);
             menu_music.play();
@@ -118,7 +118,6 @@ public class MainGameScreen implements Screen{
             if ((int) zeit - zombieTimer >2) {
                 z.spawnZombies();
                 zombieTimer = (int) zeit;
-
                 RedZombiesList.add(new RedZombie());
             }
 
@@ -165,14 +164,16 @@ public class MainGameScreen implements Screen{
                     zombieRectangle.setPosition(z.mx(i), z.my(i));
                     if(tower.hitbox.overlaps(zombieRectangle)) {
                         tower.hurt(0.1f);
+                        z.setMovingfalse(i);
+
                     }
                     if (Gdx.input.isKeyPressed(Input.Keys.K) && item.overlaps(zombieRectangle)) {
                         z.hurt(i);
-                        game.batch.drawCharacter(1, 1 + 8, (int) z.mx(i), (int) z.my((i)));
+                        game.batch.drawCharacter(1, z.getSpiritNr(i) + 8, (int) z.mx(i), (int) z.my((i)));
 
                     }
                     else{
-                        game.batch.drawCharacter(1, 1, (int)z.mx(i), (int)z.my((i)));
+                        game.batch.drawCharacter(1, z.getSpiritNr(i), (int)z.mx(i), (int)z.my((i)));
                     }
 
                     if(player.hitbox.overlaps(zombieRectangle)){
