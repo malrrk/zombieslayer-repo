@@ -31,6 +31,8 @@ public class MainGameScreen implements Screen{
     float zeit;
     Hostilehilfsklasse z;
     int zombieTimer;
+
+    float swordTimer;
     Camera  cam;
 
     ArrayList<Sound> zombieDied;
@@ -114,6 +116,8 @@ public class MainGameScreen implements Screen{
             intX = Math.round(x);
             intY = Math.round(y);
 
+            swordTimer += Gdx.graphics.getDeltaTime();
+
 
             item.setPosition(x-2,y+4);
             zeit = zeit + Gdx.graphics.getDeltaTime();
@@ -142,10 +146,10 @@ public class MainGameScreen implements Screen{
                             RedzombieRectangle.setPosition(zombie.x, zombie.y);
                         }
 
-                        if (Gdx.input.isKeyPressed(Input.Keys.K) && item.overlaps(RedzombieRectangle)) {
+                        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && Gdx.input.isKeyPressed(Input.Keys.K) && item.overlaps(RedzombieRectangle) ){//&& swordTimer > Settings.getSwordCoolDown()) {
                             zombie.hurt();
                             game.batch.drawCharacter(0, zombie.getSpriteNr() + 8, (int) zombie.x, (int) zombie.y);
-
+                            swordTimer = 0f;
                         } else {
                             game.batch.drawCharacter(0, zombie.getSpriteNr(), (int) zombie.x, (int) zombie.y);
                         }
