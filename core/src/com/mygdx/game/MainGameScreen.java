@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 
@@ -20,6 +21,7 @@ public class MainGameScreen implements Screen{
 
     //Sprites batch;
     Player player;
+    Random rand = new Random();
 
     float x;
     float y;
@@ -31,7 +33,7 @@ public class MainGameScreen implements Screen{
     int zombieTimer;
     Camera  cam;
 
-    Sound zombieDied;
+    ArrayList<Sound> zombieDied;
     Rectangle  zombieRectangle;
     Rectangle  RedzombieRectangle;
     Rectangle item;
@@ -78,6 +80,11 @@ public class MainGameScreen implements Screen{
             menu_music.setLooping(true);
 
         }
+
+        zombieDied = new ArrayList<>();
+        zombieDied.add(Gdx.audio.newSound(Gdx.files.internal("sounds/zombieDied01.mp3")));
+        zombieDied.add(Gdx.audio.newSound(Gdx.files.internal("sounds/zombieDied02.mp3")));
+        zombieDied.add(Gdx.audio.newSound(Gdx.files.internal("sounds/zombieDied03.mp3")));
 
         OVERLAY = new Texture("BLACK_OVERLAY.png");
 
@@ -151,7 +158,7 @@ public class MainGameScreen implements Screen{
                     } else {
                         RedzombieRectangle.setPosition(0, 0);
                         zombieIterator.remove();
-                        //zombieDied.play(1.0f);
+                        zombieDied.get(rand.nextInt(3)).play(Settings.getVolume());
                         player.addKill();
                     }
                 }
@@ -183,7 +190,7 @@ public class MainGameScreen implements Screen{
 
                 else {
                     z.remove(i);
-                    //zombieDied.play(1.0f);
+                    zombieDied.get(rand.nextInt(3)).play(Settings.getVolume());
                     player.addKill();
                 }
 
