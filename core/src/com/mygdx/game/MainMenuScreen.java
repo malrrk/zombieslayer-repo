@@ -29,6 +29,7 @@ public class MainMenuScreen implements Screen{
     private Music menu_music;
 
     Texture OVERLAY;
+    Camera cam;
 
 
 
@@ -40,8 +41,9 @@ public class MainMenuScreen implements Screen{
     Main game;
 
 
-    public MainMenuScreen(Main game){
+    public MainMenuScreen(Main game, Camera cam){
         this.game = game;
+        this.cam = cam;
 
         playButton = new Texture("PLAY.png");
         exitButton = new Texture("EXIT.png");
@@ -76,7 +78,7 @@ public class MainMenuScreen implements Screen{
         if (Gdx.input.isTouched()){
             if (Gdx.input.getX() > PLAY_BUTTON_X && Gdx.input.getX() < PLAY_BUTTON_X + PLAY_BUTTON_WIDTH && Gdx.input.getY() > (SCREEN_HEIGHT - PLAY_BUTTON_HEIGHT - PLAY_BUTTON_Y) && Gdx.input.getY() < (SCREEN_HEIGHT - PLAY_BUTTON_Y)){
                 if(game.music) {menu_music.stop();}
-                game.setScreen(new MainGameScreen(game));
+                game.setScreen(new MainGameScreen(game, cam));
             }else if (Gdx.input.getX() > EXIT_BUTTON_X && Gdx.input.getX() < EXIT_BUTTON_X + EXIT_BUTTON_WIDTH && Gdx.input.getY() > (SCREEN_HEIGHT - EXIT_BUTTON_HEIGHT - EXIT_BUTTON_Y) && Gdx.input.getY() < (SCREEN_HEIGHT - EXIT_BUTTON_Y)){
                 Gdx.app.exit();
             }

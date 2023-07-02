@@ -29,6 +29,7 @@ public class GameOverScreen implements Screen{
     private static final int SCREEN_HEIGHT = 480;
 
     Texture playButton;
+    Camera cam;
 
     Texture exitButton;
 
@@ -39,10 +40,11 @@ public class GameOverScreen implements Screen{
     int kills;
     float time;
 
-    public GameOverScreen(Main game, int kills, float time){
+    public GameOverScreen(Main game, int kills, float time, Camera cam){
         this.game = game;
         this.kills = kills;
         this.time = time;
+        this.cam = cam;
 
         playButton = new Texture("PLAY.png");
         exitButton = new Texture("EXIT.png");
@@ -71,7 +73,7 @@ public class GameOverScreen implements Screen{
             if (Gdx.input.isTouched()){
                 if (Gdx.input.getX() > PLAY_BUTTON_X && Gdx.input.getX() < PLAY_BUTTON_X + PLAY_BUTTON_WIDTH && Gdx.input.getY() > (SCREEN_HEIGHT - PLAY_BUTTON_HEIGHT - PLAY_BUTTON_Y) && Gdx.input.getY() < (SCREEN_HEIGHT - PLAY_BUTTON_Y)){
 
-                    game.setScreen(new MainGameScreen(game));
+                    game.setScreen(new MainGameScreen(game, cam));
                 }else if (Gdx.input.getX() > EXIT_BUTTON_X && Gdx.input.getX() < EXIT_BUTTON_X + EXIT_BUTTON_WIDTH && Gdx.input.getY() > (SCREEN_HEIGHT - EXIT_BUTTON_HEIGHT - EXIT_BUTTON_Y) && Gdx.input.getY() < (SCREEN_HEIGHT - EXIT_BUTTON_Y)){
                     Gdx.app.exit();
                 }

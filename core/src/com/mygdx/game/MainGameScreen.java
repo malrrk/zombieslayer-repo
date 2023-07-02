@@ -20,7 +20,7 @@ public class MainGameScreen implements Screen{
 
     //Sprites batch;
     Player player;
-    Camera cam;
+
     float x;
     float y;
     int intX;
@@ -29,6 +29,7 @@ public class MainGameScreen implements Screen{
     float zeit;
     Hostilehilfsklasse z;
     int zombieTimer;
+    Camera  cam;
 
     Sound zombieDied;
     Rectangle  zombieRectangle;
@@ -47,7 +48,7 @@ public class MainGameScreen implements Screen{
     private static int t;
     private static int k;
 
-    public MainGameScreen(Main game){
+    public MainGameScreen(Main game, Camera cam){
         this.game = game;
         //batch = new Sprites();
 
@@ -55,8 +56,8 @@ public class MainGameScreen implements Screen{
         //img = new Texture("badlogic.jpg");
         player = new Player(game.batch, Settings.getx0y0(), Settings.getx0y0());
         tower = new Tower();
-        cam = new Camera(x,y);
         z = new Hostilehilfsklasse();
+        this.cam = cam;
         zombieTimer = 0;
         x = y = Settings.getx0y0();
         zombieRectangle = new Rectangle(0,0,12,18);
@@ -260,7 +261,7 @@ public class MainGameScreen implements Screen{
     }
 
     public void tot(){
-        game.setScreen(new GameOverScreen(game, player.getKills(), zeit));
+        game.setScreen(new GameOverScreen(game, player.getKills(), zeit, cam));
     }
     public void draw(){
         game.batch.drawManyPlantsNew();
