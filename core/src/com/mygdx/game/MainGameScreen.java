@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -45,7 +46,9 @@ public class MainGameScreen implements Screen{
 
     Database db;
 
-    String username;
+    private static String u;
+    private static int t;
+    private static int k;
 
     public MainGameScreen(Main game){
         this.game = game;
@@ -62,6 +65,10 @@ public class MainGameScreen implements Screen{
         zombieRectangle = new Rectangle(0,0,12,18);
         RedzombieRectangle = new Rectangle(0,0,12,18);
         item = new Rectangle(x-2,y+9,15,11);
+
+        u = "chris";
+        t = 203;
+        k = 42;
 
         zombieDied = Gdx.audio.newSound(Gdx.files.internal("sounds/zombie-02.mp3"));
 
@@ -254,25 +261,9 @@ public class MainGameScreen implements Screen{
         game.batch.dispose();
     }
 
-    public void tot() {
+    public void tot(){
         game.setScreen(new GameOverScreen(game, player.getKills(), zeit));
-
-        db = new Database();
-        Connection con = null;
-        PreparedStatement ps = null;
-        try {
-            con = DriverManager.getConnection("jdbc :mysql ://localhost :3306/web?useSSL=false", "q11_s01","12345");
-            String query = "insert into table(Name, Time, Kills) values(?,?,?) ";
-            ps = con.prepareStatement(query);
-            ps.setString(1, username);
-            ps.setInt(2,  (int)zeit);
-            ps.setInt(3, player.getKills());
-            ps.executeUpdate();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
-
     public void draw(){
         game.batch.drawManyPlantsNew();
         game.batch.drawTower();
@@ -281,5 +272,13 @@ public class MainGameScreen implements Screen{
         game.batch.batch.draw(OVERLAY, intX - 305, intY - 220, 620, 480);
         game.batch.batch.end();*/
 
+    }
+    public static void addData(String[] args) throws ClassNotFoundException{
+
+        Database.connect();
+
+        Database.update("INSERT INTO `table`(`Username`, `Time`, `Kills`) VALUES(`"+ u + "`,`" + t + "`,`" + k + "`)");
+
+        Database.disconnect();
     }
 }
