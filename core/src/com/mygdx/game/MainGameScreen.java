@@ -67,7 +67,7 @@ public class MainGameScreen implements Screen{
         t = 203;
         k = 42;
 
-        zombieDied = Gdx.audio.newSound(Gdx.files.internal("sounds/zombie-02.mp3"));
+        //zombieDied = Gdx.audio.newSound(Gdx.files.internal("sounds/zombie-02.mp3"));
 
 
         if(!game.music) {
@@ -150,7 +150,7 @@ public class MainGameScreen implements Screen{
                     } else {
                         RedzombieRectangle.setPosition(0, 0);
                         zombieIterator.remove();
-                        zombieDied.play(1.0f);
+                        //zombieDied.play(1.0f);
                         player.addKill();
                     }
                 }
@@ -182,7 +182,7 @@ public class MainGameScreen implements Screen{
 
                 else {
                     z.remove(i);
-                    zombieDied.play(1.0f);
+                    //zombieDied.play(1.0f);
                     player.addKill();
                 }
 
