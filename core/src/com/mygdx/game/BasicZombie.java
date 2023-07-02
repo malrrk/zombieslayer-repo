@@ -51,7 +51,9 @@ public class BasicZombie extends Hostile{
         }
     }
 
-
+    //public boolean checkCollision(HitboxRect hitbox){
+    //    return this.hitbox.checkCollision(hitbox);
+    //}
 
     public float getx(){
         if (moving)
