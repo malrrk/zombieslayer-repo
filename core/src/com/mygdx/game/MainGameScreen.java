@@ -10,12 +10,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Random;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 
@@ -33,14 +30,7 @@ public class MainGameScreen implements Screen{
     Hostilehilfsklasse z;
     int zombieTimer;
 
-
-    Random rand = new Random();
-
-    ArrayList<Sound> zombieDied;
-    ArrayList<Sound> swordSwing;
-    Sound swordHit;
-    Sound towerHit;
-    float swordTimer;
+    Sound zombieDied;
     Rectangle  zombieRectangle;
     Rectangle  RedzombieRectangle;
     Rectangle item;
@@ -51,9 +41,11 @@ public class MainGameScreen implements Screen{
 
     ArrayList<RedZombie> RedZombiesList;
 
-    Database db;
+    static MySQL db;
 
-    String username;
+    private static String u;
+    private static int t;
+    private static int k;
 
     public MainGameScreen(Main game){
         this.game = game;
@@ -71,20 +63,11 @@ public class MainGameScreen implements Screen{
         RedzombieRectangle = new Rectangle(0,0,12,18);
         item = new Rectangle(x-2,y+9,15,11);
 
-        zombieDied = new ArrayList<>();
-        zombieDied.add(Gdx.audio.newSound(Gdx.files.internal("sounds/zombieDied01.mp3")));
-        zombieDied.add(Gdx.audio.newSound(Gdx.files.internal("sounds/zombieDied02.mp3")));
-        zombieDied.add(Gdx.audio.newSound(Gdx.files.internal("sounds/zombieDied03.mp3")));
+        u = "chris";
+        t = 203;
+        k = 42;
 
-        swordSwing = new ArrayList<>();
-        swordSwing.add(Gdx.audio.newSound(Gdx.files.internal("sounds/sword01.mp3")));
-        swordSwing.add(Gdx.audio.newSound(Gdx.files.internal("sounds/sword02.mp3")));
-        swordSwing.add(Gdx.audio.newSound(Gdx.files.internal("sounds/sword03.mp3")));
-        swordSwing.add(Gdx.audio.newSound(Gdx.files.internal("sounds/sword04.mp3")));
-
-        swordHit = Gdx.audio.newSound(Gdx.files.internal("sounds/swordHit01.mp3"));
-
-        towerHit = Gdx.audio.newSound(Gdx.files.internal("sounds/towerhit2.mp3"));
+        zombieDied = Gdx.audio.newSound(Gdx.files.internal("sounds/zombie-02.mp3"));
 
 
         if(!game.music) {
@@ -114,6 +97,7 @@ public class MainGameScreen implements Screen{
             cam.positionSet(x,y);
             game.batch.kombinieren(cam.positionSet(x, y));
             tot();
+
         } else {
             game.batch.maps();
             player.move();
@@ -122,8 +106,6 @@ public class MainGameScreen implements Screen{
             intX = Math.round(x);
             intY = Math.round(y);
 
-            swordTimer += Gdx.graphics.getDeltaTime();
-
 
             item.setPosition(x-2,y+4);
             zeit = zeit + Gdx.graphics.getDeltaTime();
@@ -131,7 +113,7 @@ public class MainGameScreen implements Screen{
             this.draw();
 
             if ((int) zeit - zombieTimer >2) {
-                //z.spawnZombies();
+                z.spawnZombies();
                 zombieTimer = (int) zeit;
 
                 RedZombiesList.add(new RedZombie());
@@ -147,25 +129,17 @@ public class MainGameScreen implements Screen{
                         RedzombieRectangle.setPosition(zombie.x, zombie.y);
                         if (tower.hitbox.overlaps(RedzombieRectangle)) {
                             tower.hurt(0.1f);
-                            //towerHit.play(1.0f);
                         } else {
                             zombie.move();
                             RedzombieRectangle.setPosition(zombie.x, zombie.y);
                         }
 
-                        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && swordTimer > Settings.getSwordCoolDown()){
-                            if (item.overlaps(RedzombieRectangle)) {
-                                zombie.hurt();
-                                swordHit.play(Settings.getVolume());
-                                game.batch.drawCharacter(0, zombie.getSpriteNr(), (int) zombie.x, (int) zombie.y);
-
-                            } else {
-                                swordSwing.get(rand.nextInt(4)).play(Settings.getVolume());
-                                game.batch.drawCharacter(0, zombie.getSpriteNr() + 8, (int) zombie.x, (int) zombie.y);
-                            }
-                            swordTimer = 0f;
-                        }else{
+                        if (Gdx.input.isKeyPressed(Input.Keys.K) && item.overlaps(RedzombieRectangle)) {
+                            zombie.hurt();
                             game.batch.drawCharacter(0, zombie.getSpriteNr() + 8, (int) zombie.x, (int) zombie.y);
+
+                        } else {
+                            game.batch.drawCharacter(0, zombie.getSpriteNr(), (int) zombie.x, (int) zombie.y);
                         }
 
                         if (player.hitbox.overlaps(RedzombieRectangle)) {
@@ -176,7 +150,7 @@ public class MainGameScreen implements Screen{
                     } else {
                         RedzombieRectangle.setPosition(0, 0);
                         zombieIterator.remove();
-                        zombieDied.get(rand.nextInt(3)).play(Settings.getVolume());
+                        zombieDied.play(1.0f);
                         player.addKill();
                     }
                 }
@@ -188,21 +162,13 @@ public class MainGameScreen implements Screen{
                     zombieRectangle.setPosition(z.mx(i), z.my(i));
                     if(tower.hitbox.overlaps(zombieRectangle)) {
                         tower.hurt(0.1f);
-                        //towerHit.play(1.0f);
                     }
-                    if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && swordTimer > Settings.getSwordCoolDown()){
-                        if(item.overlaps(zombieRectangle)){
-                            z.hurt(i);
-                            swordHit.play(Settings.getVolume());
-                            game.batch.drawCharacter(1, 1 + 8, (int) z.mx(i), (int) z.my((i)));
+                    if (Gdx.input.isKeyPressed(Input.Keys.K) && item.overlaps(zombieRectangle)) {
+                        z.hurt(i);
+                        game.batch.drawCharacter(1, 1 + 8, (int) z.mx(i), (int) z.my((i)));
 
-                        } else {
-                            swordSwing.get(rand.nextInt(4)).play(Settings.getVolume());
-                            game.batch.drawCharacter(1, 1, (int)z.mx(i), (int)z.my((i)));
-                        }
-                        swordTimer = 0f;
-
-                    }else{
+                    }
+                    else{
                         game.batch.drawCharacter(1, 1, (int)z.mx(i), (int)z.my((i)));
                     }
 
@@ -216,7 +182,7 @@ public class MainGameScreen implements Screen{
 
                 else {
                     z.remove(i);
-                    zombieDied.get(rand.nextInt(3)).play(Settings.getVolume());
+                    zombieDied.play(1.0f);
                     player.addKill();
                 }
 
@@ -248,7 +214,6 @@ public class MainGameScreen implements Screen{
                         Settings.setLebenTurm(50);
                     }
             }
-
             game.batch.kombinieren(cam.positionSet(intX, intY));
             if(player.isHurt()){
                 game.batch.drawCharacter(player.getStatus(), player.getSpriteNr() + 8, (int)x, (int)y);//hier auch intX und intY
@@ -294,25 +259,9 @@ public class MainGameScreen implements Screen{
         game.batch.dispose();
     }
 
-    public void tot() {
+    public void tot(){
         game.setScreen(new GameOverScreen(game, player.getKills(), zeit));
-
-        db = new Database();
-        Connection con = null;
-        PreparedStatement ps = null;
-        try {
-            con = DriverManager.getConnection("jdbc :mysql ://localhost :3306/web?useSSL=false", "q11_s01","12345");
-            String query = "insert into table(Name, Time, Kills) values(?,?,?) ";
-            ps = con.prepareStatement(query);
-            ps.setString(1, username);
-            ps.setInt(2,  (int)zeit);
-            ps.setInt(3, player.getKills());
-            ps.executeUpdate();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
-
     public void draw(){
         game.batch.drawManyPlantsNew();
         game.batch.drawTower();
@@ -322,4 +271,19 @@ public class MainGameScreen implements Screen{
         game.batch.batch.end();*/
 
     }
+    public void addData(String u, int t, int k) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        try {
+            MySQL.connect();
+            MySQL.update("INSERT INTO table(Username, Time, Kills) VALUES(" + u + "," + t + "," + k + ")");
+            MySQL.disconnect();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 }
