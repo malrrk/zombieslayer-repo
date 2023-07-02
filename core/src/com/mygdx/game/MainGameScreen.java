@@ -10,15 +10,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-import javax.xml.crypto.Data;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
+import static com.mygdx.game.MySQL.connect;
 
 public class MainGameScreen implements Screen{
 
@@ -45,7 +41,7 @@ public class MainGameScreen implements Screen{
 
     ArrayList<RedZombie> RedZombiesList;
 
-    static Database db;
+    static MySQL db;
 
     private static String u;
     private static int t;
@@ -274,12 +270,12 @@ public class MainGameScreen implements Screen{
         game.batch.batch.end();*/
 
     }
-    public static void addData(String[] args) throws ClassNotFoundException{
+    public static void addData(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
-        Database.connect();
+        connect();
 
-        Database.update("INSERT INTO `table`(`Username`, `Time`, `Kills`) VALUES(`"+ u + "`,`" + t + "`,`" + k + "`)");
+        MySQL.update("INSERT INTO `table`(`Username`, `Time`, `Kills`) VALUES(`"+ "hans" + "`,`" + 3 + "`,`" + 1 + "`)");
 
-        Database.disconnect();
+        MySQL.disconnect();
     }
 }
