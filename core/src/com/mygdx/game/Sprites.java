@@ -33,7 +33,7 @@ public class Sprites extends SpriteBatch {
     private int status; //describes the current items the player is holding
 
     public SpriteBatch batch;
-    BitmapFont font;
+    public BitmapFont font;
 
 
     public Sprites() {
@@ -330,6 +330,13 @@ public class Sprites extends SpriteBatch {
         font.draw(batch, tmp, x - 140, y + 100);
         font.draw(batch, tmp2, x - 140, y + 80);
         font.draw(batch, tmp3, x + 140, y + 80);
+        batch.end();
+    }
+
+    public void drawScoreKillsGameOver(int kills, float time, int kills_x, int kills_y, int time_x, int time_y) {
+
+        font.draw(batch, String.valueOf(kills), kills_x, kills_y);
+        font.draw(batch, String.valueOf(time), time_x, time_y);
         batch.end();
     }
 

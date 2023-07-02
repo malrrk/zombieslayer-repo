@@ -21,6 +21,10 @@ public class GameOverScreen implements Screen{
     private static final int EXIT_BUTTON_Y = 100;
     private static final int PLAY_BUTTON_X = 420;
     private static final int PLAY_BUTTON_Y = 100;
+    private static final int KILLS_X = 50;
+    private static final int KILLS_Y = 200;
+    private static final int TIME_X = 30;
+    private static final int TIME_Y = 200;
 
     private static final int TITLE_WIDTH = 424;
     private static final int TITLE_HEIGHT = 35;

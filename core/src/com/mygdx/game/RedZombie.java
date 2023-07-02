@@ -6,7 +6,7 @@ public class RedZombie extends Hostile{
 
     public RedZombie(){
         //super(Settings.getx0y0() + 100, Settings.getx0y0() + 200, Settings.getLeben());
-        super((int) (Math.random() * 2 * 2048), (int) (Math.random() * 2 * 2048), Settings.getZLeben());
+        super((int) (Math.random() * 2 * 2048), (int) (Math.random() * 2 * 2048), 0);
         x_vector = calculateVector_x(x, y, Settings.getx0y0(), Settings.getx0y0());
         y_vector = calculateVector_y(x, y, Settings.getx0y0(), Settings.getx0y0());
 
