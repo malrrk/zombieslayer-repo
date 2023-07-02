@@ -4,24 +4,28 @@ import java.sql.*;
 
 
 public class MySQL {
-    private static final String host = "localhost";
-    private static final String port = "3306";
-    private static final String database = "table";
-    private static final String username = "root";
-    private static final String password = "12345678";
+    private final String host = "localhost";
+    private final String port = "3306";
+    private final String database = "table";
+    private final String username = "root";
+    private final String password = "12345678";
     private static Connection con;
 
 
 
-    @SuppressWarnings("deprecation")
+
     public static void connect() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         try {
                 con = DriverManager.getConnection("jdbc:mysql://localhost/q11_s01&table=table?user=q11_s01&password=12345678");
         }
-        catch (SQLException e) {
-                e.printStackTrace();
+        catch (SQLException ex){
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        } catch (Exception ex){
+            System.out.println(ex);
         }
     }
 
@@ -29,8 +33,13 @@ public class MySQL {
 
         try {
                 con.close();
-        } catch (SQLException e) {
-                e.printStackTrace();
+        }
+        catch (SQLException ex){
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        } catch (Exception ex){
+            System.out.println(ex);
         }
     }
     public static void update(String q){
@@ -39,8 +48,12 @@ public class MySQL {
             ps.execute();
 
         }
-        catch(SQLException e){
-                e.printStackTrace();
+        catch (SQLException ex){
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        } catch (Exception ex){
+            System.out.println(ex);
         }
     }
 

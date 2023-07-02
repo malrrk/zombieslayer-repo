@@ -10,11 +10,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
-import static com.mygdx.game.MySQL.connect;
 
 public class MainGameScreen implements Screen{
 
@@ -97,6 +97,7 @@ public class MainGameScreen implements Screen{
             cam.positionSet(x,y);
             game.batch.kombinieren(cam.positionSet(x, y));
             tot();
+
         } else {
             game.batch.maps();
             player.move();
@@ -270,12 +271,19 @@ public class MainGameScreen implements Screen{
         game.batch.batch.end();*/
 
     }
-    public static void addData(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public void addData(String u, int t, int k) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        try {
+            MySQL.connect();
+            MySQL.update("INSERT INTO table(Username, Time, Kills) VALUES(" + u + "," + t + "," + k + ")");
+            MySQL.disconnect();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
 
-        connect();
-
-        MySQL.update("INSERT INTO `table`(`Username`, `Time`, `Kills`) VALUES(`"+ "hans" + "`,`" + 3 + "`,`" + 1 + "`)");
-
-        MySQL.disconnect();
     }
+
 }
