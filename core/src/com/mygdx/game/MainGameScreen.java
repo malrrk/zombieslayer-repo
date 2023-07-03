@@ -79,7 +79,7 @@ public class MainGameScreen implements Screen{
         //zombieDied = Gdx.audio.newSound(Gdx.files.internal("sounds/zombie-02.mp3"));
 
 
-        if(game.music) {
+        if(!game.music) {
             Music menu_music = Gdx.audio.newMusic(Gdx.files.getFileHandle("music/where-the-brave-may-live-forever-viking-background-music-109867.mp3", Files.FileType.Internal));
             menu_music.setVolume(0.2f);
             menu_music.play();
@@ -237,22 +237,22 @@ public class MainGameScreen implements Screen{
                         player.setStatus(8);
                         Settings.setHurtf(1.5);
                     }
-                    if(player.getKills() > 24){
+                    if(player.getKills() > 14){
                         Settings.setZleben(15);
                     }
 
-                    if(player.getKills() > 39){
+                    if(player.getKills() > 24){
                         player.setStatus(9);
                         Settings.setHurtf(0.5);
                     }
-                    if(player.getKills() > 69){
+                    if(player.getKills() > 34){
                         player.setLeben(1);
                     }
 
-                    if(player.getKills() > 149){
+                    if(player.getKills() > 44){
                         Settings.setZleben(10);
                     }
-                    if(player.getKills() > 199){
+                    if(player.getKills() > 54){
                         Settings.setLebenTurm(50);
                     }
             }

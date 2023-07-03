@@ -25,7 +25,7 @@ public class Player {
         this.x = x;
         this.y = y;
         this.batch = batch;
-        leben = 100;
+        leben = Settings.getLeben();
         kills = 0;
         status = 2;
 
@@ -43,7 +43,7 @@ public class Player {
 
             return true;
         }
-        leben = 25;
+        leben = Settings.getLeben();
         return false;
     }
 
