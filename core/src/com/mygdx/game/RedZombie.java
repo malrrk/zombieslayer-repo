@@ -4,82 +4,22 @@ import com.badlogic.gdx.Gdx;
 
 public class RedZombie extends Hostile{
 
-    private float x_vector;
-    private float y_vector;
-    private float remDistance = 0; //remaining distance to move until another vector is calculated
-
-    private final float randomFac = 2;
-
-    private int spriteNr = 0;
-
     public RedZombie(){
         //super(Settings.getx0y0() + 100, Settings.getx0y0() + 200, Settings.getLeben());
-        super((int) (Math.random() * 2 * 2048), (int) (Math.random() * 2 * 2048), Settings.getZLeben());
+        super((int) (Math.random() * 2 * 2048), (int) (Math.random() * 2 * 2048), 0);
         x_vector = calculateVector_x(x, y, Settings.getx0y0(), Settings.getx0y0());
         y_vector = calculateVector_y(x, y, Settings.getx0y0(), Settings.getx0y0());
 
-        float vectorAverage = (Math.abs(x_vector) + Math.abs(y_vector))/2;
-
-        if(y_vector/vectorAverage > 0.75){
-            if(x_vector/vectorAverage > 0.75){
-                spriteNr = 1; // rechts oben
-            }else if(x_vector/vectorAverage < -0.75){
-                spriteNr = 7; // links oben
-            }else{
-                spriteNr = 6; //oben
-            }
-        }else if(y_vector/vectorAverage < -0.75){
-            if(x_vector/vectorAverage > 0.75){
-                spriteNr = 3; // rechts unten
-            }else if(x_vector/vectorAverage < -0.75){
-                spriteNr = 5; // links unten
-            }else{
-                spriteNr = 4; //unten
-            }
-        }else{
-            if(x_vector/vectorAverage > 0.75){
-                spriteNr = 2; //rechts
-            }else{
-                spriteNr = 6; //links
-            }
-        }
-
-    }
-    public void hurt(){
-        health -= 1;
+        spriteNr = calculateSpriteNr(x_vector, y_vector);
     }
 
 
+
+    /* doesnt work yet
+    private float remDistance = 0; //remaining distance to move until another vector is calculated
+
+    private final float randomFac = 2;
     public void move(){
-        x += x_vector * Gdx.graphics.getDeltaTime();
-        y += y_vector * Gdx.graphics.getDeltaTime();
-    }
-
-    public int getSpriteNr(){
-        return spriteNr;
-    }
-
-    public float calculateVector_y(float x_start, float y_start, float x_end, float y_end){
-        float vectorFac = (float) (Settings.getSpeed()/Math.sqrt(Math.pow(x_end - x_start, 2) + Math.pow(y_end - y_start, 2)));
-
-        return (y_end - y_start) * vectorFac;
-    }
-
-    public float calculateVector_x(float x_start, float y_start, float x_end, float y_end){
-        float vectorFac = (float) (Settings.getSpeed()/Math.sqrt(Math.pow(x_end - x_start, 2) + Math.pow(y_end - y_start, 2)));
-
-        return (x_end - x_start) * vectorFac;
-    }
-
-
-    public float lengthVector(float x_vector, float y_vector){
-        return (float) Math.sqrt(Math.pow(x_vector, 2) + Math.pow(y_vector, 2));
-    }
-
-
-
-
-    public void move2(){
         if(remDistance > 0) {
             x += x_vector * Gdx.graphics.getDeltaTime();
             y += y_vector * Gdx.graphics.getDeltaTime();
@@ -109,5 +49,5 @@ public class RedZombie extends Hostile{
 
         remDistance = (float) (lengthVector(x_vector, y_vector) * Math.random()/randomFac);
 
-    }
+    }*/
 }
