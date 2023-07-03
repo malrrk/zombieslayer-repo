@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
+import static java.lang.String.format;
 
 public class MainGameScreen implements Screen{
 
@@ -40,8 +41,8 @@ public class MainGameScreen implements Screen{
     Main game;
 
     ArrayList<RedZombie> RedZombiesList;
-
-    static MySQL db;
+    Database db;
+    String username;
 
     private static String u;
     private static int t;
@@ -63,9 +64,7 @@ public class MainGameScreen implements Screen{
         RedzombieRectangle = new Rectangle(0,0,12,18);
         item = new Rectangle(x-2,y+9,15,11);
 
-        u = "chris";
-        t = 203;
-        k = 42;
+        db = new Database();
 
         zombieDied = Gdx.audio.newSound(Gdx.files.internal("sounds/zombie-02.mp3"));
 
@@ -260,6 +259,7 @@ public class MainGameScreen implements Screen{
     }
 
     public void tot(){
+
         game.setScreen(new GameOverScreen(game, player.getKills(), zeit));
     }
     public void draw(){
@@ -271,19 +271,7 @@ public class MainGameScreen implements Screen{
         game.batch.batch.end();*/
 
     }
-    public void addData(String u, int t, int k) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-        try {
-            MySQL.connect();
-            MySQL.update("INSERT INTO table(Username, Time, Kills) VALUES(" + u + "," + t + "," + k + ")");
-            MySQL.disconnect();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
 
-    }
+
 
 }

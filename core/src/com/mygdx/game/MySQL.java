@@ -1,4 +1,4 @@
-package com.mygdx.game;
+/*package com.mygdx.game;
 import java.sql.*;
 
 
@@ -59,3 +59,5 @@ public class MySQL {
 
 
 }
+
+ */
