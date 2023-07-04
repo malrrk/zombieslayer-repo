@@ -302,6 +302,8 @@ public class MainGameScreen implements Screen{
     }
 
     public void tot(){
+        db.in(username, (int)zeit, player.getKills());
+        db.out();
         game.setScreen(new GameOverScreen(game, player.getKills(), zeit, cam));
     }
     public void draw(){
