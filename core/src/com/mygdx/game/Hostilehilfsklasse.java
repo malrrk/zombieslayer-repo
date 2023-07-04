@@ -1,6 +1,5 @@
 package com.mygdx.game;
 
-import java.sql.Array;
 import java.util.ArrayList;
 
 public class Hostilehilfsklasse {
@@ -9,9 +8,11 @@ public class Hostilehilfsklasse {
     public int counter2;
 
 
+
     public Hostilehilfsklasse() {
         sammlung = new ArrayList<>();
         counter = 49;
+
 
     }
     public float mx(int i) {
@@ -32,7 +33,6 @@ public class Hostilehilfsklasse {
         if (counter2 <= 49) {
 
             sammlung.add(new BasicZombie((float) Math.random() * 2*2048, (float) Math.random() * 2* 2048));
-
             counter2++;
             counter++;
         }
@@ -62,6 +62,16 @@ public class Hostilehilfsklasse {
 
         counter2--;
     }
+    public void setMovingtrue(int i){
+        sammlung.get(i).setMovingtrue();
+    }
+    public void setMovingfalse(int i) {
+        sammlung.get(i).setMovingfalse();
+    }
+public int getSpiritNr(int i){
+       return sammlung.get(i).getSpiritnNr();
+
+}
 
 
 }
