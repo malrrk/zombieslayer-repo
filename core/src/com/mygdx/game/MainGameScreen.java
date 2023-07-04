@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -48,8 +49,10 @@ public class MainGameScreen implements Screen{
     Main game;
 
     ArrayList<RedZombie> RedZombiesList;
+    Database db;
+    String username;
 
-    static MySQL db;
+
 
     private static String u;
     private static int t;
@@ -71,15 +74,12 @@ public class MainGameScreen implements Screen{
         RedzombieRectangle = new Rectangle(0,0,12,18);
         item = new Rectangle(x-2,y+9,15,11);
         GAMEOVER = new Texture("GAMEOVER.png");
-
-        u = "chris";
-        t = 203;
-        k = 42;
+        db = new Database();
 
         //zombieDied = Gdx.audio.newSound(Gdx.files.internal("sounds/zombie-02.mp3"));
 
 
-        if(game.music) {
+        if(!game.music) {
             Music menu_music = Gdx.audio.newMusic(Gdx.files.getFileHandle("music/where-the-brave-may-live-forever-viking-background-music-109867.mp3", Files.FileType.Internal));
             menu_music.setVolume(0.2f);
             menu_music.play();
@@ -237,22 +237,22 @@ public class MainGameScreen implements Screen{
                         player.setStatus(8);
                         Settings.setHurtf(1.5);
                     }
-                    if(player.getKills() > 24){
+                    if(player.getKills() > 14){
                         Settings.setZleben(15);
                     }
 
-                    if(player.getKills() > 39){
+                    if(player.getKills() > 24){
                         player.setStatus(9);
                         Settings.setHurtf(0.5);
                     }
-                    if(player.getKills() > 69){
+                    if(player.getKills() > 34){
                         player.setLeben(1);
                     }
 
-                    if(player.getKills() > 149){
+                    if(player.getKills() > 44){
                         Settings.setZleben(10);
                     }
-                    if(player.getKills() > 199){
+                    if(player.getKills() > 54){
                         Settings.setLebenTurm(50);
                     }
             }
@@ -302,6 +302,8 @@ public class MainGameScreen implements Screen{
     }
 
     public void tot(){
+        db.in(username, (int)zeit, player.getKills());
+        db.out();
         game.setScreen(new GameOverScreen(game, player.getKills(), zeit, cam));
     }
     public void draw(){
@@ -313,19 +315,6 @@ public class MainGameScreen implements Screen{
         game.batch.batch.end();*/
 
     }
-    public void addData(String u, int t, int k) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-        try {
-            MySQL.connect();
-            MySQL.update("INSERT INTO table(Username, Time, Kills) VALUES(" + u + "," + t + "," + k + ")");
-            MySQL.disconnect();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
 
-    }
 
 }
