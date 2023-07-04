@@ -274,19 +274,6 @@ public class Sprites extends SpriteBatch {
         }
     }
 
-    /*public int compare(int abscissa, int j) { //aux method for drawManyPlants
-        int q;
-        if (abscissa < 3030) {
-            q = (int) (randomx[j] * 2);
-        } else {
-            if (((int) (randomx[j] * 2) == 1)) {
-                q = 3;
-            } else {
-                q = 2;
-            }
-        }
-        return q;
-    }*/
 
     public void drawTower() { //draws the tower
         drawPlant(1, 4, 2048, 2048);
@@ -334,17 +321,12 @@ public class Sprites extends SpriteBatch {
     }
 
     public void drawScoreKillsGameOver(int kills, float time, int kills_x, int kills_y, int time_x, int time_y) {
-
+        batch.begin();
         font.draw(batch, String.valueOf(kills), kills_x, kills_y);
         font.draw(batch, String.valueOf(time), time_x, time_y);
         batch.end();
     }
 
-    public void endschrift(int x, int y) { //pretty selfexplanatory, ready to be deleted
-        batch.begin();
-        font.draw(batch, "druecke E zum starten", x, y);
-        batch.end();
-    }
 
     public void moveAnimation(int status, int spriteNr) {
 
