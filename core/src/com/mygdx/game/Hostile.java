@@ -43,7 +43,7 @@ public class Hostile {
             }else if(x_vector/vectorAverage < -0.75){
                 return 7; // links oben
             }else{
-                return 6; //oben
+                return 0; //oben
             }
         }else if(y_vector/vectorAverage < -0.75){
             if(x_vector/vectorAverage > 0.75){

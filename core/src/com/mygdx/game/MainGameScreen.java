@@ -79,7 +79,7 @@ public class MainGameScreen implements Screen{
         //zombieDied = Gdx.audio.newSound(Gdx.files.internal("sounds/zombie-02.mp3"));
 
 
-        if(!game.music) {
+        if(game.music) {
             Music menu_music = Gdx.audio.newMusic(Gdx.files.getFileHandle("music/where-the-brave-may-live-forever-viking-background-music-109867.mp3", Files.FileType.Internal));
             menu_music.setVolume(0.2f);
             menu_music.play();
