@@ -137,12 +137,12 @@ public class Sprites extends SpriteBatch {
 
     //methods
     public void drawCharacter(int status, int spriteNr, int x, int y) { //draws character from custom status and spriteNr at x and y coordinates
-        setCharacterSprite(status, spriteNr);
+        setRegionCharacter(spriteNr, status);
         drawRegionNew(x, y);
     }
 
     public void drawCharacter(int x, int y) { //draws character sprite from preset status and spriteNr at x and y coordinates
-        setCharacterSprite();
+        setRegionCharacter(getSpriteNr(), getStatus());
         drawRegionNew(x, y);
     }
 
@@ -181,13 +181,6 @@ public class Sprites extends SpriteBatch {
         setStatus(status);
     }
 
-    public void setCharacterSprite(int status, int spriteNr) {
-        setRegionCharacter(spriteNr, status);
-    }
-
-    public void setCharacterSprite() {
-        setRegionCharacter(getSpriteNr(), getStatus());
-    }
 
     public void setRegionCommon(Texture texture, int x, int y, int size, int offsetx, int offsety) { //sets the region to a square of 32 * the size with the given offset at the coordinates x and y
         if (size > 0) {
